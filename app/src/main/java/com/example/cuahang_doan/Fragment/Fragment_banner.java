@@ -61,6 +61,7 @@ public class Fragment_banner extends Fragment {
                     ArrayList arrayList= (ArrayList) response.body();
                     Collections.shuffle(arrayList);
                     adapter=new BannerAdapter(view.getContext(),arrayList);
+                    adapter.notifyDataSetChanged();
                     FragmentBanerViewpager.setAdapter(adapter);
                     pageIndicatorView.setViewPager(FragmentBanerViewpager);
                     autoSlideViewpager();
