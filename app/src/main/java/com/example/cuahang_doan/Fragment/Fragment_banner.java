@@ -1,6 +1,7 @@
 package com.example.cuahang_doan.Fragment;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.example.cuahang_doan.model.QuangCao;
 import com.rd.PageIndicatorView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -34,6 +36,9 @@ public class Fragment_banner extends Fragment {
     private ViewPager FragmentBanerViewpager;
     private PageIndicatorView pageIndicatorView;
     private BannerAdapter adapter;
+    private Handler handler;
+    private Runnable runnable;
+    private int CurrentItem;
 
 
     @Nullable
@@ -54,9 +59,11 @@ public class Fragment_banner extends Fragment {
                 Log.d("AAA","Banner"+response.toString());
                 if(response!=null){
                     ArrayList arrayList= (ArrayList) response.body();
+                    Collections.shuffle(arrayList);
                     adapter=new BannerAdapter(view.getContext(),arrayList);
                     FragmentBanerViewpager.setAdapter(adapter);
                     pageIndicatorView.setViewPager(FragmentBanerViewpager);
+                    autoSlideViewpager();
                 }
             }
 
@@ -71,5 +78,21 @@ public class Fragment_banner extends Fragment {
     private void anhxa() {
         FragmentBanerViewpager=view.findViewById(R.id.FragmentBanerViewpager);
         pageIndicatorView=view.findViewById(R.id.PageIndicatorview);
+    }
+    private void autoSlideViewpager(){
+        handler=new Handler();
+        runnable=new Runnable() {
+            @Override
+            public void run() {
+                CurrentItem=FragmentBanerViewpager.getCurrentItem();
+                CurrentItem++;
+                if(CurrentItem>=FragmentBanerViewpager.getAdapter().getCount()){
+                   CurrentItem=0;
+                }
+                FragmentBanerViewpager.setCurrentItem(CurrentItem,true);
+                handler.postDelayed(runnable,4500);
+            }
+        };
+        handler.postDelayed(runnable,4500);
     }
 }

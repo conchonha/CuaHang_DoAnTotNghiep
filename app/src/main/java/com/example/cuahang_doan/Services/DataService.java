@@ -1,5 +1,6 @@
 package com.example.cuahang_doan.Services;
 
+import com.example.cuahang_doan.model.DanhMuc;
 import com.example.cuahang_doan.model.QuangCao;
 import com.example.cuahang_doan.model.User;
 
@@ -19,4 +20,7 @@ public interface DataService {
 
     @GET("model/quangcao/getdata")
     Call<List<QuangCao>>GetdataQuangCao();
+
+    @GET("model/danhmuc/getdata")
+    Call<List<DanhMuc>>getdataDanhmuc();
 }

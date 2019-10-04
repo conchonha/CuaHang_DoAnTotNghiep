@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.cuahang_doan.Adapter.MainAdapter;
+import com.example.cuahang_doan.Fragment.Fragment_giohang;
 import com.example.cuahang_doan.Fragment.Fragment_timkiem;
 import com.example.cuahang_doan.Fragment.Fragment_trangchu;
+import com.example.cuahang_doan.Fragment.Fragmnet_taikhoan;
 import com.example.cuahang_doan.R;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
@@ -31,12 +33,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
         MainAdapter adapter=new MainAdapter(getSupportFragmentManager());
-        adapter.addFragment(new Fragment_trangchu(MainActivity.this),"Trang Chủ");
+        adapter.addFragment(new Fragment_trangchu(MainActivity.this),"Cửa Hàng");
+        adapter.addFragment(new Fragment_giohang(),"Giỏ Hàng");
+        adapter.addFragment(new Fragmnet_taikhoan(),"Tài Khoản");
         adapter.addFragment(new Fragment_timkiem(),"Tìm Kiếm");
         MainViewpager.setAdapter(adapter);
         mainTablayout.setupWithViewPager(MainViewpager);
         mainTablayout.getTabAt(0).setIcon(R.drawable.icontrangchu);
-        mainTablayout.getTabAt(1).setIcon(R.drawable.iconsearch);
+        mainTablayout.getTabAt(1).setIcon(R.drawable.cart);
+        mainTablayout.getTabAt(2).setIcon(R.drawable.user);
+        mainTablayout.getTabAt(3).setIcon(R.drawable.iconsearch);
     }
 
     private void anhxa() {

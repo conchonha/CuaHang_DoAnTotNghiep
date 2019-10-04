@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"/>
+
+    <TextView
+        android:id="@+id/txtscrollingtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:ellipsize="marquee"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:scrollHorizontally="true"
+        android:singleLine="true"
+        android:text="Chào mừng quý khách đến với ứng dụng bán hàng của chúng tôi mọi thông tin chi tiết xin liên hệ 0935161907 để được biết thêm chi tiết"
+        android:textColor="#3DD543"
+        android:textSize="18sp"
+       />
+    <TextView
+        android:layout_width="match_parent"
+        android:background="#000"
+        android:layout_height="1dp"/>
+
+
+</LinearLayout>
