@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahang_doan.Adapter.Adapter_Sanphammoinhat;
@@ -25,32 +25,31 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Sanphammoinhat extends Fragment {
-    private RecyclerView recyclerviewSanphammoinhat;
+public class Fragment_Thietbiluutruphukien extends Fragment {
     private View view;
+    private RecyclerView recyclerView;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_sanphammoinhat,container,false);
+        view=inflater.inflate(R.layout.fragment_thietbiluutruphukien,container,false);
         anhxa();
-        getdatasanphammoinhat();
+        getDataThietbiluutruphukien();
+
         return view;
     }
 
-    private void getdatasanphammoinhat() {
-        DataService dataService= APIServices.getService() ;
-        Call<List<GetdataSanphammoinhat>>callback=dataService.getDataSanphammoinhat();
+    private void getDataThietbiluutruphukien() {
+        DataService dataService= APIServices.getService();
+        Call<List<GetdataSanphammoinhat>>callback=dataService.getdataThietbiluutruphukien();
         callback.enqueue(new Callback<List<GetdataSanphammoinhat>>() {
             @Override
             public void onResponse(Call<List<GetdataSanphammoinhat>> call, Response<List<GetdataSanphammoinhat>> response) {
-                Log.d("AAA","getdatasanphammoinhat"+response.toString());
+                Log.d("AAA","thietbiluutruphukien"+response.toString());
                 if(response!=null){
                     ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
-                    Adapter_Sanphammoinhat adapter_sanphammoinhat=new Adapter_Sanphammoinhat(getActivity(),
-                            R.layout.layout_sanphammoinhat,arrayList);
-                    adapter_sanphammoinhat.notifyDataSetChanged();
-                    recyclerviewSanphammoinhat.setAdapter(adapter_sanphammoinhat);
-
+                    Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(getActivity(),R.layout.layout_linhkienlaptop,arrayList);
+                    adapter.notifyDataSetChanged();
+                    recyclerView.setAdapter(adapter);
                 }
             }
 
@@ -62,11 +61,9 @@ public class Fragment_Sanphammoinhat extends Fragment {
     }
 
     private void anhxa() {
-        recyclerviewSanphammoinhat=view.findViewById(R.id.recyclerviewSanphammoinhat);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(getActivity());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        recyclerviewSanphammoinhat.setLayoutManager(linearLayoutManager);
-        recyclerviewSanphammoinhat.setHasFixedSize(true);
-        recyclerviewSanphammoinhat.setItemViewCacheSize(20);
+        recyclerView=view.findViewById(R.id.recyclerviewthietbiluutruphukien);
+        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemViewCacheSize(20);
     }
 }

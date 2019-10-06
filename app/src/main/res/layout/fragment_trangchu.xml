@@ -55,6 +55,21 @@
                     android:name="com.example.cuahang_doan.Fragment.Fragment_Sanphammoinhat"
                     android:id="@+id/fragmentsanphammoinhat"
                     android:layout_height="wrap_content"/>
+                <fragment
+                    android:layout_width="match_parent"
+                    android:id="@+id/fragmentLinhkienlaptop"
+                    android:name="com.example.cuahang_doan.Fragment.Fragment_Linhkienlaptop"
+                    android:layout_height="wrap_content"/>
+                <fragment
+                    android:layout_width="match_parent"
+                    android:name="com.example.cuahang_doan.Fragment.Fragment_Thietbiluutruphukien"
+                    android:id="@+id/fragmentthietbiluutruphukien"
+                    android:layout_height="wrap_content"/>
+                <fragment
+                    android:layout_width="match_parent"
+                    android:id="@+id/fragmentthietbinghenhin"
+                    android:name="com.example.cuahang_doan.Fragment.Fragment_Thietbinghenhin"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
@@ -213,12 +228,44 @@
                            />
 
                    </RelativeLayout>
+                   <RelativeLayout
+                       android:layout_width="match_parent"
+                       android:layout_below="@+id/lienheemail"
+                       android:id="@+id/lienhehotro"
+                       android:layout_height="wrap_content">
+                       <ImageView
+                           android:layout_width="40dp"
+                           android:padding="5dp"
+                           android:elevation="7dp"
+                           android:src="@drawable/information"
+                           android:id="@+id/imageviewDanhmuchotro"
+                           android:layout_margin="5dp"
+                           android:layout_height="40dp"
+                           android:scaleType="fitXY"/>
+                       <TextView
+                           android:layout_width="wrap_content"
+                           android:maxWidth="250dp"
+                           android:layout_height="wrap_content"
+                           android:layout_toRightOf="@+id/imageviewDanhmuchotro"
+                           android:gravity="center"
+                           android:maxLines="1"
+                           android:textSize="20sp"
+                           android:ellipsize="end"
+                           android:id="@+id/txtTitleDanhmuchotro"
+                           android:layout_centerVertical="true"
+                           android:elevation="5dp"
+                           android:text="Thông Tin Shop"
+                           android:padding="5dp"
+                           android:layout_margin="5dp"
+                           />
+
+                   </RelativeLayout>
                    <TextView
                        android:layout_width="match_parent"
                        android:layout_height="1dp"
                        android:background="#111113"
                        android:id="@+id/txtbackground1"
-                       android:layout_below="@+id/lienheemail"/>
+                       android:layout_below="@+id/lienhehotro"/>
                    <TextView
                        android:layout_width="wrap_content"
                        android:textSize="20sp"

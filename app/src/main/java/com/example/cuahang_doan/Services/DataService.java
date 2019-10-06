@@ -27,4 +27,13 @@ public interface DataService {
 
     @GET("model/danhmuc/getdatalaptopmoinhat")
     Call<List<GetdataSanphammoinhat>>getDataSanphammoinhat();
+
+    @GET("model/linhkienlaptop/getdatalinhkienlaptop")
+    Call<List<GetdataSanphammoinhat>>getDataLinhkienlaptop();
+
+    @GET("model/danhmuc/getdatathietbiluutruphukien")
+    Call<List<GetdataSanphammoinhat>>getdataThietbiluutruphukien();
+
+    @GET("model/danhmuc/getdatathietbinghenhin")
+    Call<List<GetdataSanphammoinhat>>getDataThietbinghenhin();
 }
