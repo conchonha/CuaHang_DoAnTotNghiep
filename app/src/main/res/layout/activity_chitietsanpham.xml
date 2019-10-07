@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    >
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:id="@+id/appbarlayout"
+        android:fitsSystemWindows="true"
+        android:layout_height="270dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingtoolbar"
+            android:layout_width="match_parent"
+            android:layout_height="270dp"
+            android:background="#fff"
+            android:fitsSystemWindows="true"
+            app:expandedTitleGravity="center|top"
+            app:expandedTitleMarginTop="10dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbardanhsachbaihat"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:elevation="6dp"
+                app:title="Chi Tiết Sản Phẩm"
+                android:background="@color/colorchu"
+                android:theme="@style/Theme.AppCompat.Light"
+                app:layout_collapseMode="pin" />
+
+            <RelativeLayout
+                android:id="@+id/relivelayout"
+                android:layout_width="match_parent"
+                android:layout_marginTop="60dp"
+                android:layout_height="match_parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/custtom_background" />
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/ChitietsanphamViewpaget"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </RelativeLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+    <com.rd.PageIndicatorView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:piv_animationType="swap"
+        app:piv_dynamicCount="true"
+        app:piv_unselectedColor="#000"
+        app:piv_selectedColor="@color/colorchu"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_gravity="center|top"
+        android:layout_marginTop="15dp"
+        app:piv_viewPager="@+id/ChitietsanphamViewpaget" />
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        app:backgroundTint="@color/colorchu"
+        android:src="@drawable/cart64"
+        android:scaleType="center"
+        app:elevation="10dp"
+        android:layout_marginRight="10dp"
+        app:fabSize="normal"
+        app:maxImageSize="50dp"
+        android:id="@+id/floattingactionbuton"
+        app:layout_anchorGravity="bottom|right"
+        android:padding="10dp"
+        app:layout_anchor="@id/appbarlayout"
+        app:layout_behavior="@string/bottom_sheet_behavior" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_marginTop="50dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:padding="7dp"
+                    android:text="Sản Phẩm"
+                    android:textColor="#000"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:id="@+id/txttensp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:text="Tên Sản Phẩm"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/txttensp"
+                    android:textSize="20sp"
+                    android:padding="10dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/txttensanphamchitiet"
+                    android:gravity="center"
+                    android:textColor="@color/colorchu"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:padding="7dp"
+                    android:text="Thông Số Kỹ Thuật"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:id="@+id/txttskt"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/txttensanphamchitiet"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/txttskt"
+                    android:padding="7dp"
+                    android:text="mo ta san pham"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:id="@+id/txtthongsokythuat"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:padding="7dp"
+                    android:text="Mô Tả"
+                    android:textColor="#000"
+                    android:textSize="20sp"
+                    android:id="@+id/txtmota"
+                    android:textStyle="bold"
+                    android:layout_below="@+id/txtthongsokythuat"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_below="@+id/txtmota"
+                    android:padding="7dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/txtmotasanphamchitiet"
+                    android:text="mo ta san pham"
+                    android:layout_height="wrap_content"/>
+                <fragment
+                    android:layout_width="match_parent"
+                    android:id="@+id/fragmentDanhgiasanpham"
+                    android:layout_below="@+id/txtmotasanphamchitiet"
+                    android:name="com.example.cuahang_doan.Fragment.Fragment_Danhgiasanpham"
+                    android:layout_height="wrap_content"/>
+
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

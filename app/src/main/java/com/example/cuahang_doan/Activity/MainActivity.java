@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         MainViewpager.setAdapter(adapter);
         mainTablayout.setupWithViewPager(MainViewpager);
         mainTablayout.getTabAt(0).setIcon(R.drawable.icontrangchu);
-        mainTablayout.getTabAt(1).setIcon(R.drawable.cart);
+        mainTablayout.getTabAt(1).setIcon(R.drawable.cart32);
         mainTablayout.getTabAt(2).setIcon(R.drawable.user);
         mainTablayout.getTabAt(3).setIcon(R.drawable.iconsearch);
     }
