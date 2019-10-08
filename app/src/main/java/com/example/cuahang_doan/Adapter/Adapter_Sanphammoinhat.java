@@ -1,6 +1,7 @@
 package com.example.cuahang_doan.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahang_doan.Activity.Chitietsanpham;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -97,6 +99,14 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
             txtsale=itemView.findViewById(R.id.txtsale);
             ratingBar=itemView.findViewById(R.id.ratingBar);
             txtgiaspsaukhuyenmai=itemView.findViewById(R.id.txtgiaspsaukhuyenmai);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent=new Intent(context.getApplicationContext(), Chitietsanpham.class);
+                    intent.putExtra("id",arrayList.get(getPosition()).getId());
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

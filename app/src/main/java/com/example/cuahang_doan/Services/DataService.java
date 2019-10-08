@@ -1,8 +1,10 @@
 package com.example.cuahang_doan.Services;
 
 import com.example.cuahang_doan.model.DanhMuc;
+import com.example.cuahang_doan.model.Danhgia;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.example.cuahang_doan.model.QuangCao;
+import com.example.cuahang_doan.model.SanPham;
 import com.example.cuahang_doan.model.User;
 
 import java.util.List;
@@ -36,4 +38,12 @@ public interface DataService {
 
     @GET("model/danhmuc/getdatathietbinghenhin")
     Call<List<GetdataSanphammoinhat>>getDataThietbinghenhin();
+
+    @FormUrlEncoded
+    @POST("model/sanpham/getdatasanphamchitiet")
+    Call<List<SanPham>>postSanphamchitiet(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("model/danhgia/getdanhgia")
+    Call<List<Danhgia>>getdataDanhgia(@Field("masanpham") String masanpham);
 }

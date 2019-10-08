@@ -46,10 +46,12 @@ public class Fragment_Sanphammoinhat extends Fragment {
                 Log.d("AAA","getdatasanphammoinhat"+response.toString());
                 if(response!=null){
                     ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
-                    Adapter_Sanphammoinhat adapter_sanphammoinhat=new Adapter_Sanphammoinhat(getActivity(),
-                            R.layout.layout_sanphammoinhat,arrayList);
-                    adapter_sanphammoinhat.notifyDataSetChanged();
-                    recyclerviewSanphammoinhat.setAdapter(adapter_sanphammoinhat);
+                    if(arrayList!=null) {
+                        Adapter_Sanphammoinhat adapter_sanphammoinhat = new Adapter_Sanphammoinhat(getActivity(),
+                                R.layout.layout_sanphammoinhat, arrayList);
+                        adapter_sanphammoinhat.notifyDataSetChanged();
+                        recyclerviewSanphammoinhat.setAdapter(adapter_sanphammoinhat);
+                    }
 
                 }
             }

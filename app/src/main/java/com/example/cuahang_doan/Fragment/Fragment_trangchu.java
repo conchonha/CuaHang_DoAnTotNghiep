@@ -64,9 +64,11 @@ public class Fragment_trangchu extends Fragment {
                 Log.d("AAA","ListView_DanhMuc"+response.toString());
                 if(response!=null){
                     ArrayList<DanhMuc>arrayList= (ArrayList<DanhMuc>) response.body();
-                    DanhmucAdapter adapter=new DanhmucAdapter(getActivity(),R.layout.layout_danhmuc,arrayList);
-                    listviewDanhmuc.setAdapter(adapter);
-                    setListViewHeightBasedOnChildren(listviewDanhmuc);
+                    if(arrayList!=null) {
+                        DanhmucAdapter adapter = new DanhmucAdapter(getActivity(), R.layout.layout_danhmuc, arrayList);
+                        listviewDanhmuc.setAdapter(adapter);
+                        setListViewHeightBasedOnChildren(listviewDanhmuc);
+                    }
                 }
             }
 
