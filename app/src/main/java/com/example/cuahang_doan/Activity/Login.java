@@ -2,6 +2,7 @@ package com.example.cuahang_doan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,8 +32,7 @@ public class Login extends AppCompatActivity {
     private Button btndangnhap;
     private CheckBox ckeckbox;
     private ArrayList<User>arrayList;
-    private SharedPreferences sharedPreferences;
-    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,10 @@ public class Login extends AppCompatActivity {
     }
 
     private void login() {
-        if(sharedPreferences.getString("username","")!=null &&
-                sharedPreferences.getString("password","")!=null){
-            edittextusername.setText(sharedPreferences.getString("username",""));
-            edittextpassword.setText(sharedPreferences.getString("password",""));
+        if(MainActivity.sharedPreferences.getString("username","")!=null &&
+                MainActivity.sharedPreferences.getString("password","")!=null){
+            edittextusername.setText(MainActivity.sharedPreferences.getString("username",""));
+            edittextpassword.setText(MainActivity.sharedPreferences.getString("password",""));
         }
         btndangnhap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,8 +59,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void anhxa() {
-        sharedPreferences=getSharedPreferences("datalogin",MODE_PRIVATE);
-        editor=sharedPreferences.edit();
         edittextusername=findViewById(R.id.edittextusername);
         edittextpassword=findViewById(R.id.edittextpassword);
         btndangnhap=findViewById(R.id.btndangnhap);
@@ -81,19 +79,21 @@ public class Login extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                     Log.d("AAA",response.toString());
-                    if(response!=null){
+                    if(response.isSuccessful()){
                         arrayList= (ArrayList<User>) response.body();
-                        Toast.makeText(Login.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
-                        if(ckeckbox.isChecked() && arrayList!=null){
-                            editor.putString("username",edittextusername.getText().toString());
-                            editor.putString("password",edittextpassword.getText().toString());
-                            editor.putInt("iduser",arrayList.get(0).getId());
-                            editor.putString("email",arrayList.get(0).getEmail());
-                            editor.putString("sodienthoai",arrayList.get(0).getPhoneNumBer());
-                            editor.commit();
+                        if(arrayList.size()>0) {
+                             Toast.makeText(Login.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
+                            MainActivity.editor.putString("username", edittextusername.getText().toString());
+                            MainActivity.editor.putString("password", edittextpassword.getText().toString());
+                            MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
+                            MainActivity.editor.putString("email", arrayList.get(0).getEmail());
+                            MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
+                            MainActivity.editor.commit();
+                            Log.d("AAA", "user sharedPreferences" + MainActivity.sharedPreferences.getString("username", ""));
+                            setintentt();
+                        }else{
+                            Toast.makeText(getApplicationContext(), "tài khoản không chính sác", Toast.LENGTH_SHORT).show();
                         }
-                    }else{
-                        Toast.makeText(Login.this, "Sai tài khoản", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -103,6 +103,20 @@ public class Login extends AppCompatActivity {
                     Log.d("AAA",t.toString());
                 }
             });
+        }
+    }
+    private void setintentt(){
+        Intent intent=getIntent();
+        if(intent.hasExtra("phandanhgia")){
+            String msp=intent.getStringExtra("phandanhgia");
+            if(!msp.equals("")){
+                int mspmoi=Integer.parseInt(msp);
+                Log.d("AAA","masanpham"+msp);
+                Intent intent1=new Intent(getApplicationContext(),Chitietsanpham.class);
+                intent1.putExtra("id",mspmoi);
+                startActivity(intent1);
+                finish();
+            }
         }
     }
 }

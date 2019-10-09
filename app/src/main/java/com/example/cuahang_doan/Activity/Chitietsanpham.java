@@ -7,8 +7,11 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,14 +19,24 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cuahang_doan.Adapter.Adapter_SlideChitietsanpham;
 import com.example.cuahang_doan.Fragment.Fragment_Danhgiasanpham;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
+import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.example.cuahang_doan.model.SanPham;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.rd.PageIndicatorView;
+import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -32,12 +45,14 @@ import retrofit2.Response;
 
 public class Chitietsanpham extends AppCompatActivity {
     private ViewPager ChitietsanphamViewpaget;
-    private TextView txttensanphamchitiet,txtthongsokythuat,txtmotasanphamchitiet;
+    private TextView txttensanphamchitiet,txtthongsokythuat,txtmotasanphamchitiet,
+            txtgiasanphamgoc,txtgiasanphamsaukhigiam,txtngaydang,txtngaykhuyenmai,txttrinhtrang;
     public  ArrayList<SanPham>arrayList=new ArrayList<>();
     public  int id;
     private CollapsingToolbarLayout collapsingtoolbar;
     private Toolbar toolbardanhsachbaihat;
-
+    private FloatingActionButton floattingactionbuton;
+    private PageIndicatorView PageIndicatorview;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +93,19 @@ public class Chitietsanpham extends AppCompatActivity {
             if(intent.hasExtra("id")){
                 id=intent.getIntExtra("id",0);
                 Log.d("AAA",id+"Ma san pham chi tiet san pham");
-                getdatasanpham();
+                getdatasanpham(id);
+                addFragment(id+"");
             }
         }
     }
 
     private void anhxa() {
+        txttrinhtrang=findViewById(R.id.txttrinhtrang);
+        txtngaykhuyenmai=findViewById(R.id.txtngaykhuyenmai);
+        txtngaydang=findViewById(R.id.txtngaydang);
+        txtgiasanphamsaukhigiam=findViewById(R.id.txtgiasanphamsaukhigiam);
+        txtgiasanphamgoc=findViewById(R.id.txtgiasanphamgoc);
+        floattingactionbuton=findViewById(R.id.floattingactionbuton);
         ChitietsanphamViewpaget=findViewById(R.id.ChitietsanphamViewpaget);
         txttensanphamchitiet=findViewById(R.id.txttensanphamchitiet);
         txtthongsokythuat=findViewById(R.id.txtthongsokythuat);
@@ -93,24 +115,30 @@ public class Chitietsanpham extends AppCompatActivity {
         collapsingtoolbar.setExpandedTitleColor(getResources().getColor(R.color.colorwhile));
         //set màu thu hẹp
         collapsingtoolbar.setCollapsedTitleTextColor(Color.WHITE);
+        PageIndicatorview=findViewById(R.id.PageIndicatorview);
     }
 
 
-    private void getdatasanpham(){
+    private void getdatasanpham(int id){
         DataService dataService= APIServices.getService();
         Call<List<SanPham>>callback=dataService.postSanphamchitiet(id+"");
         callback.enqueue(new Callback<List<SanPham>>() {
             @Override
             public void onResponse(Call<List<SanPham>> call, Response<List<SanPham>> response) {
                 Log.d("AAA","chitietsanpham"+response.toString());
-                if(response!=null){
+                if(response.isSuccessful()){
                     arrayList= (ArrayList<SanPham>) response.body();
                     if(arrayList!=null){
                         txtmotasanphamchitiet.setText(arrayList.get(0).getMota());
                         txttensanphamchitiet.setText(arrayList.get(0).getTenSanPham());
                         txtthongsokythuat.setText(arrayList.get(0).getThongSoKyThuat());
-                        String masp=arrayList.get(0).getId()+"";
-                        addFragment(masp);
+                        String[]arrayhinh=arrayList.get(0).getHinhMoTa().split("@");
+                        Adapter_SlideChitietsanpham adapter1=new Adapter_SlideChitietsanpham(arrayhinh,Chitietsanpham.this);
+                        ChitietsanphamViewpaget.setAdapter(adapter1);
+                        PageIndicatorview.setViewPager(ChitietsanphamViewpaget);
+                        Tinhtrangsanpham(arrayList);
+//                        themvaogiohang(id+"",arrayList.get(0).getTenSanPham(),arrayList.get(0).getHinhAnhSanPham(),
+//                                giasaukhigiam+"")
                     }
                 }
             }
@@ -118,6 +146,56 @@ public class Chitietsanpham extends AppCompatActivity {
             @Override
             public void onFailure(Call<List<SanPham>> call, Throwable t) {
                 Toast.makeText(Chitietsanpham.this, "Đã hết hạn dữ liệu vui lòng thử lại sau", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @SuppressLint("ResourceType")
+    private void Tinhtrangsanpham(ArrayList<SanPham> arrayList) {
+        SanPham sanpham=arrayList.get(0);
+        Calendar calendar=Calendar.getInstance();
+        DecimalFormat simpleDateFormat=new DecimalFormat("###,###,###");
+        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        txtngaydang.setText(sanpham.getNgayDang());
+        if(sanpham.getSoLuong()>0){
+            txttrinhtrang.setText("Còn Hàng");
+        }else{
+            txttrinhtrang.setText("Hết Hàng");
+        }
+        if(sanpham.getGiamGia()>0 && !sanpham.getNgayKhuyenMai().equals("")){
+            Date ngaykhuyenmai= null;
+            Date ngayhientai=null;
+            try {
+                ngaykhuyenmai = format.parse(sanpham.getNgayKhuyenMai()+"");
+                ngayhientai=format.parse(calendar.get(Calendar.DATE)+"-"+calendar.get(Calendar.MONTH)+"-"+calendar.get(Calendar.YEAR));
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if(ngaykhuyenmai.compareTo(ngayhientai)>0){
+                Log.d("AAA","ngay"+ngayhientai);
+                txtgiasanphamgoc.setPaintFlags(txtgiasanphamgoc.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG );
+                txtgiasanphamgoc.setText(simpleDateFormat.format(sanpham.getGia())+"");
+                float giagiam=(float) (100-sanpham.getGiamGia())/100;
+                float giaspsaukhuyenmai=(float)giagiam*sanpham.getGia();
+                Log.d("AAA",giaspsaukhuyenmai+"");
+                txtgiasanphamsaukhigiam.setText(simpleDateFormat.format((int)giaspsaukhuyenmai)+"Đ");
+                txtngaykhuyenmai.setText(simpleDateFormat.format(sanpham.getNgayKhuyenMai()));
+            }
+        }else{
+            txtgiasanphamsaukhigiam.setText(simpleDateFormat.format(sanpham.getGia())+"Đ");
+            txtngaykhuyenmai.setText("");
+            txtgiasanphamgoc.setText("");
+        }
+
+        //txtngaykhuyenmai.setText(arrayList.get(0).getNgayKhuyenMai());
+    }
+
+    private void themvaogiohang(){
+        floattingactionbuton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
     }

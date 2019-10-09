@@ -46,4 +46,15 @@ public interface DataService {
     @FormUrlEncoded
     @POST("model/danhgia/getdanhgia")
     Call<List<Danhgia>>getdataDanhgia(@Field("masanpham") String masanpham);
+
+    @FormUrlEncoded
+    @POST("model/danhgia/postDanhgia")
+    Call<String>postDanhgia(@Field("username") String username,
+                                   @Field("id_sanpham") String idsanpham,
+                                   @Field("ngaydanhgia") String ngaydanhgia,
+                                   @Field("namsao") int namsao,
+                                   @Field("bonsao") int bonsao,
+                                   @Field("basao") int basao,
+                                   @Field("haisao") int haisao,
+                                   @Field("motsao") int motsao);
 }

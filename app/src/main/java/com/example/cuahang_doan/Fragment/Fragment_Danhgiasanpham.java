@@ -1,10 +1,17 @@
 package com.example.cuahang_doan.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,13 +20,18 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.cuahang_doan.Activity.Chitietsanpham;
+import com.example.cuahang_doan.Activity.Login;
+import com.example.cuahang_doan.Activity.MainActivity;
+import com.example.cuahang_doan.Adapter.Comment_Adapter;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
 import com.example.cuahang_doan.model.Danhgia;
 import com.example.cuahang_doan.model.SanPham;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import retrofit2.Call;
@@ -30,7 +42,10 @@ public class Fragment_Danhgiasanpham extends Fragment {
     private View view;
     private Chitietsanpham chitietsanpham;
     private ArrayList<Danhgia>arrayDanhgia=new ArrayList<>();
-    private TextView txt5sao,txt4sao,txt3sao,txt2sao,txt1sao;
+    private TextView txt5sao,txt4sao,txt3sao,txt2sao,txt1sao,txtsoluongdanhgia;
+    private RatingBar ratingdanhgiacuabanla;
+    private EditText edtcommentt;
+    private Button btnguicomment;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,20 +53,92 @@ public class Fragment_Danhgiasanpham extends Fragment {
           danhgiasanpham();
           Bundle bundle=getArguments();
           if(bundle!=null) {
-              String msp = bundle.getString("masp");
+              final String msp = bundle.getString("masp");
               Log.d("AAA", "Mã san pham fragment danhgia"+msp);
               if(!msp.equals("0")){
                   getdatadanhgia(msp);
+                  danhgiacuaban(msp);
               }
           }
      return view;
     }
+    private void danhgiacuaban(final String msp){
+        btnguicomment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(MainActivity.sharedPreferences.getString("username","").equals("") &&
+                    MainActivity.sharedPreferences.getInt("iduser",0)==0){
+                    Intent intent=new Intent(getActivity(),Login.class);
+                    intent.putExtra("phandanhgia",msp);
+                    startActivity(intent);
+                    getActivity().finish();
+                }else{
+                    String comment="";
+                     comment=edtcommentt.getText().toString();
+                    SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
+                    Calendar calendar=Calendar.getInstance();
+                    String ngay=simpleDateFormat.format(calendar.getTime());
+                   // Toast.makeText(getActivity(), MainActivity.sharedPreferences.getString("username",comment), Toast.LENGTH_SHORT).show();
+                    Log.d("AAA","da co tai khoan: "+MainActivity.sharedPreferences.getString("username",""));
+                    Log.d("AAA","ngay"+ngay);
+                    int namsao=0;int bonsao=0;int basao=0;int haisao=0;int motsao=0;
+                    if(ratingdanhgiacuabanla.getRating()>0){
+                        if(ratingdanhgiacuabanla.getRating()==5){
+                            namsao=1;
+                        }
+                        if(ratingdanhgiacuabanla.getRating()==4){
+                            bonsao=1;
+                        }
+                        if(ratingdanhgiacuabanla.getRating()==3){
+                            basao=1;
+                        }
+                        if(ratingdanhgiacuabanla.getRating()==2){
+                            haisao=1;
+                        }
+                        if(ratingdanhgiacuabanla.getRating()==1){
+                            motsao=1;
+                        }
+                        Log.d("B",ngay);
+                       DataService dataService=APIServices.getService();
+                        Call<String>callback=dataService.postDanhgia(MainActivity.sharedPreferences.getString("username",""),
+                                msp,ngay,namsao,bonsao,basao,haisao,motsao);
+                        callback.enqueue(new Callback<String>() {
+                            @Override
+                            public void onResponse(Call<String> call, Response<String> response) {
+                                Log.d("AAA","Danhgiacuaban"+response.toString());
+                                if(response.isSuccessful()){
+                                    String mess=response.body();
+                                    Log.d("AAA","bien mess"+mess);
+                                    if(mess.equals("faid")){
+                                        Toast.makeText(getActivity(), "Không Thành công - bạn đã đánh giá rùi", Toast.LENGTH_SHORT).show();
+                                    }
+                                    if(mess.equals("sussces")){
+                                        Toast.makeText(getActivity(), "Đánh Giá Của Bạn Đã Được Gửi Đi", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<String> call, Throwable t) {
+
+                            }
+                        });
+
+                    }
+                }
+            }
+        });
+    }
     private void danhgiasanpham(){
+        btnguicomment=view.findViewById(R.id.btnguicomment);
+        ratingdanhgiacuabanla=view.findViewById(R.id.ratingdanhgiacuabanla);
+        edtcommentt=view.findViewById(R.id.edtcommentt);
         txt5sao=view.findViewById(R.id.txt5sao);
         txt4sao=view.findViewById(R.id.txt4sao);
         txt3sao=view.findViewById(R.id.txt3sao);
         txt2sao=view.findViewById(R.id.txt2sao);
         txt1sao=view.findViewById(R.id.txt1sao);
+        txtsoluongdanhgia=view.findViewById(R.id.txtsoluongdanhgia);
     }
 
     private void getdatadanhgia(String msp) {
@@ -73,11 +160,18 @@ public class Fragment_Danhgiasanpham extends Fragment {
                                haisao+=arrayDanhgia.get(i).get2sao();
                                motsao+=arrayDanhgia.get(i).get1sao();
                            }
+                           int soluong=namsao+bonsao+basao+haisao+motsao;
+                           txtsoluongdanhgia.setText(soluong+" lượt đánh giá");
                            txt5sao.setText(namsao+" Đánh Giá");
                            txt4sao.setText(bonsao+" Đánh Giá");
                            txt3sao.setText(basao+" Đánh Giá");
                            txt2sao.setText(haisao+" Đánh Giá");
                            txt1sao.setText(motsao+" Đánh Giá");
+                           ListView listView=view.findViewById(R.id.listviewcomment);
+                           Comment_Adapter comment_adapter=new Comment_Adapter(getActivity(),R.layout.layout_dongcomment,arrayDanhgia);
+                           comment_adapter.notifyDataSetChanged();
+                           listView.setAdapter(comment_adapter);
+                           setListViewHeightBasedOnChildren(listView);
                        }
                     }
                 }
@@ -88,5 +182,31 @@ public class Fragment_Danhgiasanpham extends Fragment {
                 }
             });
         }
+    }
+    public void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null) {
+            // pre-condition
+            return;
+        }
+
+        int totalHeight = listView.getPaddingTop() + listView.getPaddingBottom();
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.AT_MOST);
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            View listItem = listAdapter.getView(i, null, listView);
+
+            if(listItem != null){
+                // This next line is needed before you call measure or else you won't get measured height at all. The listitem needs to be drawn first to know the height.
+                listItem.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT));
+                listItem.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+                totalHeight += listItem.getMeasuredHeight();
+
+            }
+        }
+
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+        listView.requestLayout();
     }
 }

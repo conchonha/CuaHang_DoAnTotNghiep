@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.Chitietsanpham"></activity>
-        <activity android:name=".Activity.Login">
+        <activity android:name=".Activity.Login"
+            android:windowSoftInputMode="stateHidden">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

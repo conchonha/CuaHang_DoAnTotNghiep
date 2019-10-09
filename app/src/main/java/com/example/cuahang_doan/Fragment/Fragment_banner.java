@@ -57,14 +57,16 @@ public class Fragment_banner extends Fragment {
             @Override
             public void onResponse(Call<List<QuangCao>> call, Response<List<QuangCao>> response) {
                 Log.d("AAA","Banner"+response.toString());
-                if(response!=null){
+                if(response.body()!=null){
                     ArrayList arrayList= (ArrayList) response.body();
-                    Collections.shuffle(arrayList);
-                    adapter=new BannerAdapter(view.getContext(),arrayList);
-                    adapter.notifyDataSetChanged();
-                    FragmentBanerViewpager.setAdapter(adapter);
-                    pageIndicatorView.setViewPager(FragmentBanerViewpager);
-                    autoSlideViewpager();
+                    if(arrayList.size()>0) {
+                        Collections.shuffle(arrayList);
+                        adapter = new BannerAdapter(view.getContext(), arrayList);
+                        adapter.notifyDataSetChanged();
+                        FragmentBanerViewpager.setAdapter(adapter);
+                        pageIndicatorView.setViewPager(FragmentBanerViewpager);
+                        autoSlideViewpager();
+                    }
                 }
             }
 

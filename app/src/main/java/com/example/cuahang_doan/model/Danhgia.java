@@ -8,19 +8,19 @@ public class Danhgia {
     @SerializedName("Id_DanGgia")
     @Expose
     private Integer idDanGgia;
-    @SerializedName("5sao")
+    @SerializedName("namsao")
     @Expose
     private Integer _5sao;
-    @SerializedName("4sao")
+    @SerializedName("bonsao")
     @Expose
     private Integer _4sao;
-    @SerializedName("3sao")
+    @SerializedName("basao")
     @Expose
     private Integer _3sao;
-    @SerializedName("2sao")
+    @SerializedName("haisao")
     @Expose
     private Integer _2sao;
-    @SerializedName("1sao")
+    @SerializedName("motsao")
     @Expose
     private Integer _1sao;
     @SerializedName("ComMent")
@@ -29,9 +29,9 @@ public class Danhgia {
     @SerializedName("Id_SanPham")
     @Expose
     private Integer idSanPham;
-    @SerializedName("Id_User")
+    @SerializedName("username")
     @Expose
-    private Integer idUser;
+    private String idUser;
     @SerializedName("NgayDanhGia")
     @Expose
     private String ngayDanhGia;
@@ -100,11 +100,11 @@ public class Danhgia {
         this.idSanPham = idSanPham;
     }
 
-    public Integer getIdUser() {
+    public String getIdUser() {
         return idUser;
     }
 
-    public void setIdUser(Integer idUser) {
+    public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 

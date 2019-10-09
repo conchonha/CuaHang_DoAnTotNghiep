@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,8 @@ import com.google.android.material.tabs.TabLayout;
 public class MainActivity extends AppCompatActivity {
     private ViewPager MainViewpager;
     private TabLayout mainTablayout;
+    public static SharedPreferences sharedPreferences;
+    public static SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +49,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void anhxa() {
+        sharedPreferences=getSharedPreferences("datalogin",MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+//        MainActivity.editor.putString("username","");
+//        MainActivity.editor.putString("password","");
+//        MainActivity.editor.putInt("iduser",0);
+//        MainActivity.editor.putString("email","");
+//        MainActivity.editor.putString("sodienthoai","");
+//        MainActivity.editor.commit();
         MainViewpager=findViewById(R.id.MainViewpager);
         mainTablayout=findViewById(R.id.mainTablayout);
     }

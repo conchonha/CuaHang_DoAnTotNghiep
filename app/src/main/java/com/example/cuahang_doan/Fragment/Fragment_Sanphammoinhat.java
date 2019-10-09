@@ -44,9 +44,9 @@ public class Fragment_Sanphammoinhat extends Fragment {
             @Override
             public void onResponse(Call<List<GetdataSanphammoinhat>> call, Response<List<GetdataSanphammoinhat>> response) {
                 Log.d("AAA","getdatasanphammoinhat"+response.toString());
-                if(response!=null){
+                if(response.isSuccessful()){
                     ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
-                    if(arrayList!=null) {
+                    if(!arrayList.get(0).getHinhAnhSanPham().equals("")) {
                         Adapter_Sanphammoinhat adapter_sanphammoinhat = new Adapter_Sanphammoinhat(getActivity(),
                                 R.layout.layout_sanphammoinhat, arrayList);
                         adapter_sanphammoinhat.notifyDataSetChanged();

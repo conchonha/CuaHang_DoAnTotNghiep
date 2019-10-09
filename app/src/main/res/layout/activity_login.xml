@@ -93,17 +93,20 @@
                 android:layout_marginTop="5dp"
                 android:background="#ECE5E5"/>
         </com.google.android.material.textfield.TextInputLayout>
+
         <CheckBox
+            android:id="@+id/ckeckbox"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/textinputlayoutpassword"
             android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:id="@+id/ckeckbox"
             android:layout_marginTop="30dp"
-            android:text="Remember me"
+            android:layout_marginRight="50dp"
+            android:checked="true"
             android:buttonTint="#fff"
-            android:textColor="#fff"
-            android:layout_height="wrap_content"/>
+            android:enabled="false"
+            android:text="Remember me"
+            android:textColor="#fff" />
         <Button
             android:layout_width="match_parent"
             android:layout_marginRight="50dp"
@@ -146,24 +149,9 @@
                 android:layout_height="2dp"/>
 
         </LinearLayout>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_below="@+id/linnerlayout"
-            android:layout_marginTop="10dp"
-            android:text="Login"
-            android:textColor="#fff"
-            android:id="@+id/btnfacebook"
-            android:gravity="center"
-            android:textStyle="bold"
-            android:background="#344ADA"
-            android:padding="10dp"
-            android:drawableLeft="@drawable/face1"
-            android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
-            android:layout_below="@+id/btnfacebook"
+            android:layout_below="@+id/linnerlayout"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="5dp"
             android:padding="5dp"
@@ -175,7 +163,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_toRightOf="@+id/textcauhoi"
-            android:layout_below="@+id/btnfacebook"
+            android:layout_below="@+id/linnerlayout"
             android:layout_marginRight="50dp"
             android:layout_marginTop="5dp"
             android:padding="5dp"

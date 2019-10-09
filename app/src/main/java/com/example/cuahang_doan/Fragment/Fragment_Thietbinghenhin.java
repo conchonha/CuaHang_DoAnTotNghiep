@@ -44,7 +44,7 @@ public class Fragment_Thietbinghenhin extends Fragment {
             @Override
             public void onResponse(Call<List<GetdataSanphammoinhat>> call, Response<List<GetdataSanphammoinhat>> response) {
                 Log.d("BB","thietbinghenhin"+response.toString());
-                if(response!=null){
+                if(response.isSuccessful()){
                     ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
                     Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(getActivity(),R.layout.layout_linhkienlaptop,arrayList);
                     adapter.notifyDataSetChanged();
