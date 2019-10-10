@@ -51,12 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private void anhxa() {
         sharedPreferences=getSharedPreferences("datalogin",MODE_PRIVATE);
         editor=sharedPreferences.edit();
-//        MainActivity.editor.putString("username","");
-//        MainActivity.editor.putString("password","");
-//        MainActivity.editor.putInt("iduser",0);
-//        MainActivity.editor.putString("email","");
-//        MainActivity.editor.putString("sodienthoai","");
-//        MainActivity.editor.commit();
+
         MainViewpager=findViewById(R.id.MainViewpager);
         mainTablayout=findViewById(R.id.mainTablayout);
     }

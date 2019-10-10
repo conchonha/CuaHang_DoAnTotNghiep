@@ -136,9 +136,8 @@ public class Chitietsanpham extends AppCompatActivity {
                         Adapter_SlideChitietsanpham adapter1=new Adapter_SlideChitietsanpham(arrayhinh,Chitietsanpham.this);
                         ChitietsanphamViewpaget.setAdapter(adapter1);
                         PageIndicatorview.setViewPager(ChitietsanphamViewpaget);
-                        Tinhtrangsanpham(arrayList);
-//                        themvaogiohang(id+"",arrayList.get(0).getTenSanPham(),arrayList.get(0).getHinhAnhSanPham(),
-//                                giasaukhigiam+"")
+                        SanPham sanpham=arrayList.get(0);
+                        Tinhtrangsanpham(sanpham);
                     }
                 }
             }
@@ -151,11 +150,11 @@ public class Chitietsanpham extends AppCompatActivity {
     }
 
     @SuppressLint("ResourceType")
-    private void Tinhtrangsanpham(ArrayList<SanPham> arrayList) {
-        SanPham sanpham=arrayList.get(0);
+    private void Tinhtrangsanpham(SanPham sanpham) {
+        int giasanphamsaukhuyenmai=0;
         Calendar calendar=Calendar.getInstance();
         DecimalFormat simpleDateFormat=new DecimalFormat("###,###,###");
-        SimpleDateFormat format=new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat format=new SimpleDateFormat("dd-MM-yyyy");
         txtngaydang.setText(sanpham.getNgayDang());
         if(sanpham.getSoLuong()>0){
             txttrinhtrang.setText("Còn Hàng");
@@ -178,26 +177,75 @@ public class Chitietsanpham extends AppCompatActivity {
                 txtgiasanphamgoc.setText(simpleDateFormat.format(sanpham.getGia())+"");
                 float giagiam=(float) (100-sanpham.getGiamGia())/100;
                 float giaspsaukhuyenmai=(float)giagiam*sanpham.getGia();
+                 giasanphamsaukhuyenmai=(int)giaspsaukhuyenmai;
                 Log.d("AAA",giaspsaukhuyenmai+"");
-                txtgiasanphamsaukhigiam.setText(simpleDateFormat.format((int)giaspsaukhuyenmai)+"Đ");
-                txtngaykhuyenmai.setText(simpleDateFormat.format(sanpham.getNgayKhuyenMai()));
+                txtgiasanphamsaukhigiam.setText(simpleDateFormat.format(giasanphamsaukhuyenmai)+"Đ");
+                txtngaykhuyenmai.setText(sanpham.getNgayKhuyenMai());
             }
+
         }else{
-            txtgiasanphamsaukhigiam.setText(simpleDateFormat.format(sanpham.getGia())+"Đ");
+             giasanphamsaukhuyenmai=sanpham.getGia();
+            txtgiasanphamsaukhigiam.setText(simpleDateFormat.format(giasanphamsaukhuyenmai)+"Đ");
             txtngaykhuyenmai.setText("");
             txtgiasanphamgoc.setText("");
         }
 
-        //txtngaykhuyenmai.setText(arrayList.get(0).getNgayKhuyenMai());
+        themvaogiohang(arrayList.get(0).getId(),giasanphamsaukhuyenmai,arrayList.get(0).getHinhAnhSanPham(),
+                arrayList.get(0).getTenSanPham());
     }
 
-    private void themvaogiohang(){
-        floattingactionbuton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    private void themvaogiohang(final Integer id, final int giasanphamsaukhuyenmai, final String hinhAnhSanPham, final String tenSanPham) {
+        if(MainActivity.sharedPreferences.getInt("iduser",0)!=0){
+            floattingactionbuton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(MainActivity.sharedPreferences.getString("username","").equals("") &&
+                            MainActivity.sharedPreferences.getInt("iduser",0)==0){
+                        Intent intent=new Intent(getApplicationContext(),Login.class);
+                        intent.putExtra("phandanhgia",id+"");
+                        startActivity(intent);
+                        finish();
+                    }else {
+                        int iduser = MainActivity.sharedPreferences.getInt("iduser", 0);
+                        int idsanpham = id;
+                        int giasanpham = giasanphamsaukhuyenmai;
+                        String hinhsanpham = hinhAnhSanPham;
+                        String tensanpham = tenSanPham;
+                        Log.d("AAA","id_user: "+iduser);
+                        Log.d("AAA","id_sanpham: "+idsanpham);
+                        Log.d("AAA","hinh san pham: "+hinhsanpham);
+                        Log.d("AAA","tensanpham"+tenSanPham);
+                        Log.d("AAA","gia san pham: "+giasanpham);
+                       postgiohang(iduser,idsanpham,giasanpham,hinhsanpham,tensanpham);
+                    }
 
+                }
+            });
+        }else {
+
+        }
+    }
+
+    private void postgiohang(int iduser, int idsanpham, int giasanpham, String hinhsanpham, String tensanpham) {
+        DataService dataService=APIServices.getService();
+        Call<String>callback=dataService.postGiohang(idsanpham);
+        callback.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.d("AAA","post gio hang: "+response.toString());
+                if(response.isSuccessful()){
+                    Toast.makeText(Chitietsanpham.this, "San pham da duoc them vao gio hang", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(Chitietsanpham.this, "Tam thoi khong them vao dc vui long thu lai sau", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Log.d("AAA","Faid gio hang: "+t.toString());
             }
         });
     }
+
 
 }

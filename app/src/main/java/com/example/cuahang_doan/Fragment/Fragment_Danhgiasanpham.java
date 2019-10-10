@@ -57,15 +57,17 @@ public class Fragment_Danhgiasanpham extends Fragment {
               Log.d("AAA", "Mã san pham fragment danhgia"+msp);
               if(!msp.equals("0")){
                   getdatadanhgia(msp);
-                  danhgiacuaban(msp);
+                  btnguicomment.setOnClickListener(new View.OnClickListener() {
+                      @Override
+                      public void onClick(View view) {
+                          danhgiacuaban(msp);
+                      }
+                  });
               }
           }
      return view;
     }
     private void danhgiacuaban(final String msp){
-        btnguicomment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
                 if(MainActivity.sharedPreferences.getString("username","").equals("") &&
                     MainActivity.sharedPreferences.getInt("iduser",0)==0){
                     Intent intent=new Intent(getActivity(),Login.class);
@@ -73,14 +75,12 @@ public class Fragment_Danhgiasanpham extends Fragment {
                     startActivity(intent);
                     getActivity().finish();
                 }else{
-                    String comment="";
-                     comment=edtcommentt.getText().toString();
+                    String commentt="ok";
+                     commentt=edtcommentt.getText().toString();
                     SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
                     Calendar calendar=Calendar.getInstance();
                     String ngay=simpleDateFormat.format(calendar.getTime());
                    // Toast.makeText(getActivity(), MainActivity.sharedPreferences.getString("username",comment), Toast.LENGTH_SHORT).show();
-                    Log.d("AAA","da co tai khoan: "+MainActivity.sharedPreferences.getString("username",""));
-                    Log.d("AAA","ngay"+ngay);
                     int namsao=0;int bonsao=0;int basao=0;int haisao=0;int motsao=0;
                     if(ratingdanhgiacuabanla.getRating()>0){
                         if(ratingdanhgiacuabanla.getRating()==5){
@@ -98,37 +98,52 @@ public class Fragment_Danhgiasanpham extends Fragment {
                         if(ratingdanhgiacuabanla.getRating()==1){
                             motsao=1;
                         }
-                        Log.d("B",ngay);
-                       DataService dataService=APIServices.getService();
-                        Call<String>callback=dataService.postDanhgia(MainActivity.sharedPreferences.getString("username",""),
-                                msp,ngay,namsao,bonsao,basao,haisao,motsao);
-                        callback.enqueue(new Callback<String>() {
-                            @Override
-                            public void onResponse(Call<String> call, Response<String> response) {
-                                Log.d("AAA","Danhgiacuaban"+response.toString());
-                                if(response.isSuccessful()){
-                                    String mess=response.body();
-                                    Log.d("AAA","bien mess"+mess);
-                                    if(mess.equals("faid")){
-                                        Toast.makeText(getActivity(), "Không Thành công - bạn đã đánh giá rùi", Toast.LENGTH_SHORT).show();
-                                    }
-                                    if(mess.equals("sussces")){
-                                        Toast.makeText(getActivity(), "Đánh Giá Của Bạn Đã Được Gửi Đi", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            }
+                        Log.d("AAA","da co tai khoan: "+MainActivity.sharedPreferences.getString("username",""));
+                        Log.d("AAA","ngay"+ngay);
+                        Log.d("AAA","5sao"+namsao);
+                        Log.d("AAA","4sao"+bonsao);
+                        Log.d("AAA","3sao"+basao);
+                        Log.d("AAA","2sao"+haisao);
+                        Log.d("AAA","1sao"+motsao);
+                        Log.d("AAA","msp"+msp);
+                        Log.d("AAA","comment"+commentt);
+                        String username=MainActivity.sharedPreferences.getString("username","");
+                        Log.d("AAA","username"+username);
+                        postbai(username,msp,ngay,namsao,bonsao,basao,haisao,motsao,commentt);
 
-                            @Override
-                            public void onFailure(Call<String> call, Throwable t) {
-
-                            }
-                        });
 
                     }
                 }
+
+    }
+
+    private void postbai(String username, String msp, String ngay, int namsao, int bonsao, int basao, int haisao, int motsao, String comment) {
+        DataService dataService=APIServices.getService();
+        Call<String>callback=dataService.postDanhgia(MainActivity.sharedPreferences.getString("username",""),
+                msp,ngay,namsao,bonsao,basao,haisao,motsao,comment);
+        callback.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.d("AAA","Danhgiacuaban"+response.toString());
+                if(response.isSuccessful()){
+                    String mess=response.body();
+                    Log.d("AAA","bien mess"+mess);
+                    if(mess.equals("Faid")){
+                        Toast.makeText(getActivity(), "Không Thành công - bạn đã đánh giá rùi", Toast.LENGTH_SHORT).show();
+                    }
+                    if(mess.equals("sussces")){
+                        Toast.makeText(getActivity(), "Đánh Giá Của Bạn Đã Được Gửi Đi", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+
             }
         });
     }
+
     private void danhgiasanpham(){
         btnguicomment=view.findViewById(R.id.btnguicomment);
         ratingdanhgiacuabanla=view.findViewById(R.id.ratingdanhgiacuabanla);
@@ -141,7 +156,7 @@ public class Fragment_Danhgiasanpham extends Fragment {
         txtsoluongdanhgia=view.findViewById(R.id.txtsoluongdanhgia);
     }
 
-    private void getdatadanhgia(String msp) {
+    private void getdatadanhgia(final String msp) {
         if(!msp.equals("")){
             DataService dataService= APIServices.getService();
             Call<List<Danhgia>>callback=dataService.getdataDanhgia(msp+"");
@@ -172,6 +187,7 @@ public class Fragment_Danhgiasanpham extends Fragment {
                            comment_adapter.notifyDataSetChanged();
                            listView.setAdapter(comment_adapter);
                            setListViewHeightBasedOnChildren(listView);
+
                        }
                     }
                 }

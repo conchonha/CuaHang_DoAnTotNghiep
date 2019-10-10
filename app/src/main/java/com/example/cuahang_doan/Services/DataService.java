@@ -56,5 +56,15 @@ public interface DataService {
                                    @Field("bonsao") int bonsao,
                                    @Field("basao") int basao,
                                    @Field("haisao") int haisao,
-                                   @Field("motsao") int motsao);
+                                   @Field("motsao") int motsao,
+                                   @Field("comment") String comment);
+
+    @FormUrlEncoded
+    @POST("model/giohang/postgiohang")
+    Call<String>postGiohang(@Field("a") int idsanpham
+//                            @Field("b") int idsanpham,
+//                            @Field("c") int giasanpham,
+//                            @Field("d") String hinhsanpham,
+//                            @Field("e") String tensanpham
+                            );
 }
