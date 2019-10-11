@@ -2,8 +2,11 @@
 
 buildscript {
     repositories {
+
         google()
         jcenter()
+//        // hiện huy hiệu thông báo cho icon trong android
+//        mavenCentral()
         
     }
     dependencies {

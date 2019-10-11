@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
+import android.app.Notification;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -50,7 +51,7 @@ public class Chitietsanpham extends AppCompatActivity {
     public  ArrayList<SanPham>arrayList=new ArrayList<>();
     public  int id;
     private CollapsingToolbarLayout collapsingtoolbar;
-    private Toolbar toolbardanhsachbaihat;
+    private Toolbar toolbarchitietsp;
     private FloatingActionButton floattingactionbuton;
     private PageIndicatorView PageIndicatorview;
 
@@ -76,15 +77,17 @@ public class Chitietsanpham extends AppCompatActivity {
 
 
     private void actionbar() {
-        toolbardanhsachbaihat=findViewById(R.id.toolbardanhsachbaihat);
-        setSupportActionBar(toolbardanhsachbaihat);
+        toolbarchitietsp=findViewById(R.id.toolbarchitietsp);
+        setSupportActionBar(toolbarchitietsp);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbardanhsachbaihat.setNavigationOnClickListener(new View.OnClickListener() {
+        toolbarchitietsp.setNavigationIcon(R.drawable.back);
+        toolbarchitietsp.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
             }
         });
+
     }
 
     private void init() {
@@ -228,12 +231,14 @@ public class Chitietsanpham extends AppCompatActivity {
 
     private void postgiohang(int iduser, int idsanpham, int giasanpham, String hinhsanpham, String tensanpham) {
         DataService dataService=APIServices.getService();
-        Call<String>callback=dataService.postGiohang(idsanpham);
+        Call<String>callback=dataService.postGiohang(iduser,idsanpham,giasanpham);
         callback.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.d("AAA","post gio hang: "+response.toString());
                 if(response.isSuccessful()){
+                    String mess=response.body();
+                    Log.d("AAA","Messsage: "+mess);
                     Toast.makeText(Chitietsanpham.this, "San pham da duoc them vao gio hang", Toast.LENGTH_SHORT).show();
                 }else{
                     Toast.makeText(Chitietsanpham.this, "Tam thoi khong them vao dc vui long thu lai sau", Toast.LENGTH_SHORT).show();

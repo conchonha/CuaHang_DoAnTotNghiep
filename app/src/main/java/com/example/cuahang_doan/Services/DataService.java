@@ -3,6 +3,7 @@ package com.example.cuahang_doan.Services;
 import com.example.cuahang_doan.model.DanhMuc;
 import com.example.cuahang_doan.model.Danhgia;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
+import com.example.cuahang_doan.model.GioHang;
 import com.example.cuahang_doan.model.QuangCao;
 import com.example.cuahang_doan.model.SanPham;
 import com.example.cuahang_doan.model.User;
@@ -61,10 +62,21 @@ public interface DataService {
 
     @FormUrlEncoded
     @POST("model/giohang/postgiohang")
-    Call<String>postGiohang(@Field("a") int idsanpham
-//                            @Field("b") int idsanpham,
-//                            @Field("c") int giasanpham,
-//                            @Field("d") String hinhsanpham,
-//                            @Field("e") String tensanpham
+    Call<String>postGiohang(@Field("iduser") int iduser,
+                            @Field("idsanpham") int idsanpham,
+                            @Field("giasp") int giasp
                             );
+
+    @GET("model/giohang/getdatagiohang")
+    Call<List<GioHang>>getdataGiohang();
+
+    @FormUrlEncoded
+    @POST("model/giohang/updategiohang")
+    Call<String>updategiohang(@Field("idsanpham") String idsanpham,
+                                    @Field("soluong") int soluong,
+                                    @Field("thanhtien") int thanhtien);
+    @FormUrlEncoded
+    @POST("model/giohang/delete")
+    Call<String>Deletesanpham(@Field("idsanpham") String idsanpham);
+
 }

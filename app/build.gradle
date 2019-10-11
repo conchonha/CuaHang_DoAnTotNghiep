@@ -34,6 +34,9 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     // thu vien hieu ứng hoạt recyclerview
     implementation 'jp.wasabeef:recyclerview-animators:2.3.0'
+//    // thu vien hiện huy hiệu thông báo cho icon trong android studio
+//    implementation "com.google.firebase:firebase-messaging:17.1.0"
+//    implementation 'me.leolin:ShortcutBadger:1.1.21@aar'
 
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

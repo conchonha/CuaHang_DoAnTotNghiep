@@ -22,7 +22,7 @@
             app:expandedTitleMarginTop="10dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbardanhsachbaihat"
+                android:id="@+id/toolbarchitietsp"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:elevation="6dp"
@@ -66,7 +66,7 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         app:backgroundTint="@color/colorchu"
-        android:src="@drawable/cart64"
+        android:src="@drawable/cart32"
         android:scaleType="center"
         app:elevation="10dp"
         android:layout_marginRight="10dp"
@@ -172,7 +172,7 @@
                                     android:layout_width="wrap_content"
                                     android:textSize="18sp"
                                     android:textColor="#EE0909"
-                                    android:text="Ngay Đăng :"
+                                    android:text="Ngày Đăng :"
                                     android:textStyle="bold"
                                     android:layout_height="wrap_content"/>
                                 <TextView
@@ -196,7 +196,7 @@
                                     android:layout_width="wrap_content"
                                     android:textSize="18sp"
                                     android:textColor="#EE0909"
-                                    android:text="Ngay Khuyến Mãi :"
+                                    android:text="Ngày Khuyến Mãi :"
                                     android:textStyle="bold"
                                     android:layout_height="wrap_content"/>
                                 <TextView

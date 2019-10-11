@@ -189,6 +189,7 @@
         android:padding="7dp"
         android:id="@+id/edtcommentt"
         android:textColor="#fff"
+        android:inputType="text"
         android:background="@drawable/boder"
         android:layout_height="100dp"/>
     <Button

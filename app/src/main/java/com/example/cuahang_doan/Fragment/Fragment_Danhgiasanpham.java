@@ -133,6 +133,9 @@ public class Fragment_Danhgiasanpham extends Fragment {
                     }
                     if(mess.equals("sussces")){
                         Toast.makeText(getActivity(), "Đánh Giá Của Bạn Đã Được Gửi Đi", Toast.LENGTH_SHORT).show();
+                        getActivity().finish();
+                        startActivity(getActivity().getIntent());
+
                     }
                 }
             }
