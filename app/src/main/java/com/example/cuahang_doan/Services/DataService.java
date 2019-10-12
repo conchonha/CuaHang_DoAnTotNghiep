@@ -79,4 +79,20 @@ public interface DataService {
     @POST("model/giohang/delete")
     Call<String>Deletesanpham(@Field("idsanpham") String idsanpham);
 
+    @GET("model/taikhoan/gettaikhoan")
+    Call<List<User>>getdatataikhoan();
+
+    @FormUrlEncoded
+    @POST("model/taikhoan/timkiem")
+    Call<List<User>>timkiem(@Field("timkiem") String timkiem);
+
+    @FormUrlEncoded
+    @POST("model/chitietdonhang/dondathang")
+    Call<String>posdondathang(@Field("idtaikhoan") String idtaikhoan,
+                               @Field("trinhtrang") String trinhtrang,
+                               @Field("ngaydat") String ngaydat,
+                               @Field("username") String username,
+                               @Field("diachi") String diachi,
+                               @Field("email") String email,
+                               @Field("sodienthoai") String sodienthoai);
 }

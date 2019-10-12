@@ -198,16 +198,16 @@ public class Chitietsanpham extends AppCompatActivity {
     }
 
     private void themvaogiohang(final Integer id, final int giasanphamsaukhuyenmai, final String hinhAnhSanPham, final String tenSanPham) {
-        if(MainActivity.sharedPreferences.getInt("iduser",0)!=0){
             floattingactionbuton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(MainActivity.sharedPreferences.getString("username","").equals("") &&
                             MainActivity.sharedPreferences.getInt("iduser",0)==0){
-                        Intent intent=new Intent(getApplicationContext(),Login.class);
-                        intent.putExtra("phandanhgia",id+"");
-                        startActivity(intent);
-                        finish();
+                        Toast.makeText(Chitietsanpham.this, "co click", Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(Chitietsanpham.this,Login.class);
+                            intent.putExtra("phandanhgia",id+"");
+                            startActivity(intent);
+                            finish();
                     }else {
                         int iduser = MainActivity.sharedPreferences.getInt("iduser", 0);
                         int idsanpham = id;
@@ -224,9 +224,6 @@ public class Chitietsanpham extends AppCompatActivity {
 
                 }
             });
-        }else {
-
-        }
     }
 
     private void postgiohang(int iduser, int idsanpham, int giasanpham, String hinhsanpham, String tensanpham) {

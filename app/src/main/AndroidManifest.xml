@@ -11,8 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.Chitietsanpham"></activity>
-        <activity android:name=".Activity.Login"
+        <activity android:name=".Activity.Thanhtoangiohang"></activity>
+        <activity android:name=".Activity.Chitietsanpham" />
+        <activity
+            android:name=".Activity.Login"
             android:windowSoftInputMode="stateHidden">
 
             <!-- <intent-filter> -->

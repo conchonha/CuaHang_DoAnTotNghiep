@@ -20,45 +20,56 @@ public class User {
     @SerializedName("PhoneNumBer")
     @Expose
     private String phoneNumBer;
+    @SerializedName("Adress")
+    @Expose
+    private String adress;
 
     public Integer getId() {
-    return id;
+        return id;
     }
 
     public void setId(Integer id) {
-    this.id = id;
+        this.id = id;
     }
 
     public String getUserName() {
-    return userName;
+        return userName;
     }
 
     public void setUserName(String userName) {
-    this.userName = userName;
+        this.userName = userName;
     }
 
     public String getPassWord() {
-    return passWord;
+        return passWord;
     }
 
     public void setPassWord(String passWord) {
-    this.passWord = passWord;
+        this.passWord = passWord;
     }
 
     public String getEmail() {
-    return email;
+        return email;
     }
 
     public void setEmail(String email) {
-    this.email = email;
+        this.email = email;
     }
 
     public String getPhoneNumBer() {
-    return phoneNumBer;
+        return phoneNumBer;
     }
 
     public void setPhoneNumBer(String phoneNumBer) {
-    this.phoneNumBer = phoneNumBer;
+        this.phoneNumBer = phoneNumBer;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
 }

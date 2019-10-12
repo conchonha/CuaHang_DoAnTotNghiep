@@ -77,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
     private void anhxa() {
         sharedPreferences=getSharedPreferences("datalogin",MODE_PRIVATE);
         editor=sharedPreferences.edit();
-
         MainViewpager=findViewById(R.id.MainViewpager);
         mainTablayout=findViewById(R.id.mainTablayout);
     }
