@@ -104,6 +104,7 @@
                    <ListView
                        android:layout_width="match_parent"
                        android:id="@+id/listviewDanhmuc"
+                       android:scrollbars="none"
                        android:layout_below="@+id/txtdanhmuc"
                        android:layout_height="wrap_content"/>
                    <TextView

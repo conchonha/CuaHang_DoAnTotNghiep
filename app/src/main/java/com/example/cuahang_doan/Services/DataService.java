@@ -1,9 +1,11 @@
 package com.example.cuahang_doan.Services;
 
 import com.example.cuahang_doan.model.DanhMuc;
+import com.example.cuahang_doan.model.DanhMucCon;
 import com.example.cuahang_doan.model.Danhgia;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.example.cuahang_doan.model.GioHang;
+import com.example.cuahang_doan.model.HoaDon;
 import com.example.cuahang_doan.model.QuangCao;
 import com.example.cuahang_doan.model.SanPham;
 import com.example.cuahang_doan.model.User;
@@ -95,4 +97,12 @@ public interface DataService {
                                @Field("diachi") String diachi,
                                @Field("email") String email,
                                @Field("sodienthoai") String sodienthoai);
+
+    @FormUrlEncoded
+    @POST("model/dondathang/getdatadondathang")
+    Call<List<HoaDon>>getdatahoadon(@Field("idtaikhoan") String idtaikhoan);
+
+    @FormUrlEncoded
+    @POST("model/danhmuc/getdatadanhmuccon")
+    Call<List<DanhMucCon>>getdatadanhmuccon(@Field("iddanhmuc") String iddanhmuc);
 }

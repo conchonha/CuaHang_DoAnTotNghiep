@@ -15,11 +15,11 @@
             android:layout_height="wrap_content">
             <EditText
                 android:layout_width="match_parent"
-                android:layout_toLeftOf="@+id/imgtimkiem"
                 android:background="@drawable/bodergiohang"
                 android:layout_marginRight="15dp"
                 android:gravity="center"
                 android:inputType="number"
+                android:hint="Tìm Kiếm"
                 android:id="@+id/edttimkiem"
                 android:textColor="@color/colorchu"
                 android:layout_height="50dp"/>
@@ -27,6 +27,9 @@
                 android:layout_width="50dp"
                 android:scaleType="fitXY"
                 android:layout_height="50dp"
+                android:padding="10dp"
+                android:background="#4E4D4D"
+                android:layout_marginRight="10dp"
                 android:id="@+id/imgtimkiem"
                 android:src="@drawable/search"
                 android:layout_alignParentRight="true"/>
@@ -34,6 +37,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="30dp"
             android:id="@+id/recyclerviewtimkiemtaikhoan"
             android:layout_weight="1"/>
         <TextView

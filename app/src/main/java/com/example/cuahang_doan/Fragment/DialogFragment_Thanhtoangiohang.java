@@ -1,5 +1,6 @@
 package com.example.cuahang_doan.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.cuahang_doan.Activity.Hoadon;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
@@ -70,6 +72,7 @@ public class DialogFragment_Thanhtoangiohang extends DialogFragment {
                             Log.d("AAA","Post đơn đặt hang: "+response.toString());
                             if(response.isSuccessful()){
                                 Toast.makeText(getActivity(), "Đơn hàng của bạn đã được chuyển đi", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getContext(), Hoadon.class));
                             }
                         }
 

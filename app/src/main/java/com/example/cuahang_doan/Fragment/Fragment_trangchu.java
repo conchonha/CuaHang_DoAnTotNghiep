@@ -1,15 +1,18 @@
 package com.example.cuahang_doan.Fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,8 +20,10 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.example.cuahang_doan.Activity.MainActivity;
+import com.example.cuahang_doan.Activity.SanPham;
 import com.example.cuahang_doan.Adapter.DanhmucAdapter;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
@@ -68,6 +73,7 @@ public class Fragment_trangchu extends Fragment {
                         DanhmucAdapter adapter = new DanhmucAdapter(getActivity(), R.layout.layout_danhmuc, arrayList);
                         listviewDanhmuc.setAdapter(adapter);
                         setListViewHeightBasedOnChildren(listviewDanhmuc);
+                        setonclicklisview(arrayList);
                     }
                 }
             }
@@ -75,6 +81,39 @@ public class Fragment_trangchu extends Fragment {
             @Override
             public void onFailure(Call<List<DanhMuc>> call, Throwable t) {
                 Log.d("AAA","ListView_DanhMuc"+t.toString());
+            }
+        });
+    }
+    private void setonclicklisview(final ArrayList<DanhMuc>arrayList){
+        listviewDanhmuc.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                //Toast.makeText(getActivity(), i+arrayList.get(i).getTen(), Toast.LENGTH_SHORT).show();
+                switch (i){
+                    case 0:
+                        Intent intent=new Intent(getActivity(), SanPham.class);
+                        intent.putExtra("id","laptop");
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        FragmentManager fragmentManager=getFragmentManager();
+                        DialogFragment_DanhMuc dialogFragment_danhMuc=new DialogFragment_DanhMuc(arrayList.get(1).getId()+"");
+                        dialogFragment_danhMuc.show(fragmentManager,"dialogdanhmuc");
+                        break;
+                    case 2:
+                        Intent intent1=new Intent(getActivity(),SanPham.class);
+                        intent1.putExtra("id","tbluutru");
+                        startActivity(intent1);
+                        break;
+                    case 3:
+                        FragmentManager fragmentManager1=getFragmentManager();
+                        DialogFragment_DanhMuc dialogFragment_danhMuc1=new DialogFragment_DanhMuc(arrayList.get(3).getId()+"");
+                        dialogFragment_danhMuc1.show(fragmentManager1,"dialogdanhmuc");
+                        break;
+                        default:{
+                            Toast.makeText(getActivity(), "Chua hoan thanh", Toast.LENGTH_SHORT).show();
+                        }
+                }
             }
         });
     }

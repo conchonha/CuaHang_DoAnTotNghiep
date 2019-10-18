@@ -1,6 +1,7 @@
 package com.example.cuahang_doan.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahang_doan.Activity.Hoadon;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
@@ -78,7 +80,7 @@ public class TimkiemTaikhoan_Adapter extends RecyclerView.Adapter<TimkiemTaikhoa
                             public void onResponse(Call<String> call, Response<String> response) {
                                 Log.d("AAA", "post chitiet donhang: " + response.toString());
                                 if (response.isSuccessful()) {
-
+                                    context.startActivity(new Intent(context.getApplicationContext(), Hoadon.class));
                                 }
                             }
 

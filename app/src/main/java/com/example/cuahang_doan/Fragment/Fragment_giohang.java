@@ -13,6 +13,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -56,6 +57,9 @@ public class Fragment_giohang extends Fragment {
         actionbar();
         getDatagiohang();
         thanhtoangiohang();
+        if(arrayList.size()==0){
+            txttrinhtranggiohang.setVisibility(View.VISIBLE);
+        }
         return view;
     }
 
@@ -63,9 +67,13 @@ public class Fragment_giohang extends Fragment {
         floattingactionbutondathang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager=getFragmentManager();
-                DialogFragment_Thanhtoangiohang dialogFragment=new DialogFragment_Thanhtoangiohang();
-                dialogFragment.show(fragmentManager,"dialogkhachhangmoi");
+                if(arrayList.size()>0) {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    DialogFragment_Thanhtoangiohang dialogFragment = new DialogFragment_Thanhtoangiohang();
+                    dialogFragment.show(fragmentManager, "dialogkhachhangmoi");
+                }else{
+                    Toast.makeText(getActivity(), "Giỏ hàng trống", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
@@ -97,6 +105,7 @@ public class Fragment_giohang extends Fragment {
             getActivity().finish();
             startActivity(getActivity().getIntent());
             getActivity().overridePendingTransition(0,0);
+
         }
         return super.onOptionsItemSelected(item);
     }
@@ -124,9 +133,6 @@ public class Fragment_giohang extends Fragment {
                     }
                     DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
                     txtgiasanphamgiohang.setText("Thành Tiền: "+decimalFormat.format(tong)+"");
-                    if(arrayList==null){
-                        txttrinhtranggiohang.setVisibility(View.VISIBLE);
-                    }
                 }
             }
 

@@ -12,6 +12,7 @@ import android.app.NotificationManager;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 
 import com.example.cuahang_doan.Adapter.MainAdapter;
@@ -27,8 +28,8 @@ import com.google.android.material.tabs.TabLayout;
 
 
 public class MainActivity extends AppCompatActivity {
-    public ViewPager MainViewpager;
-    public TabLayout mainTablayout;
+    public static ViewPager MainViewpager;
+    public static TabLayout mainTablayout;
     public static SharedPreferences sharedPreferences;
     public static SharedPreferences.Editor editor;
 
@@ -80,10 +81,17 @@ public class MainActivity extends AppCompatActivity {
         MainViewpager=findViewById(R.id.MainViewpager);
         mainTablayout=findViewById(R.id.mainTablayout);
     }
-    public void reloaddulieu(){
+    public  void reloaddulieu(){
         finish();
         startActivity(getIntent());
         overridePendingTransition(0,0);
+        new Handler().postDelayed(
+                new Runnable(){
+                    @Override
+                    public void run() {
+                            mainTablayout.getTabAt(1).select();
+                    }
+                }, 100);
     }
 
 
