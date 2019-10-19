@@ -23,6 +23,17 @@ public class User {
     @SerializedName("Adress")
     @Expose
     private String adress;
+    @SerializedName("Hinh")
+    @Expose
+    private String hinh;
+
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setId(String hinh) {
+        this.hinh = hinh;
+    }
 
     public Integer getId() {
         return id;

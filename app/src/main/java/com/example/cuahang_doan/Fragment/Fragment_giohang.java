@@ -2,6 +2,7 @@ package com.example.cuahang_doan.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -40,6 +41,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.cuahang_doan.Activity.MainActivity.mainTablayout;
+
 public class Fragment_giohang extends Fragment {
     private Toolbar toolbargiohang;
     private ListView listgiohang;
@@ -57,12 +60,20 @@ public class Fragment_giohang extends Fragment {
         actionbar();
         getDatagiohang();
         thanhtoangiohang();
-        if(arrayList.size()==0){
-            txttrinhtranggiohang.setVisibility(View.VISIBLE);
-        }else{
-            txttrinhtranggiohang.setVisibility(View.GONE);
-        }
+
         return view;
+    }
+    public  void reloaddulieu(){
+        getActivity().finish();
+        startActivity(getActivity().getIntent());
+        getActivity().overridePendingTransition(0,0);
+        new Handler().postDelayed(
+                new Runnable(){
+                    @Override
+                    public void run() {
+                        mainTablayout.getTabAt(1).select();
+                    }
+                }, 100);
     }
 
     private void thanhtoangiohang() {
@@ -104,9 +115,7 @@ public class Fragment_giohang extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId()==R.id.reload){
-            getActivity().finish();
-            startActivity(getActivity().getIntent());
-            getActivity().overridePendingTransition(0,0);
+            reloaddulieu();
 
         }
         return super.onOptionsItemSelected(item);
@@ -135,6 +144,10 @@ public class Fragment_giohang extends Fragment {
                     }
                     DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
                     txtgiasanphamgiohang.setText("Thành Tiền: "+decimalFormat.format(tong)+"");
+                    txttrinhtranggiohang.setVisibility(View.GONE);
+                }else{
+                    txttrinhtranggiohang.setVisibility(View.VISIBLE);
+                    txttrinhtranggiohang.setText("Giỏ Hàng Trống");
                 }
             }
 

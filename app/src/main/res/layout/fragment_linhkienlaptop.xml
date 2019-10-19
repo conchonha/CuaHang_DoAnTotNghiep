@@ -24,6 +24,7 @@
             android:textSize="18sp"
             android:textStyle="italic|bold"
             android:layout_alignParentRight="true"
+            android:id="@+id/txtxemthem"
             android:layout_above="@+id/txtbackground2"
             android:layout_marginRight="10dp"
             android:textColor="@color/colorchu"

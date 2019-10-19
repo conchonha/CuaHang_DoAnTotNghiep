@@ -88,6 +88,7 @@ public class Login extends AppCompatActivity {
                             MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
                             MainActivity.editor.putString("email", arrayList.get(0).getEmail());
                             MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
+                            MainActivity.editor.putString("hinh", arrayList.get(0).getHinh());
                             MainActivity.editor.commit();
                             Log.d("AAA", "user sharedPreferences" + MainActivity.sharedPreferences.getString("username", ""));
                             setintentt();
@@ -117,6 +118,8 @@ public class Login extends AppCompatActivity {
                 startActivity(intent1);
                 finish();
             }
+        }else{
+            startActivity(new Intent(getApplicationContext(),MainActivity.class));
         }
     }
 }

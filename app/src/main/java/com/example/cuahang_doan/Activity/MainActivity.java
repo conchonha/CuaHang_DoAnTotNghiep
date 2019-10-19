@@ -62,8 +62,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int position) {
-                if(position==1){
+                if(position==1 || position==2 || position==3){
                     mainTablayout.setVisibility(View.GONE);
+                }else{
+                    mainTablayout.setVisibility(View.VISIBLE);
                 }
             }
 

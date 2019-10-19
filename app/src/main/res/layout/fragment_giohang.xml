@@ -10,16 +10,15 @@
         android:background="@color/colorchu"
         app:titleTextColor="@color/colorwhile"
         android:id="@+id/toolbargiohang"
-        android:layout_height="?attr/actionBarSize"/>
+        android:layout_height="wrap_content"/>
     <TextView
         android:layout_width="match_parent"
         android:textStyle="bold"
         android:textColor="@color/colorchu"
-        android:text="Giỏ Hàng Trống"
+        android:text=""
         android:textSize="20sp"
         android:padding="10dp"
         android:gravity="center"
-        android:visibility="gone"
         android:id="@+id/txttrinhtranggiohang"
         android:layout_height="wrap_content"/>
     <ListView

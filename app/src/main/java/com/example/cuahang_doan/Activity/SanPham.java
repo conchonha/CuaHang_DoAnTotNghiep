@@ -73,6 +73,14 @@ public class SanPham extends AppCompatActivity {
         if(giatri.equals("cardamthanh")){
             tollbarsanpham.setTitle("Card Âm Thanh");
         }
+        if(giatri.equals("linhkienlaptop")){
+            tollbarsanpham.setTitle("Linh Kiện - LapTop");
+        }
+        if(giatri.equals("thietbinghenhin1")){
+            tollbarsanpham.setTitle("TB Nghe - Nhìn");
+        }
+
+
 
     }
 
