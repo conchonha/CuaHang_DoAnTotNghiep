@@ -1,9 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Activity.SanPham">
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:background="@color/colorchu"
+        app:title="hshh"
+        app:titleTextColor="@color/colorwhile"
+        android:id="@+id/tollbarsanpham"
+        android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txttensp"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:background="#22b14c"
+            android:paddingLeft="5dp"
+            android:text="Sản Phẩm"
+            android:gravity="center"
+            android:textColor="#F7F2F2"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Sắp Xếp"
+            android:textSize="18sp"
+            android:textStyle="italic|bold"
+            android:layout_alignParentRight="true"
+            android:layout_above="@+id/txtbackground5"
+            android:layout_marginRight="10dp"
+            android:textColor="#08CC10"
+            android:layout_height="wrap_content"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="72dp"
+            android:layout_marginTop="-13dp"
+            android:layout_marginLeft="-18dp"
+            android:layout_toRightOf="@id/txttensp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:src="@drawable/tamgiac" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="@color/colorchu"
+            android:id="@+id/txtbackground5"
+            android:layout_below="@+id/txttensp"/>
+    </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerviewsanphamdanhmuc"
+        android:layout_height="match_parent">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

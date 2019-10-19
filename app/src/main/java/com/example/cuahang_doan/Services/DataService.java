@@ -105,4 +105,8 @@ public interface DataService {
     @FormUrlEncoded
     @POST("model/danhmuc/getdatadanhmuccon")
     Call<List<DanhMucCon>>getdatadanhmuccon(@Field("iddanhmuc") String iddanhmuc);
+
+    @FormUrlEncoded
+    @POST("model/laptopmacbook/getdatalaptopmacbook")
+    Call<List<GetdataSanphammoinhat>>getdatasanphamdanhmuc(@Field("id") String id);
 }

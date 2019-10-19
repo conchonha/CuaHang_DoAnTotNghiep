@@ -59,6 +59,8 @@ public class Fragment_giohang extends Fragment {
         thanhtoangiohang();
         if(arrayList.size()==0){
             txttrinhtranggiohang.setVisibility(View.VISIBLE);
+        }else{
+            txttrinhtranggiohang.setVisibility(View.GONE);
         }
         return view;
     }
@@ -86,9 +88,9 @@ public class Fragment_giohang extends Fragment {
         toolbargiohang.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity mainActivity= (MainActivity) getActivity();
-                mainActivity.mainTablayout.setVisibility(View.VISIBLE);
-                mainActivity.MainViewpager.setCurrentItem(0);
+               getActivity().finish();
+               startActivity(getActivity().getIntent());
+               getActivity().overridePendingTransition(0,0);
             }
         });
     }

@@ -84,7 +84,7 @@ public class Chitietsanpham extends AppCompatActivity {
         toolbarchitietsp.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                finish();
             }
         });
 
