@@ -88,7 +88,8 @@ public class Login extends AppCompatActivity {
                             MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
                             MainActivity.editor.putString("email", arrayList.get(0).getEmail());
                             MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
-                            MainActivity.editor.putString("hinh", arrayList.get(0).getHinh());
+                            MainActivity.editor.putString("hinh", APIServices.urlhinh+arrayList.get(0).getId()+".jpg");
+                            MainActivity.editor.putString("diachi",arrayList.get(0).getAdress());
                             MainActivity.editor.commit();
                             Log.d("AAA", "user sharedPreferences" + MainActivity.sharedPreferences.getString("username", ""));
                             setintentt();

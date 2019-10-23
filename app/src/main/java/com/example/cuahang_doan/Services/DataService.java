@@ -109,4 +109,27 @@ public interface DataService {
     @FormUrlEncoded
     @POST("model/laptopmacbook/getdatalaptopmacbook")
     Call<List<GetdataSanphammoinhat>>getdatasanphamdanhmuc(@Field("id") String id);
+
+    @FormUrlEncoded
+    @POST("model/usser/updatephoto")
+    Call<List<User>>updatephotouser(@Field("hinh") String bytehinh,
+                                    @Field("idtaikhoan") String idtaikhoan);
+
+    @FormUrlEncoded
+    @POST("model/dondathang/donhangganday")
+    Call<List<HoaDon>>getdatadonhangganday(@Field("idtaikhoan") String idtaikhoan);
+
+    @FormUrlEncoded
+    @POST("model/taikhoan/updatethongtin")
+    Call<List<User>>updatethongtintaikhoan(@Field("username") String username,
+                                       @Field("sodienthoai") String sodienthoai,
+                                       @Field("email") String email,
+                                       @Field("idtaikhoan") String idtaikhoan);
+
+    @FormUrlEncoded
+    @POST("model/taikhoan/updatediachi")
+    Call<List<User>>updatediachi(@Field("diachi") String diachi,
+                                 @Field("idtaikhoan") String idtaikhoan);
+
+
 }

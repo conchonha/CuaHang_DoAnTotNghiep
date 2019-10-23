@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Activity.Hoadon">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:src="@drawable/backden"
-            android:layout_margin="10dp"
+        android:orientation="vertical"
+        android:id="@+id/relivelayout11"
+        android:layout_height="match_parent"
+        >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
             android:id="@+id/imgback"
+            app:title="Hóa Đơn Tạm Tính"
+            app:titleTextColor="@color/colorwhile"
+            android:background="@color/colorchu"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
@@ -36,6 +39,7 @@
             android:layout_width="match_parent"
             android:weightSum="2"
             android:layout_below="@+id/txthoadon"
+            android:layout_marginBottom="20dp"
             android:id="@+id/linner"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -49,7 +53,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Mã Đơn Hàng:"
-                    android:textStyle="bold"
                     android:padding="5dp"
                     android:textColor="#000"
                     android:textSize="18sp"
@@ -57,7 +60,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Khách Hàng:"
-                    android:textStyle="bold"
                     android:padding="5dp"
                     android:textColor="#000"
                     android:textSize="18sp"
@@ -68,20 +70,17 @@
                     android:padding="5dp"
                     android:textColor="#000"
                     android:textSize="18sp"
-                    android:textStyle="bold"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Địa Chỉ:"
                     android:padding="5dp"
                     android:textColor="#000"
-                    android:textStyle="bold"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="Ngày Mua:"
-                    android:textStyle="bold"
                     android:textColor="#000"
                     android:padding="5dp"
                     android:textSize="18sp"
@@ -99,6 +98,7 @@
                     android:layout_width="wrap_content"
                     android:text="ma don hang"
                     android:id="@+id/txtmadonhang"
+                    android:textColor="#000"
                     android:padding="5dp"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
@@ -107,6 +107,7 @@
                     android:text="ma don hang"
                     android:id="@+id/txtkhachhang"
                     android:padding="5dp"
+                    android:textColor="#000"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -114,6 +115,7 @@
                     android:text="ma don hang"
                     android:id="@+id/txtsodienthoai"
                     android:padding="5dp"
+                    android:textColor="#000"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -121,6 +123,7 @@
                     android:text="ma don hang"
                     android:id="@+id/txtdiachi"
                     android:padding="5dp"
+                    android:textColor="#000"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
                 <TextView
@@ -129,120 +132,24 @@
                     android:id="@+id/txtngaydat"
                     android:padding="5dp"
                     android:textSize="18sp"
+                    android:textColor="#000"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </LinearLayout>
+
+
+    </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="20dp"
-            android:padding="5dp"
-            android:gravity="center"
-            android:id="@+id/linnerr"
-            android:layout_below="@+id/linner"
+            android:orientation="vertical"
+            android:gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/linnerlaouthoadon"
             android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:text="#"
-                android:padding="5dp"
-                android:textColor="#000"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:text="Sản Phẩm"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="#000"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:text="SL"
-                android:padding="5dp"
-                android:layout_marginRight="10dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:text="Đơn Giá"
-                android:padding="5dp"
-                android:textStyle="bold"
-                android:layout_marginRight="10dp"
-                android:textColor="#000"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:textSize="18sp"
-                android:text="Thành Tiền"
-                android:padding="5dp"
-                android:layout_marginRight="10dp"
-                android:textStyle="bold"
-                android:textColor="#000"
-                android:layout_height="wrap_content"/>
 
         </LinearLayout>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/linnerr"
-            android:layout_marginTop="-5dp"
-            android:id="@+id/txtbackground3"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:background="#000"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/recyclerviewhoadon"
-            android:padding="5dp"
-            android:layout_below="@+id/txtbackground3"
-            android:layout_height="match_parent"/>
-    </RelativeLayout>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="wrap_content"
-        android:text="Tổng Tiền:"
-        android:padding="5dp"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:id="@+id/txt1"
-        android:textColor="#000"
-        android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Giá"
-            android:padding="5dp"
-            android:textSize="20dp"
-            android:id="@+id/txtgiasanphamhoadon"
-            android:layout_alignParentRight="true"
-            android:textColor="#000"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_marginBottom="30dp"
-            android:padding="5dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/txt1"
-            android:id="@+id/txt2"
-            android:textColor="#000"
-            android:layout_height="2dp"/>
 
     </RelativeLayout>
-    </LinearLayout>
-</androidx.core.widget.NestedScrollView>
+</RelativeLayout>
