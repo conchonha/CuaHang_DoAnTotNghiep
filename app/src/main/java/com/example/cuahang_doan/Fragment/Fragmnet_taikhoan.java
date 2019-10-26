@@ -25,7 +25,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cuahang_doan.Activity.DonHangCuaBan;
 import com.example.cuahang_doan.Activity.Login;
 import com.example.cuahang_doan.Activity.MainActivity;
-import com.example.cuahang_doan.Activity.NhanXetCuaToi;
+import com.example.cuahang_doan.Activity.Nhanxetcuaban;
 import com.example.cuahang_doan.Activity.QuanLyTaiKhoan;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
@@ -36,7 +36,6 @@ import com.squareup.picasso.Picasso;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -102,7 +101,7 @@ public class Fragmnet_taikhoan extends Fragment {
         relivelayoutnhanxetcuatoi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(getActivity(), NhanXetCuaToi.class));
+                startActivity(new Intent(getActivity(), Nhanxetcuaban.class));
             }
         });
         relivelayoutdonhangcuatoi.setOnClickListener(new View.OnClickListener() {

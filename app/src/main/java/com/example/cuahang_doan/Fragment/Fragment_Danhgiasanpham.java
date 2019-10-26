@@ -65,6 +65,7 @@ public class Fragment_Danhgiasanpham extends Fragment {
                   });
               }
           }
+
      return view;
     }
     private void danhgiacuaban(final String msp){

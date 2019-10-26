@@ -3,7 +3,7 @@
     package="com.example.cuahang_doan">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.NhanXetCuaToi"></activity>
+        <activity android:name=".Activity.Nhanxetcuaban"></activity>
         <activity android:name=".Activity.DonHangCuaBan" />
         <activity android:name=".Activity.QuanLyTaiKhoan" />
         <activity android:name=".Activity.SanPham" />

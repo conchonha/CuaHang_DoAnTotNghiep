@@ -6,8 +6,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahang_doan.Fragment.DialogFragment_Chitietdonhang;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.model.DonDatHang;
 
@@ -52,6 +55,15 @@ public class Adapter_Donhangcuaban extends RecyclerView.Adapter<Adapter_Donhangc
             iddonhang=itemView.findViewById(R.id.iddonhang);
             ngaydat=itemView.findViewById(R.id.ngaydat);
             trinhtrang=itemView.findViewById(R.id.trinhtrang);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    FragmentManager fragmentManager= ((AppCompatActivity)context).getSupportFragmentManager();
+                    DialogFragment_Chitietdonhang dialogFragment_chitietdonhang=new DialogFragment_Chitietdonhang(
+                            arrayList.get(getPosition()).getIdDonHang(),arrayList.get(getPosition()).getTrinhTrang());
+                    dialogFragment_chitietdonhang.show(fragmentManager,"chitietdonhang");
+                }
+            });
         }
     }
 }
