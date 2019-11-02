@@ -29,8 +29,21 @@ private String danhGiaSao;
 @SerializedName("Loai")
 @Expose
 private String loai;
+    public GetdataSanphammoinhat(){
 
-public Integer getId() {
+    }
+    public GetdataSanphammoinhat(Integer id, String tenSanPham, String hinhAnhSanPham, Integer gia, String ngayKhuyenMai, Integer giamGia, String danhGiaSao, String loai) {
+        this.id = id;
+        this.tenSanPham = tenSanPham;
+        this.hinhAnhSanPham = hinhAnhSanPham;
+        this.gia = gia;
+        this.ngayKhuyenMai = ngayKhuyenMai;
+        this.giamGia = giamGia;
+        this.danhGiaSao = danhGiaSao;
+        this.loai = loai;
+    }
+
+    public Integer getId() {
 return id;
 }
 

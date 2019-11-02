@@ -17,7 +17,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="150dp"
             android:layout_gravity="center"
             android:gravity="center">
 
@@ -30,6 +30,7 @@
             <FrameLayout
                 android:id="@+id/framelayout"
                 android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_height="wrap_content">
 
                 <com.makeramen.roundedimageview.RoundedImageView
@@ -62,7 +63,7 @@
                     android:gravity="center"
                     android:padding="5dp"
                     android:layout_marginTop="10dp"
-                    android:maxLines="3"
+                    android:maxLines="2"
                     android:text="ten san pham"
                     android:textColor="#000"
                     android:textSize="18sp" />
@@ -99,6 +100,7 @@
                         android:text="100000"
                         android:id="@+id/txtsoluongchitietdondathang"
                         android:padding="5dp"
+                        android:gravity="center"
                         android:background="@drawable/bodergiohang"
                         android:textColor="#BE041B"
                         android:textSize="18sp" />

@@ -7,7 +7,9 @@ import com.example.cuahang_doan.model.Danhgia;
 import com.example.cuahang_doan.model.DonDatHang;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.example.cuahang_doan.model.GioHang;
+import com.example.cuahang_doan.model.GioithieuShop;
 import com.example.cuahang_doan.model.HoaDon;
+import com.example.cuahang_doan.model.Nhanxetcuaban;
 import com.example.cuahang_doan.model.QuangCao;
 import com.example.cuahang_doan.model.SanPham;
 import com.example.cuahang_doan.model.User;
@@ -142,7 +144,39 @@ public interface DataService {
     @GET("model/dondathang/dagiaohang")
     Call<List<DonDatHang>>getdatadagiaohang();
 
+    @GET("model/dondathang/dahuy")
+    Call<List<DonDatHang>>getdatadahuy();
+
     @FormUrlEncoded
     @POST("model/chitietdondathang/getdatachitietdondathang")
     Call<List<Chitietdondathang>>getdatachitietdonhang(@Field("iddondathang") String iddondathang);
+
+    @FormUrlEncoded
+    @POST("model/chitietdondathang/getdatachuanhanxet")
+    Call<List<Nhanxetcuaban>>getdatachuanhanxet(@Field("idtaikhoan") String idtaikhoan,
+                                                @Field("trinhtrang") String trinhtrang);
+
+    @FormUrlEncoded
+    @POST("model/sanpham/getdataphantrangsanpham")
+    Call<List<GetdataSanphammoinhat>>getdataPhantrang(@Field("soluong") String soluong);
+
+    @FormUrlEncoded
+    @POST("model/sanpham/getdataTimkiem")
+    Call<List<GetdataSanphammoinhat>>getdataTimkiemsanpham(@Field("timkim") String timkim);
+
+    @FormUrlEncoded
+    @POST("model/donathang/updatehuydon")
+    Call<String>UpdateHuydondathang(@Field("iddondathang") String isdondathang);
+
+    @GET("model/gioithieushop/gioithieushop")
+    Call<List<GioithieuShop>>Getdatagioithieushop();
+
+    @FormUrlEncoded
+    @POST("model/taikhoan/dangkytaikhoan")
+    Call<String>dangkytaikhoan(@Field("username") String username,
+                               @Field("password") String password,
+                               @Field("email") String email,
+                               @Field("sodienthoai") String sodienthoai,
+                               @Field("diachi") String diachi
+                               );
 }

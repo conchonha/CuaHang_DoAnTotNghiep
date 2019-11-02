@@ -4,11 +4,15 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.model.Danhgia;
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,6 +26,7 @@ public class Comment_Adapter extends BaseAdapter {
     public class Viewhodeler{
         private TextView txttenuser1,txtcommentnguoidung,txtngaythangdanhgia;
         private RatingBar ratingBar;
+        private RoundedImageView img;
     }
 
     public Comment_Adapter(Context context, int layout, ArrayList<Danhgia> arrayList) {
@@ -55,12 +60,17 @@ public class Comment_Adapter extends BaseAdapter {
             viewhodeler.txtcommentnguoidung=view.findViewById(R.id.txtcommentnguoidung);
             viewhodeler.txtngaythangdanhgia=view.findViewById(R.id.txtngaythangdanhgia);
             viewhodeler.ratingBar=view.findViewById(R.id.ratingdanhgianguoidung);
+            viewhodeler.img=view.findViewById(R.id.img);
             view.setTag(viewhodeler);
         }else{
             viewhodeler= (Viewhodeler) view.getTag();
         }
         viewhodeler.txttenuser1.setText(arrayList.get(i).getIdUser()+"");
         viewhodeler.txtcommentnguoidung.setText(arrayList.get(i).getComMent());
+        if(!MainActivity.sharedPreferences.getString("hinh","").equals("")){
+            Picasso.with(context).load(MainActivity.sharedPreferences.getString("hinh",""))
+            .into(viewhodeler.img);
+        }
         SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
         viewhodeler.txtngaythangdanhgia.setText(arrayList.get(i).getNgayDanhGia()+"");
             if(arrayList.get(i).get1sao()==1){

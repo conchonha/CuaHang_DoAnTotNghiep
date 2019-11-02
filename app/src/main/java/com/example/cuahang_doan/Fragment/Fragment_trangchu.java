@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -22,13 +23,17 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import com.example.cuahang_doan.Activity.Gioi_Thieu;
+import com.example.cuahang_doan.Activity.Login;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.Activity.SanPham;
+import com.example.cuahang_doan.Activity.Vitrishop;
 import com.example.cuahang_doan.Adapter.DanhmucAdapter;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
 import com.example.cuahang_doan.model.DanhMuc;
+import com.example.cuahang_doan.model.GioithieuShop;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 import java.util.ArrayList;
@@ -45,6 +50,8 @@ public class Fragment_trangchu extends Fragment {
     private View view;
     private MainActivity context;
     private ListView listviewDanhmuc;
+    private TextView txtTitleDanhmucvitri,txtTitleDanhmuchotro,txtTitleDanhmucemail,txtTitleDanhmucsdt,
+            txtTitleTaikhoandangnhap;
 
     public Fragment_trangchu(MainActivity context) {
         this.context = context;
@@ -57,7 +64,35 @@ public class Fragment_trangchu extends Fragment {
         anhxa();
         actionbar();
         getdataDanhmuc();
+        init();
+        getdatagioithieushop();
         return view;
+    }
+
+    private void init() {
+        txtTitleDanhmuchotro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Gioi_Thieu.class));
+            }
+        });
+        txtTitleDanhmucvitri.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Vitrishop.class));
+            }
+        });
+        if(!MainActivity.sharedPreferences.getString("username","").equals("")){
+            txtTitleTaikhoandangnhap.setText("Đăng Xuất");
+        }else{
+            txtTitleTaikhoandangnhap.setText("Đăng Nhập");
+        }
+        txtTitleTaikhoandangnhap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), Login.class));
+            }
+        });
     }
 
     private void getdataDanhmuc() {
@@ -81,6 +116,28 @@ public class Fragment_trangchu extends Fragment {
             @Override
             public void onFailure(Call<List<DanhMuc>> call, Throwable t) {
                 Log.d("AAA","ListView_DanhMuc"+t.toString());
+            }
+        });
+    }
+    private void getdatagioithieushop() {
+        DataService dataService= APIServices.getService();
+        Call<List<GioithieuShop>>callback=dataService.Getdatagioithieushop();
+        callback.enqueue(new Callback<List<GioithieuShop>>() {
+            @Override
+            public void onResponse(Call<List<GioithieuShop>> call, Response<List<GioithieuShop>> response) {
+                Log.d("AAA","Gioi thieu shop: "+response.toString());
+                if(response.isSuccessful()){
+                    ArrayList<GioithieuShop>arrayList= (ArrayList<GioithieuShop>) response.body();
+                    GioithieuShop gioithieuShop=arrayList.get(0);
+                    txtTitleDanhmucemail.setText(gioithieuShop.getEmail());
+                    txtTitleDanhmucsdt.setText(gioithieuShop.getDienThoai());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<GioithieuShop>> call, Throwable t) {
+
             }
         });
     }
@@ -119,6 +176,7 @@ public class Fragment_trangchu extends Fragment {
     }
 
     private void actionbar() {
+
         //Expanded set màu mở rộng
         collapsingToolbarLayout.setExpandedTitleColor(getResources().getColor(R.color.colorwhile));
         //set màu thu hẹp
@@ -134,6 +192,11 @@ public class Fragment_trangchu extends Fragment {
         });
     }
     private void anhxa() {
+        txtTitleTaikhoandangnhap=view.findViewById(R.id.txtTitleTaikhoandangnhap);
+        txtTitleDanhmucsdt=view.findViewById(R.id.txtTitleDanhmucsdt);
+        txtTitleDanhmucemail=view.findViewById(R.id.txtTitleDanhmucemail);
+        txtTitleDanhmucvitri=view.findViewById(R.id.txtTitleDanhmucvitri);
+        txtTitleDanhmuchotro=view.findViewById(R.id.txtTitleDanhmuchotro);
         listviewDanhmuc=view.findViewById(R.id.listviewDanhmuc);
         drawerlayout=view.findViewById(R.id.drawerlayout);
         collapsingToolbarLayout=view.findViewById(R.id.collapsingToolbarLayout);

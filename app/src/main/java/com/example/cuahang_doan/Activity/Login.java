@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cuahang_doan.R;
@@ -32,6 +33,7 @@ public class Login extends AppCompatActivity {
     private Button btndangnhap;
     private CheckBox ckeckbox;
     private ArrayList<User>arrayList;
+    private TextView textdangky;
 
 
     @Override
@@ -41,6 +43,17 @@ public class Login extends AppCompatActivity {
         setanim();
         anhxa();
         login();
+        init();
+
+    }
+
+    private void init() {
+        textdangky.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),DangKyTaiKhoan.class));
+            }
+        });
     }
 
     private void login() {
@@ -59,6 +72,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void anhxa() {
+        textdangky=findViewById(R.id.textdangky);
         edittextusername=findViewById(R.id.edittextusername);
         edittextpassword=findViewById(R.id.edittextpassword);
         btndangnhap=findViewById(R.id.btndangnhap);

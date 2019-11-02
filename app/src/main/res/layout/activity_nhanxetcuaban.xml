@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         app:title="Nhận Xét Của Bạn"
         app:titleTextColor="@color/colorwhile"
+        android:id="@+id/toolbarnhanxetcuaban"
         android:background="@color/colorchu"
         android:layout_height="wrap_content"/>
     <androidx.viewpager.widget.ViewPager

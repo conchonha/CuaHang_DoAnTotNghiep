@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.example.cuahang_doan.Adapter.MainAdapter;
 import com.example.cuahang_doan.Fragment.Fragment_Choxetduyet;
+import com.example.cuahang_doan.Fragment.Fragment_DaHuy;
 import com.example.cuahang_doan.Fragment.Fragment_Dagiaohang;
 import com.example.cuahang_doan.Fragment.Fragment_Dangvanchuyen;
 import com.example.cuahang_doan.R;
@@ -48,11 +49,13 @@ public class DonHangCuaBan extends AppCompatActivity {
         mainAdapter.addFragment(new Fragment_Choxetduyet(),"Chờ Duyệt");
         mainAdapter.addFragment(new Fragment_Dangvanchuyen(),"Đang Giao");
         mainAdapter.addFragment(new Fragment_Dagiaohang(),"Hoàn Thành");
+        mainAdapter.addFragment(new Fragment_DaHuy(),"Đã Hủy");
         viewpagerdonhangcuaban.setAdapter(mainAdapter);
 
         Donhangcuabantablayout.setupWithViewPager(viewpagerdonhangcuaban);
         Donhangcuabantablayout.getTabAt(0).setIcon(R.drawable.choduyet);
         Donhangcuabantablayout.getTabAt(1).setIcon(R.drawable.vanchuyen);
         Donhangcuabantablayout.getTabAt(2).setIcon(R.drawable.hoanthanh);
+        Donhangcuabantablayout.getTabAt(3).setIcon(R.drawable.delete);
     }
 }

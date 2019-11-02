@@ -57,7 +57,7 @@ public class Fragment_banner extends Fragment {
             @Override
             public void onResponse(Call<List<QuangCao>> call, Response<List<QuangCao>> response) {
                 Log.d("AAA","Banner"+response.toString());
-                if(response.body()!=null){
+                if(response.isSuccessful()){
                     ArrayList arrayList= (ArrayList) response.body();
                     if(arrayList.size()>0) {
                         Collections.shuffle(arrayList);
