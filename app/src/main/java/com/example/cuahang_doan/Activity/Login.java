@@ -2,6 +2,9 @@ package com.example.cuahang_doan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.cuahang_doan.Activity.admin.Admin;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
@@ -104,11 +108,41 @@ public class Login extends AppCompatActivity {
                             MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
                             MainActivity.editor.putString("hinh", APIServices.urlhinh+arrayList.get(0).getId()+".jpg");
                             MainActivity.editor.putString("diachi",arrayList.get(0).getAdress());
+                            MainActivity.editor.remove("admin");
                             MainActivity.editor.commit();
                             Log.d("AAA", "user sharedPreferences" + MainActivity.sharedPreferences.getString("username", ""));
                             setintentt();
                         }else{
-                            Toast.makeText(getApplicationContext(), "tài khoản không chính sác", Toast.LENGTH_SHORT).show();
+                            if(edittextusername.getText().toString().equals("admin") && edittextpassword.getText().toString().equals("123")){
+                                AlertDialog.Builder dialog=new AlertDialog.Builder(Login.this);
+                                dialog.setTitle("Bạn Đang Đăng Nhập Với Quyền Admin");
+                                dialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        startActivity(new Intent(getApplicationContext(), Admin.class));
+                                        MainActivity.editor.putString("admin","admin");
+                                        MainActivity.editor.remove("username");
+                                        MainActivity.editor.remove("password");
+                                        MainActivity.editor.remove("iduser");
+                                        MainActivity.editor.remove("email");
+                                        MainActivity.editor.remove("sodienthoai");
+                                        MainActivity.editor.remove("hinh");
+                                        MainActivity.editor.remove("diachi");
+                                        MainActivity.editor.commit();
+                                    }
+                                });
+                                dialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+
+                                    }
+                                });
+                                dialog.show();
+
+                            }else{
+                                Toast.makeText(getApplicationContext(), "tài khoản không chính sác", Toast.LENGTH_SHORT).show();
+                            }
+
                         }
                     }
                 }

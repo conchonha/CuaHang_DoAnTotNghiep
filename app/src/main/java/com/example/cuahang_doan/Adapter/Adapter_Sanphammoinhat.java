@@ -102,7 +102,7 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent=new Intent(context.getApplicationContext(), Chitietsanpham.class);
+                    Intent intent=new Intent(context, Chitietsanpham.class);
                     intent.putExtra("id",arrayList.get(getPosition()).getId());
                     context.startActivity(intent);
                 }

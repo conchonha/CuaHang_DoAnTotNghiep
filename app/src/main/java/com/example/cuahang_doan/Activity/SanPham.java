@@ -97,7 +97,7 @@ public class SanPham extends AppCompatActivity {
                     Log.d("AAA","San Pham tim kiem: "+response.toString());
                     if(response.isSuccessful()){
                         ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
-                        Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(getApplicationContext(),R.layout.layoutsanpham,arrayList);
+                        Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(SanPham.this,R.layout.layoutsanpham,arrayList);
                         recyclerviewsanphamdanhmuc.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }

@@ -12,6 +12,7 @@ import com.example.cuahang_doan.model.HoaDon;
 import com.example.cuahang_doan.model.Nhanxetcuaban;
 import com.example.cuahang_doan.model.QuangCao;
 import com.example.cuahang_doan.model.SanPham;
+import com.example.cuahang_doan.model.TinTuc;
 import com.example.cuahang_doan.model.User;
 
 import java.util.List;
@@ -134,18 +135,21 @@ public interface DataService {
     @POST("model/taikhoan/updatediachi")
     Call<List<User>>updatediachi(@Field("diachi") String diachi,
                                  @Field("idtaikhoan") String idtaikhoan);
+    @FormUrlEncoded
+    @POST("model/dondathang/choxetduyet")
+    Call<List<DonDatHang>>getdatachoxetduyet(@Field("idtaikhoan") String idtaikhoan);
 
-    @GET("model/dondathang/choxetduyet")
-    Call<List<DonDatHang>>getdatachoxetduyet();
+    @FormUrlEncoded
+    @POST("model/dondathang/dangvanchuyen")
+    Call<List<DonDatHang>>getdatadangvanchuyen(@Field("idtaikhoan") String idtaikhoan);
 
-    @GET("model/dondathang/dangvanchuyen")
-    Call<List<DonDatHang>>getdatadangvanchuyen();
+    @FormUrlEncoded
+    @POST("model/dondathang/dagiaohang")
+    Call<List<DonDatHang>>getdatadagiaohang(@Field("idtaikhoan") String idtaikhoan);
 
-    @GET("model/dondathang/dagiaohang")
-    Call<List<DonDatHang>>getdatadagiaohang();
-
-    @GET("model/dondathang/dahuy")
-    Call<List<DonDatHang>>getdatadahuy();
+    @FormUrlEncoded
+    @POST("model/dondathang/dahuy")
+    Call<List<DonDatHang>>getdatadahuy(@Field("idtaikhoan") String idtaikhoan);
 
     @FormUrlEncoded
     @POST("model/chitietdondathang/getdatachitietdondathang")
@@ -179,4 +183,36 @@ public interface DataService {
                                @Field("sodienthoai") String sodienthoai,
                                @Field("diachi") String diachi
                                );
+    @GET("model/tintuc/getdatatintuc")
+    Call<List<TinTuc>>getdatatintuc();
+
+    @FormUrlEncoded
+    @POST("model/tintuc/timkimtintuc")
+    Call<List<TinTuc>>getdatatimkimtintuc(
+                               @Field("timkim") String timkim
+    );
+
+    @FormUrlEncoded
+    @POST("model/thongtin/update")
+    Call<String>Updatethongtinshop(
+            @Field("TenCuaHang") String TenCuaHang,
+            @Field("TruSoChinh") String TruSoChinh,
+            @Field("DienThoai") String DienThoai,
+            @Field("Email") String Email,
+            @Field("Website") String Website,
+            @Field("Fanpage") String Fanpage
+
+    );
+
+    @GET("model/dondathang/getdatadangvanchuyenadmin")
+    Call<List<DonDatHang>>getdatadangvanchuyenadmin();
+
+    @GET("model/dondathang/getdatadahuyadmin")
+    Call<List<DonDatHang>>getdatadahuyadmin();
+
+    @GET("model/dondathang/dagiaohangadmin")
+    Call<List<DonDatHang>>getdatadagiaohangadmin();
+
+    @GET("model/dondathang/choxetduyetadmin")
+    Call<List<DonDatHang>>getdatachoxetduyetadmin();
 }

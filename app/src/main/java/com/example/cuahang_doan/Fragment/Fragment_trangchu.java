@@ -27,6 +27,7 @@ import com.example.cuahang_doan.Activity.Gioi_Thieu;
 import com.example.cuahang_doan.Activity.Login;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.Activity.SanPham;
+import com.example.cuahang_doan.Activity.TinTuc;
 import com.example.cuahang_doan.Activity.Vitrishop;
 import com.example.cuahang_doan.Adapter.DanhmucAdapter;
 import com.example.cuahang_doan.R;
@@ -166,6 +167,9 @@ public class Fragment_trangchu extends Fragment {
                         FragmentManager fragmentManager1=getFragmentManager();
                         DialogFragment_DanhMuc dialogFragment_danhMuc1=new DialogFragment_DanhMuc(arrayList.get(3).getId()+"");
                         dialogFragment_danhMuc1.show(fragmentManager1,"dialogdanhmuc");
+                        break;
+                    case 4:
+                        startActivity(new Intent(getActivity(), TinTuc.class));
                         break;
                         default:{
                             Toast.makeText(getActivity(), "Chua hoan thanh", Toast.LENGTH_SHORT).show();

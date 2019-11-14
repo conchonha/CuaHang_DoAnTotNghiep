@@ -19,7 +19,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.DangKyTaiKhoan"></activity>
+        <activity android:name=".Activity.admin.QuanLyDonhang"></activity>
+        <activity android:name=".Activity.admin.ThongKe" />
+        <activity android:name=".Activity.admin.UpdateThongtin" />
+        <activity android:name=".Activity.ThongTinChiTietTinTuc" />
+        <activity android:name=".Activity.TinTuc" />
+        <activity android:name=".Activity.admin.Admin" />
+        <activity android:name=".Activity.DangKyTaiKhoan" />
         <activity android:name=".Activity.Gioi_Thieu" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

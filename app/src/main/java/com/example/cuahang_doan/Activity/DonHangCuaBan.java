@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.cuahang_doan.Activity.admin.Admin;
 import com.example.cuahang_doan.Adapter.MainAdapter;
 import com.example.cuahang_doan.Fragment.Fragment_Choxetduyet;
 import com.example.cuahang_doan.Fragment.Fragment_DaHuy;
@@ -37,7 +39,12 @@ public class DonHangCuaBan extends AppCompatActivity {
         Toobardonhangcuaban.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+               if(MainActivity.sharedPreferences.getString("admin","").equals("")){
+                   startActivity(new Intent(getApplicationContext(), Admin.class));
+               }else{
+                   finish();
+               }
+
             }
         });
         viewpagerdonhangcuaban=findViewById(R.id.viewpagerdonhangcuaban);

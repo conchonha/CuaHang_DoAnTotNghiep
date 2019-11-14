@@ -3,11 +3,14 @@ package com.example.cuahang_doan.Activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.cuahang_doan.Activity.admin.UpdateThongtin;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
@@ -24,6 +27,8 @@ public class Gioi_Thieu extends AppCompatActivity {
     private Toolbar toolbargioithieu;
     private TextView txttentrusogioithieu,txtdiachigioithieu,txtsodienthoaigioithieu,txtemailgioithieushop,
             txtwebsitegioithieushop,txtfanpagegioithieushop;
+    private Button btnupdategioithieu;
+    private ArrayList<GioithieuShop>arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +46,7 @@ public class Gioi_Thieu extends AppCompatActivity {
             public void onResponse(Call<List<GioithieuShop>> call, Response<List<GioithieuShop>> response) {
                 Log.d("AAA","Gioi thieu shop: "+response.toString());
                 if(response.isSuccessful()){
-                    ArrayList<GioithieuShop>arrayList= (ArrayList<GioithieuShop>) response.body();
+                    arrayList= (ArrayList<GioithieuShop>) response.body();
                     GioithieuShop gioithieuShop=arrayList.get(0);
                     txttentrusogioithieu.setText(gioithieuShop.getTenCuaHang());
                     txtdiachigioithieu.setText(gioithieuShop.getTruSoChinh());
@@ -61,6 +66,7 @@ public class Gioi_Thieu extends AppCompatActivity {
     }
 
     private void anhxa() {
+        btnupdategioithieu=findViewById(R.id.btnupdategioithieu);
         txttentrusogioithieu=findViewById(R.id.txttentrusogioithieu);
         txtdiachigioithieu=findViewById(R.id.txtdiachigioithieu);
         txtsodienthoaigioithieu=findViewById(R.id.txtsodienthoaigioithieu);
@@ -79,5 +85,21 @@ public class Gioi_Thieu extends AppCompatActivity {
                 finish();
             }
         });
+
+
+        if(!MainActivity.sharedPreferences.getString("admin","").equals("")){
+            btnupdategioithieu.setVisibility(View.VISIBLE);
+            btnupdategioithieu.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(arrayList!=null){
+                        Intent intent=new Intent(Gioi_Thieu.this, UpdateThongtin.class);
+                        intent.putExtra("updatethongtinshop",arrayList.get(0));
+                        startActivity(intent);
+                    }
+                }
+            });
+        }
+
     }
 }

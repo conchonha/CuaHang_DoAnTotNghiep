@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.View;
 
+import com.example.cuahang_doan.Activity.admin.Admin;
 import com.example.cuahang_doan.Adapter.MainAdapter;
 import com.example.cuahang_doan.Fragment.Fragment_Danhgiasanpham;
 import com.example.cuahang_doan.Fragment.Fragment_giohang;
@@ -39,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         anhxa();
+        if(!sharedPreferences.getString("admin","").equals("")){
+            startActivity(new Intent(getApplicationContext(), Admin.class));
+        }
         init();
 
     }

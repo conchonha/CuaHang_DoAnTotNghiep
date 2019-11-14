@@ -1,5 +1,6 @@
 package com.example.cuahang_doan.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahang_doan.Activity.Login;
+import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.Adapter.Adapter_Donhangcuaban;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
@@ -33,16 +36,45 @@ public class Fragment_Dagiaohang extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_dagiaohang,container,false);
         anhxa();
-        getdatachoxetduyet();
+        if(MainActivity.sharedPreferences.getInt("iduser",0)>0){
+            getdatadagiaohangnguoidung();
+        }else{
+            if(MainActivity.sharedPreferences.getString("admin","").equals("")){
+                startActivity(new Intent(getContext(),Login.class));
+            }else{
+                getdatadagiaohangadmin();
+            }
+        }
+
         return view;
     }
-    private void getdatachoxetduyet() {
+    private void getdatadagiaohangnguoidung() {
         DataService dataService= APIServices.getService();
-        Call<List<DonDatHang>> callback=dataService.getdatadagiaohang();
+        Call<List<DonDatHang>> callback=dataService.getdatadagiaohang(MainActivity.sharedPreferences.getInt("iduser",0)+"");
         callback.enqueue(new Callback<List<DonDatHang>>() {
             @Override
             public void onResponse(Call<List<DonDatHang>> call, Response<List<DonDatHang>> response) {
-                Log.d("AAA","getdata choxetduyet");
+                Log.d("AAA","getdata cda giaohang:"+response.toString());
+                if(response.isSuccessful()){
+                    ArrayList<DonDatHang> arrayList=(ArrayList)response.body();
+                    Adapter_Donhangcuaban adapter=new Adapter_Donhangcuaban(arrayList,getActivity(),R.layout.layout_donhangcuaban);
+                    recyclerviewdagiaohang.setAdapter(adapter);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<DonDatHang>> call, Throwable t) {
+
+            }
+        });
+    }
+    private void getdatadagiaohangadmin() {
+        DataService dataService= APIServices.getService();
+        Call<List<DonDatHang>> callback=dataService.getdatadagiaohangadmin();
+        callback.enqueue(new Callback<List<DonDatHang>>() {
+            @Override
+            public void onResponse(Call<List<DonDatHang>> call, Response<List<DonDatHang>> response) {
+                Log.d("AAA","getdata cda giaohang:"+response.toString());
                 if(response.isSuccessful()){
                     ArrayList<DonDatHang> arrayList=(ArrayList)response.body();
                     Adapter_Donhangcuaban adapter=new Adapter_Donhangcuaban(arrayList,getActivity(),R.layout.layout_donhangcuaban);

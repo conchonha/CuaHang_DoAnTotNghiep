@@ -3,7 +3,9 @@ package com.example.cuahang_doan.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class GioithieuShop {
+import java.io.Serializable;
+
+public class GioithieuShop implements Serializable {
 
 @SerializedName("Id")
 @Expose
