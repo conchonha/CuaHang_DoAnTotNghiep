@@ -73,6 +73,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Food Menu2"
+                        android:id="@+id/txttensanpham"
+                        android:maxWidth="270dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:textColor="#FF5832"
                         android:textSize="24dp" />
 
@@ -129,7 +133,8 @@
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:textSize="20dp"
-                                android:textColor="#6A90B5"
+                                android:id="@+id/txtgiasp"
+                                android:textColor="#5A5A5A"
                                 android:layout_height="wrap_content"
                                 android:text="20" />
 
@@ -158,6 +163,7 @@
                                 android:layout_gravity="center"
                                 android:layout_width="wrap_content"
                                 android:textSize="20dp"
+                                android:id="@+id/txtgiaspsaukhuyenmai"
                                 android:textColor="#6A90B5"
                                 android:layout_height="wrap_content"
                                 android:text="15" />
@@ -181,12 +187,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
-                    <ImageView
+                    <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_alignParentRight="true"
-                        android:layout_width="60dp"
+                        android:layout_width="100dp"
                         android:scaleType="fitXY"
+                        app:riv_corner_radius="50dp"
                         android:layout_marginTop="-8dp"
-                        android:layout_height="60dp"
+                        android:id="@+id/roundimageview"
+                        android:layout_height="100dp"
                         android:src="@drawable/user" />
                 </RelativeLayout>
 

@@ -18,7 +18,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahang_doan.Adapter.Adapter_Sanphammoinhat;
@@ -83,6 +82,7 @@ public class Fragment_timkiem extends Fragment {
                                array.get(i).getId(),
                                array.get(i).getTenSanPham(),
                                array.get(i).getHinhAnhSanPham(),
+                               array.get(i).getThongSoKyThuat(),
                                array.get(i).getGia(),
                                array.get(i).getNgayKhuyenMai(),
                                array.get(i).getGiamGia(),

@@ -2,21 +2,17 @@ package com.example.cuahang_doan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
-import android.app.Notification;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,12 +21,10 @@ import com.example.cuahang_doan.Fragment.Fragment_Danhgiasanpham;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
-import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.example.cuahang_doan.model.SanPham;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.rd.PageIndicatorView;
-import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;

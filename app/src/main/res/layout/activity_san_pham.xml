@@ -8,7 +8,7 @@
     tools:context=".Activity.SanPham">
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:background="@color/colorchu"
+        android:background="#000"
         app:title="hshh"
         app:titleTextColor="@color/colorwhile"
         android:id="@+id/tollbarsanpham"
@@ -16,9 +16,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="20dp"
         android:id="@+id/recyclerviewsanphamdanhmuc"
         android:layout_height="match_parent">
 

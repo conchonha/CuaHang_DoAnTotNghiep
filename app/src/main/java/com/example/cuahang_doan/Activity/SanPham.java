@@ -2,7 +2,7 @@ package com.example.cuahang_doan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -11,14 +11,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.cuahang_doan.Adapter.Adapter_Sanphammoinhat;
+import com.example.cuahang_doan.Adapter.Adapter_SanPham;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
-import com.example.cuahang_doan.model.DanhMucCon;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import retrofit2.Call;
@@ -97,7 +99,18 @@ public class SanPham extends AppCompatActivity {
                     Log.d("AAA","San Pham tim kiem: "+response.toString());
                     if(response.isSuccessful()){
                         ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
-                        Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(SanPham.this,R.layout.layoutsanpham,arrayList);
+                        Collections.sort(arrayList, new Comparator<GetdataSanphammoinhat>() {
+                            @Override
+                            public int compare(GetdataSanphammoinhat o1, GetdataSanphammoinhat o2) {
+                                if(o1.getLoai().equals(o2.getLoai())){
+                                    return 1;
+                                }else {
+                                    return 1;
+                                }
+
+                            }
+                        });
+                        Adapter_SanPham adapter=new Adapter_SanPham(SanPham.this,R.layout.layoutsanpham,arrayList);
                         recyclerviewsanphamdanhmuc.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     }
@@ -124,8 +137,6 @@ public class SanPham extends AppCompatActivity {
         });
         recyclerviewsanphamdanhmuc=findViewById(R.id.recyclerviewsanphamdanhmuc);
         recyclerviewsanphamdanhmuc.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
-        recyclerviewsanphamdanhmuc.setLayoutManager(linearLayoutManager);
+        recyclerviewsanphamdanhmuc.setLayoutManager(new GridLayoutManager(getApplicationContext(),1));
     }
 }

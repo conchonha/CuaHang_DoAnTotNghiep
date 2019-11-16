@@ -39,8 +39,9 @@ public class DonHangCuaBan extends AppCompatActivity {
         Toobardonhangcuaban.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               if(MainActivity.sharedPreferences.getString("admin","").equals("")){
+               if(!MainActivity.sharedPreferences.getString("admin","").equals("")){
                    startActivity(new Intent(getApplicationContext(), Admin.class));
+                   finish();
                }else{
                    finish();
                }

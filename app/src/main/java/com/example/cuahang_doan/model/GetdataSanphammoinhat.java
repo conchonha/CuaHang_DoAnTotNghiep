@@ -14,6 +14,9 @@ private String tenSanPham;
 @SerializedName("HinhAnhSanPham")
 @Expose
 private String hinhAnhSanPham;
+@SerializedName("ThongSoKyThuat")
+@Expose
+private String thongSoKyThuat;
 @SerializedName("Gia")
 @Expose
 private Integer gia;
@@ -29,13 +32,12 @@ private String danhGiaSao;
 @SerializedName("Loai")
 @Expose
 private String loai;
-    public GetdataSanphammoinhat(){
 
-    }
-    public GetdataSanphammoinhat(Integer id, String tenSanPham, String hinhAnhSanPham, Integer gia, String ngayKhuyenMai, Integer giamGia, String danhGiaSao, String loai) {
+    public GetdataSanphammoinhat(Integer id, String tenSanPham, String hinhAnhSanPham, String thongSoKyThuat, Integer gia, String ngayKhuyenMai, Integer giamGia, String danhGiaSao, String loai) {
         this.id = id;
         this.tenSanPham = tenSanPham;
         this.hinhAnhSanPham = hinhAnhSanPham;
+        this.thongSoKyThuat = thongSoKyThuat;
         this.gia = gia;
         this.ngayKhuyenMai = ngayKhuyenMai;
         this.giamGia = giamGia;
@@ -65,6 +67,14 @@ return hinhAnhSanPham;
 
 public void setHinhAnhSanPham(String hinhAnhSanPham) {
 this.hinhAnhSanPham = hinhAnhSanPham;
+}
+
+public String getThongSoKyThuat() {
+return thongSoKyThuat;
+}
+
+public void setThongSoKyThuat(String thongSoKyThuat) {
+this.thongSoKyThuat = thongSoKyThuat;
 }
 
 public Integer getGia() {

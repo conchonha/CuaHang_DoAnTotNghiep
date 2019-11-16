@@ -26,13 +26,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanphammoinhat.Viewholdler> {
+public class Adapter_SanPham extends RecyclerView.Adapter<Adapter_SanPham.Viewhodler> {
     private Context context;
     private int layout;
-    private ArrayList<GetdataSanphammoinhat>arrayList;
+    private ArrayList<GetdataSanphammoinhat> arrayList;
     private View view;
 
-    public Adapter_Sanphammoinhat(Context context, int layout, ArrayList<GetdataSanphammoinhat> arrayList) {
+    public Adapter_SanPham(Context context, int layout, ArrayList<GetdataSanphammoinhat> arrayList) {
         this.context = context;
         this.layout = layout;
         this.arrayList = arrayList;
@@ -40,13 +40,13 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
 
     @NonNull
     @Override
-    public Viewholdler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public Viewhodler onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         view=View.inflate(context,layout,null);
-        return new Viewholdler(view);
+        return new Viewhodler(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Viewholdler holder, final int position) {
+    public void onBindViewHolder(@NonNull Viewhodler holder, final int position) {
         GetdataSanphammoinhat sanpham=arrayList.get(position);
         Calendar calendar=Calendar.getInstance();
         DecimalFormat simpleDateFormat=new DecimalFormat("###,###,###");
@@ -61,18 +61,19 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
                 e.printStackTrace();
             }
 
-                if(ngaykhuyenmai.compareTo(ngayhientai)>0){
-                    Log.d("AAA","ngay"+ngayhientai);
-                    holder.txtsale.setText("-"+sanpham.getGiamGia()+"%");
-                    holder.txtgiasp.setPaintFlags(holder.txtgiasp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG );
-                    holder.txtgiasp.setTextColor(context.getResources().getColor(R.color.maugiasanpham));
-                    holder.txtgiasp.setText(simpleDateFormat.format(sanpham.getGia())+"");
-                    float giagiam=(float) (100-sanpham.getGiamGia())/100;
-                    float giaspsaukhuyenmai=(float)giagiam*sanpham.getGia();
-                    Log.d("AAA",giaspsaukhuyenmai+"");
-                    holder.txtgiaspsaukhuyenmai.setText(simpleDateFormat.format((int)giaspsaukhuyenmai)+"Đ");
-                    holder.txtgiaspsaukhuyenmai.setTextColor(Color.RED);
-                }
+            if(ngaykhuyenmai.compareTo(ngayhientai)>0){
+                Log.d("AAA","ngay"+ngayhientai);
+                holder.txtsale.setText("-"+sanpham.getGiamGia()+"%");
+                holder.txtgiasp.setPaintFlags(holder.txtgiasp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG );
+                holder.txtgiasp.setTextColor(context.getResources().getColor(R.color.maugiasanpham));
+                holder.txtgiasp.setText(simpleDateFormat.format(sanpham.getGia())+"");
+                float giagiam=(float) (100-sanpham.getGiamGia())/100;
+                float giaspsaukhuyenmai=(float)giagiam*sanpham.getGia();
+                Log.d("AAA",giaspsaukhuyenmai+"");
+                holder.txtgiaspsaukhuyenmai.setText(simpleDateFormat.format((int)giaspsaukhuyenmai)+"Đ");
+                holder.txtgiaspsaukhuyenmai.setTextColor(Color.RED);
+                holder.txtngaygiamgia.setText(sanpham.getNgayKhuyenMai());
+            }
         }else{
             holder.txtgiaspsaukhuyenmai.setText("");
             holder.txtgiasp.setText(simpleDateFormat.format(sanpham.getGia())+"Đ");
@@ -80,6 +81,7 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
         }
         holder.txttensanpham.setText(sanpham.getTenSanPham());
         Picasso.with(context).load(sanpham.getHinhAnhSanPham()).into(holder.roundedImageView);
+        holder.txtloai.setText(sanpham.getLoai());
         holder.txttensanpham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +90,6 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
                 context.startActivity(intent);
             }
         });
-
     }
 
     @Override
@@ -96,20 +97,22 @@ public class Adapter_Sanphammoinhat extends RecyclerView.Adapter<Adapter_Sanpham
         return arrayList.size();
     }
 
-    public class Viewholdler extends  RecyclerView.ViewHolder{
+    public class Viewhodler extends RecyclerView.ViewHolder{
         private RoundedImageView roundedImageView;
-        private TextView txtsale,txtgiasp,txttensanpham;
-        private TextView txtgiaspsaukhuyenmai;
+        private TextView txtsale,txtgiasp,txttensanpham,txtloai,txtthongso;
+        private TextView txtgiaspsaukhuyenmai,txtngaygiamgia;
         private RatingBar ratingBar;
-
-        public Viewholdler(@NonNull View itemView) {
+        public Viewhodler(@NonNull View itemView) {
             super(itemView);
+            txtngaygiamgia=itemView.findViewById(R.id.txtngaygiamgia);
             roundedImageView=itemView.findViewById(R.id.roundimageview);
             txttensanpham=itemView.findViewById(R.id.txttensanpham);
             txtgiasp=itemView.findViewById(R.id.txtgiasp);
             txtsale=itemView.findViewById(R.id.txtsale);
             ratingBar=itemView.findViewById(R.id.ratingBar);
             txtgiaspsaukhuyenmai=itemView.findViewById(R.id.txtgiaspsaukhuyenmai);
+            txtloai=itemView.findViewById(R.id.txtloai);
+            txtthongso=itemView.findViewById(R.id.txtthongso);
 
 
         }

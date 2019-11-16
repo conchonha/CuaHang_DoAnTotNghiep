@@ -1,134 +1,278 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_gravity="center"
-    android:gravity="center"
-    android:layout_margin="10dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#161616"
+    android:orientation="vertical"
+    android:padding="24dp"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Species"
+            android:textColor="#FF9800"
+            android:textSize="24dp"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:text="Menu"
+            android:id="@+id/txtloai"
+            android:textColor="#fff"
+            android:textSize="24dp"
+
+            />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chất lượng thay lời nói"
+        android:maxWidth="250dp"
+        android:id="@+id/txtthongso"
+        android:textColor="#fff"
+        android:textSize="14dp">
+
+    </TextView>
+
+
 
     <androidx.cardview.widget.CardView
+        android:layout_marginTop="16dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:elevation="20dp"
-        app:cardBackgroundColor="#22b14c"
-        app:cardCornerRadius="6dp">
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        app:cardCornerRadius="8dp">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:layout_gravity="center"
-            android:gravity="center">
-
-            <TextView
-                android:layout_width="3dp"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/framelayout"
-                android:background="@color/colorwhile" />
-
-            <FrameLayout
-                android:id="@+id/framelayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/roundimageview"
-                    android:layout_width="100dp"
-                    android:layout_height="98dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginTop="7dp"
-                    android:layout_marginRight="15dp"
-                    android:elevation="30dp"
-                    android:scaleType="fitXY"
-                    app:riv_corner_radius="50dp" />
-
-                <TextView
-                    android:id="@+id/txtsale"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text=""
-                    android:textColor="#BE041B"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </FrameLayout>
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="14dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/framelayout"
-                android:foregroundGravity="center"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/txttensanpham"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/framelayout"
-                    android:ellipsize="end"
-                    android:gravity="center"
-                    android:maxLines="3"
-                    android:text="ten san pham"
-                    android:textColor="@color/colorwhile"
-                    android:textSize="18sp" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:id="@+id/linner"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txttensanpham"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_toRightOf="@+id/framelayout"
-                    android:gravity="center">
-
-                    <RatingBar
-                        android:id="@+id/ratingBar"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/txttensanpham"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:isIndicator="true"
-                        android:numStars="5"
-                        android:rating="3.5" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/linner"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_toRightOf="@+id/framelayout"
-                    android:gravity="center">
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/txtgiasp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginRight="4dp"
-                        android:text="100000"
-                        android:textColor="@color/colorwhile"
-                        android:textSize="18sp" />
+                        android:text="Food Menu"
+                        android:id="@+id/txttensanpham"
+                        android:maxWidth="200dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:textColor="#FF5832"
+                        android:textSize="22dp" />
 
-                    <TextView
-                        android:id="@+id/txtgiaspsaukhuyenmai"
+
+                    <LinearLayout
+                        android:layout_marginTop="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="100000"
-                        android:textColor="#BE041B"
-                        android:textSize="18sp" />
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ngoisao" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ngoisao"
+                            android:layout_marginLeft="2dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ngoisao"
+                            android:layout_marginLeft="2dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ngoisao"
+                            android:layout_marginLeft="2dp" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ngoisao"
+                            android:layout_marginLeft="2dp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:textSize="18dp"
+                                android:id="@+id/txtgiasp"
+                                android:textColor="#F80606"
+                                android:layout_height="wrap_content"
+                                android:text="20" />
+
+                            <TextView
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:textSize="14dp"
+                                android:id="@+id/textchugiagoc"
+                                android:textColor="@color/maugiasanpham"
+                                android:layout_height="wrap_content"
+                                android:text="Giá Gốc" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_marginLeft="16dp"
+                            android:layout_width="wrap_content"
+                            android:src="@drawable/split"
+                            android:id="@+id/imgphancachchinhgiua"
+                            android:layout_height="match_parent" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginLeft="16dp"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/txtgiaspsaukhuyenmai"
+                                android:layout_width="120dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:text=""
+                                android:textColor="#F06A90B5"
+                                android:textSize="18dp" />
+
+                            <TextView
+                                android:layout_gravity="center"
+                                android:layout_width="wrap_content"
+                                android:textSize="14dp"
+                                android:textColor="#EE6A90B5"
+                                android:layout_height="wrap_content"
+                                android:text="Giá Giảm" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
                 </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_alignParentRight="true"
+                        android:layout_width="120dp"
+                        android:scaleType="fitXY"
+                        app:riv_corner_radius="60dp"
+                        android:layout_marginTop="-8dp"
+                        android:id="@+id/roundimageview"
+                        android:layout_height="120dp"
+                        android:src="@drawable/user" />
+                </RelativeLayout>
+
             </LinearLayout>
-        </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginLeft="6dp"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="20dp"
+                        android:scaleType="fitXY"
+                        android:layout_height="20dp"
+                        android:src="@drawable/giamgia" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text=""
+                        android:layout_marginLeft="5dp"
+                        android:id="@+id/txtsale"
+                        android:textColor="#F06A90B5"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content">
+
+
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ngay" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text=""
+                        android:id="@+id/txtngaygiamgia"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#F06A90B5"
+                        android:layout_height="wrap_content" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
     </androidx.cardview.widget.CardView>
+
+
 
 </LinearLayout>
