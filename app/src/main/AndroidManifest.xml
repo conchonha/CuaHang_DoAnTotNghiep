@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.admin.QuanLyDonhang"></activity>
+        <activity android:name=".Activity.admin.QuanLySanPham"></activity>
         <activity android:name=".Activity.admin.ThongKe" />
         <activity android:name=".Activity.admin.UpdateThongtin" />
         <activity android:name=".Activity.ThongTinChiTietTinTuc" />

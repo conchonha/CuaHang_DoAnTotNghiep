@@ -215,4 +215,9 @@ public interface DataService {
 
     @GET("model/dondathang/choxetduyetadmin")
     Call<List<DonDatHang>>getdatachoxetduyetadmin();
+
+    @FormUrlEncoded
+    @POST("model/dondathang/updatedondathangadmin")
+    Call<String>updatedondathangadmin(@Field("id") String id,
+                                      @Field("trinhtrang") String trinhtrang);
 }

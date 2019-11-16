@@ -72,6 +72,11 @@ public class DialogFragment_Thanhtoangiohang extends DialogFragment {
                             Log.d("AAA","Post đơn đặt hang: "+response.toString());
                             if(response.isSuccessful()){
                                 Toast.makeText(getActivity(), "Đơn hàng của bạn đã được chuyển đi", Toast.LENGTH_SHORT).show();
+                                try {
+                                    Thread.sleep(3000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
                                 startActivity(new Intent(getContext(), Hoadon.class));
                             }
                         }
