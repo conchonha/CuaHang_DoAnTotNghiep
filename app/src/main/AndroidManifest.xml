@@ -19,7 +19,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.admin.QuanLySanPham"></activity>
+        <activity android:name=".Activity.admin.QuanLytaikhoan"></activity>
+        <activity android:name=".Activity.admin.ThemSanPham" />
+        <activity android:name=".Activity.Splash_Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".Activity.admin.QuanLySanPham" />
         <activity android:name=".Activity.admin.ThongKe" />
         <activity android:name=".Activity.admin.UpdateThongtin" />
         <activity android:name=".Activity.ThongTinChiTietTinTuc" />
@@ -46,20 +55,13 @@
         <activity android:name=".Activity.DonHangCuaBan" />
         <activity android:name=".Activity.QuanLyTaiKhoan" />
         <activity android:name=".Activity.SanPham" />
-        <activity android:name=".Activity.Hoadon">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
+        <activity android:name=".Activity.Hoadon" />
         <activity android:name=".Activity.Thanhtoangiohang" />
         <activity android:name=".Activity.Chitietsanpham" />
         <activity
             android:name=".Activity.Login"
-            android:windowSoftInputMode="stateHidden">
+            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Activity.MainActivity">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->
@@ -67,13 +69,6 @@
 
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
-        </activity>
-        <activity android:name=".Activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data

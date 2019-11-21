@@ -24,6 +24,10 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface DataService {
+
+    @GET("model/taikhoan/getdataquanlytaikhoanadmin")
+    Call<List<User>>getDataQuanLyTaiKhoanAdmin();
+
     @FormUrlEncoded
     @POST("model/login/dangnhap")
     Call<List<User>>postLogin(@Field("user") String user,

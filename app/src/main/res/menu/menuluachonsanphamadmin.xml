@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="LapTop - Macbook"/>
+    <item android:title="LapTop >"
+        android:id="@+id/laptop"/>
+    <item android:title="Phụ Kiện LapTop"/>
+    <item android:title="Màn Hình >"
+        android:id="@+id/manhinh"/>
+    <item android:title="Bàn Phím >"
+        android:id="@+id/banphim"/>
+    <item android:title="Pin >"
+        android:id="@+id/pin"/>
+    <item android:title="Sạc >"
+        android:id="@+id/sac"/>
+    <item android:title="Thiết Bị Lưu Trữ - Phụ Kiện "/>
+    <item android:title="Loa >"
+        android:id="@+id/loa"/>
+    <item android:title="MicroPhone >"
+        android:id="@+id/microphone"/>
+    <item android:title="Tai Nghe >"
+        android:id="@+id/tainghe"/>
+    <item android:title="WebCame >"
+        android:id="@+id/webcame"/>
+    <item android:title="Card Âm Thanh > "
+        android:id="@+id/amthanh"/>
+    <item android:title="Khác "/>
+    <item android:title="Linh Kiện LapTop > "
+        android:id="@+id/linhkienlaptop"/>
+    <item android:title="Thiết Bị Nghe Nhìn > "
+        android:id="@+id/thietbinghenhin"/>
+</menu>

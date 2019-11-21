@@ -63,7 +63,7 @@ public class Adapter_SanPham extends RecyclerView.Adapter<Adapter_SanPham.Viewho
 
             if(ngaykhuyenmai.compareTo(ngayhientai)>0){
                 Log.d("AAA","ngay"+ngayhientai);
-                holder.txtsale.setText("-"+sanpham.getGiamGia()+"%");
+                holder.txtsale.setText("Giảm Giá: "+sanpham.getGiamGia()+"%");
                 holder.txtgiasp.setPaintFlags(holder.txtgiasp.getPaintFlags()| Paint.STRIKE_THRU_TEXT_FLAG );
                 holder.txtgiasp.setTextColor(context.getResources().getColor(R.color.maugiasanpham));
                 holder.txtgiasp.setText(simpleDateFormat.format(sanpham.getGia())+"");
@@ -72,7 +72,7 @@ public class Adapter_SanPham extends RecyclerView.Adapter<Adapter_SanPham.Viewho
                 Log.d("AAA",giaspsaukhuyenmai+"");
                 holder.txtgiaspsaukhuyenmai.setText(simpleDateFormat.format((int)giaspsaukhuyenmai)+"Đ");
                 holder.txtgiaspsaukhuyenmai.setTextColor(Color.RED);
-                holder.txtngaygiamgia.setText(sanpham.getNgayKhuyenMai());
+                holder.txtngaygiamgia.setText("Hạn: "+sanpham.getNgayKhuyenMai());
             }
         }else{
             holder.txtgiaspsaukhuyenmai.setText("");
@@ -81,7 +81,7 @@ public class Adapter_SanPham extends RecyclerView.Adapter<Adapter_SanPham.Viewho
         }
         holder.txttensanpham.setText(sanpham.getTenSanPham());
         Picasso.with(context).load(sanpham.getHinhAnhSanPham()).into(holder.roundedImageView);
-        holder.txtloai.setText(sanpham.getLoai());
+       // holder.txtloai.setText(sanpham.getLoai());
         holder.txttensanpham.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

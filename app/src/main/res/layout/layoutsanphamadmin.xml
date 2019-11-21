@@ -6,54 +6,13 @@
     android:layout_height="match_parent"
     android:background="#161616"
     android:orientation="vertical"
-    android:padding="24dp"
     >
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Species"
-            android:textColor="#FF9800"
-            android:textSize="24dp"
-
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
-            android:text="Menu"
-            android:id="@+id/txtloai"
-            android:textColor="#fff"
-            android:textSize="24dp"
-
-            />
-
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chất lượng thay lời nói"
-        android:maxWidth="250dp"
-        android:id="@+id/txtthongso"
-        android:textColor="#fff"
-        android:textSize="14dp">
-
-    </TextView>
-
-
-
     <androidx.cardview.widget.CardView
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:clickable="true"
         app:cardCornerRadius="8dp">

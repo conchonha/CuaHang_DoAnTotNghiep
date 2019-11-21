@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.cuahang_doan.Activity.admin.QuanLytaikhoan;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
@@ -73,11 +74,17 @@ public class DangKyTaiKhoan extends AppCompatActivity {
                     callback.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
-                            Log.d("AAA","dang ky tai khoan: ");
+                            Log.d("AAA","dang ky tai khoan: "+response.toString());
                             if(response.isSuccessful()){
                                 Toast.makeText(DangKyTaiKhoan.this, "Đang Ký Thành Công", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(getApplicationContext(),Login.class));
-                                finish();
+                                if(MainActivity.sharedPreferences.getString("admin","").equals("")){
+                                    startActivity(new Intent(getApplicationContext(),Login.class));
+                                    finish();
+                                }else{
+                                    startActivity(new Intent(getApplicationContext(), QuanLytaikhoan.class));
+                                    finish();
+                                }
+
                             }
                         }
 

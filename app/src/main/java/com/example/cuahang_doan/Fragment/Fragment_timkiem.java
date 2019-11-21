@@ -139,7 +139,6 @@ public class Fragment_timkiem extends Fragment {
             @Override
             public void afterTextChanged(Editable s) {
                 String search=edtfragmenttimkiem.getText().toString();
-                Toast.makeText(getActivity(), search, Toast.LENGTH_SHORT).show();
                 DataService dataService=APIServices.getService();
                 Call<List<GetdataSanphammoinhat>>callback=dataService.getdataTimkiemsanpham(search);
                 callback.enqueue(new Callback<List<GetdataSanphammoinhat>>() {
