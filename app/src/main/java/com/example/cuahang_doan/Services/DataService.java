@@ -108,8 +108,13 @@ public interface DataService {
                                @Field("sodienthoai") String sodienthoai);
 
     @FormUrlEncoded
-    @POST("model/dondathang/getdatadondathang")
+    @POST("model/dondathang/getdatahoadondondathangnguoidung")
     Call<List<HoaDon>>getdatahoadon(@Field("idtaikhoan") String idtaikhoan);
+
+
+    @FormUrlEncoded
+    @POST("model/hoadon/getdatahoadondondathangadmin")
+    Call<List<HoaDon>>getdatahoadondondathangadmin(@Field("iddondathang") String iddondathang);
 
     @FormUrlEncoded
     @POST("model/danhmuc/getdatadanhmuccon")
@@ -197,6 +202,10 @@ public interface DataService {
     );
 
     @FormUrlEncoded
+    @POST("model/taikhoan/DeleteAdminTai_khoan")
+    Call<String>deleteAdminTai_khoan(@Field("idtaikhoan") String idTaikhoan);
+
+    @FormUrlEncoded
     @POST("model/thongtin/update")
     Call<String>Updatethongtinshop(
             @Field("TenCuaHang") String TenCuaHang,
@@ -224,4 +233,24 @@ public interface DataService {
     @POST("model/dondathang/updatedondathangadmin")
     Call<String>updatedondathangadmin(@Field("id") String id,
                                       @Field("trinhtrang") String trinhtrang);
+
+    @FormUrlEncoded
+    @POST("model/tintuc/delete_NewsAdmin")
+    Call<String>delete_NewsItemAdmin(@Field("id_News") String id_News);
+
+    @FormUrlEncoded
+    @POST("model/tintuc/update_NewsAdmin")
+    Call<String>update_NewsAdmin(@Field("img_PictureUpdate") String img_PictureUpdate,
+                                 @Field("edt_ContentUpdate") String edt_ContentUpdate,
+                                 @Field("edt_NameUpdate") String edt_NameUpdate,
+                                 @Field("id_News") String id_News
+    );
+
+    @FormUrlEncoded
+    @POST("model/tintuc/insert_NewsAdmin")
+    Call<String>insert_NewsAdmin(@Field("img_PictureInsert") String img_PictureUpdate,
+                                 @Field("edt_ContentInsert") String edt_ContentUpdate,
+                                 @Field("edt_NameInsert") String edt_NameUpdate
+
+    );
 }

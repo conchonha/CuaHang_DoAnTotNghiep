@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,37 +28,37 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Dangvanchuyen extends Fragment {
+public class Fragment_Dagiaohang extends Fragment {
     private View view;
-    private RecyclerView recyclerviewdangvanchuyen;
+    private RecyclerView recyclerviewdagiaohang;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_dangvanchuyen,container,false);
+        view=inflater.inflate(R.layout.fragment_dagiaohang,container,false);
         anhxa();
         if(MainActivity.sharedPreferences.getInt("iduser",0)>0){
-            getdatadangvanchuyennguoidung();
+            getdatadagiaohangnguoidung();
         }else{
             if(MainActivity.sharedPreferences.getString("admin","").equals("")){
                 startActivity(new Intent(getContext(),Login.class));
             }else{
-                getdatadangvanchuyennadmin();
+                getdatadagiaohangadmin();
             }
         }
 
         return view;
     }
-    private void getdatadangvanchuyennguoidung() {
+    private void getdatadagiaohangnguoidung() {
         DataService dataService= APIServices.getService();
-        Call<List<DonDatHang>> callback=dataService.getdatadangvanchuyen(MainActivity.sharedPreferences.getInt("iduser",0)+"");
+        Call<List<DonDatHang>> callback=dataService.getdatadagiaohang(MainActivity.sharedPreferences.getInt("iduser",0)+"");
         callback.enqueue(new Callback<List<DonDatHang>>() {
             @Override
             public void onResponse(Call<List<DonDatHang>> call, Response<List<DonDatHang>> response) {
-                Log.d("AAA","getdata Dangvanchuyen:"+response.toString());
+                Log.d("AAA","getdata cda giaohang:"+response.toString());
                 if(response.isSuccessful()){
                     ArrayList<DonDatHang> arrayList=(ArrayList)response.body();
                     Adapter_Donhangcuaban adapter=new Adapter_Donhangcuaban(arrayList,getActivity(),R.layout.layout_donhangcuaban);
-                    recyclerviewdangvanchuyen.setAdapter(adapter);
+                    recyclerviewdagiaohang.setAdapter(adapter);
                 }
             }
 
@@ -68,17 +68,17 @@ public class Fragment_Dangvanchuyen extends Fragment {
             }
         });
     }
-    private void getdatadangvanchuyennadmin() {
+    private void getdatadagiaohangadmin() {
         DataService dataService= APIServices.getService();
-        Call<List<DonDatHang>> callback=dataService.getdatadangvanchuyenadmin();
+        Call<List<DonDatHang>> callback=dataService.getdatadagiaohangadmin();
         callback.enqueue(new Callback<List<DonDatHang>>() {
             @Override
             public void onResponse(Call<List<DonDatHang>> call, Response<List<DonDatHang>> response) {
-                Log.d("AAA","getdata Dangvanchuyen:"+response.toString());
+                Log.d("AAA","getdata cda giaohang:"+response.toString());
                 if(response.isSuccessful()){
                     ArrayList<DonDatHang> arrayList=(ArrayList)response.body();
                     Adapter_Donhangcuaban adapter=new Adapter_Donhangcuaban(arrayList,getActivity(),R.layout.layout_donhangcuaban);
-                    recyclerviewdangvanchuyen.setAdapter(adapter);
+                    recyclerviewdagiaohang.setAdapter(adapter);
                 }
             }
 
@@ -89,8 +89,8 @@ public class Fragment_Dangvanchuyen extends Fragment {
         });
     }
     private void anhxa() {
-        recyclerviewdangvanchuyen =view.findViewById(R.id.recyclerviewdangvanchuyen);
-        recyclerviewdangvanchuyen.setHasFixedSize(true);
-        recyclerviewdangvanchuyen.setLayoutManager(new GridLayoutManager(getActivity(),1));
+        recyclerviewdagiaohang =view.findViewById(R.id.recyclerviewdagiaohang);
+        recyclerviewdagiaohang.setHasFixedSize(true);
+        recyclerviewdagiaohang.setLayoutManager(new GridLayoutManager(getActivity(),1));
     }
 }

@@ -1,31 +1,21 @@
 package com.example.cuahang_doan.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.app.NotificationCompat;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
 import android.view.View;
 
 import com.example.cuahang_doan.Activity.admin.Admin;
 import com.example.cuahang_doan.Adapter.MainAdapter;
-import com.example.cuahang_doan.Fragment.Fragment_Danhgiasanpham;
-import com.example.cuahang_doan.Fragment.Fragment_giohang;
-import com.example.cuahang_doan.Fragment.Fragment_timkiem;
-import com.example.cuahang_doan.Fragment.Fragment_trangchu;
-import com.example.cuahang_doan.Fragment.Fragmnet_taikhoan;
+import com.example.cuahang_doan.Fragment.Gio_Hang.Fragment_giohang;
+import com.example.cuahang_doan.Fragment.Tim_Kiem.Fragment_timkiem;
+import com.example.cuahang_doan.Fragment.TrangChu.Fragment_trangchu;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.TaiKhoan.Fragmnet_taikhoan;
 import com.example.cuahang_doan.R;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.tabs.TabLayout;
 
 

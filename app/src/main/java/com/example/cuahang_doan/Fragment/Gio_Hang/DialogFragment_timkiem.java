@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Gio_Hang;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +49,10 @@ public class DialogFragment_timkiem extends DialogFragment {
         dong();
         return view;
     }
+    public void reload(){
+        getActivity().finish();
+        startActivity(getActivity().getIntent());
+    }
 
     private void dong() {
         txtdong.setOnClickListener(new View.OnClickListener() {
@@ -77,7 +81,7 @@ public class DialogFragment_timkiem extends DialogFragment {
                             Log.d("AAA","event timkiem: "+response.toString());
                             if(response.isSuccessful()){
                                 arrayList= (ArrayList<User>) response.body();
-                                adapter=new TimkiemTaikhoan_Adapter(arrayList,R.layout.layout_taikhoan_giohang,view.getContext());
+                                adapter=new TimkiemTaikhoan_Adapter(arrayList,R.layout.layout_taikhoan_giohang,getActivity());
                                 adapter.notifyDataSetChanged();
                                 recyclerviewtimkiemtaikhoan.setAdapter(adapter);
                             }else{

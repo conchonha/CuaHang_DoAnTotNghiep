@@ -60,7 +60,7 @@ public class UpdateThongtin extends AppCompatActivity {
                             Log.d("AAA","Update thongtinshop: "+response.toString());
                             if(response.isSuccessful()){
                                 startActivity(new Intent(getApplicationContext(), Gioi_Thieu.class));
-
+                                finish();
                             }
                         }
 

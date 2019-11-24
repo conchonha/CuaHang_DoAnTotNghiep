@@ -2,7 +2,6 @@ package com.example.cuahang_doan.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cuahang_doan.Fragment.DialogFragment_Chitietdonhang;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang.DialogFragment_Chitietdonhang;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;

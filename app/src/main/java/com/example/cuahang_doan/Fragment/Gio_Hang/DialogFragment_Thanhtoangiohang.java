@@ -1,7 +1,8 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Gio_Hang;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
 import com.example.cuahang_doan.Activity.Hoadon;
@@ -58,6 +60,8 @@ public class DialogFragment_Thanhtoangiohang extends DialogFragment {
                 if(edthoten.getText().toString().equals("") || edtdiachi.getText().toString().equals("")
                 || edtsodienthoai.getText().toString().equals("")||edtemail.getText().toString().equals("")){
                     Toast.makeText(getActivity(), "Vui lòng không để trống dữ liệu", Toast.LENGTH_SHORT).show();
+                }else if(edtsodienthoai.getText().toString().length()!=10){
+                    Toast.makeText(getActivity(), "sai số điện thoại", Toast.LENGTH_SHORT).show();
                 }else{
                     Calendar calendar=Calendar.getInstance();
                     SimpleDateFormat simpleDateFormat=new SimpleDateFormat("dd/MM/yyyy");
@@ -78,6 +82,18 @@ public class DialogFragment_Thanhtoangiohang extends DialogFragment {
                                     e.printStackTrace();
                                 }
                                 startActivity(new Intent(getContext(), Hoadon.class));
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        MainActivity.mainTablayout.getTabAt(0).select();
+                                    }
+                                },100);
+                                Fragment fragment=getFragmentManager().findFragmentByTag("dialogkhachhangmoi");
+                                if(fragment!=null){
+                                    DialogFragment df= (DialogFragment) fragment;
+                                    df.dismiss();
+                                }
+                                Toast.makeText(getActivity(), "Đơn hàng của bạn đã được chuyển đi", Toast.LENGTH_SHORT).show();
                             }
                         }
 

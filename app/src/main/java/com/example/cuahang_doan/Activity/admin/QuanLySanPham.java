@@ -39,7 +39,7 @@ public class QuanLySanPham extends AppCompatActivity {
     private TextView txttendanhmucquanlyadmin,txtluachonadminsanpham;
     private Toolbar toolbaradminquanlysp;
     private EditText edtseachsanphamadmin;
-    private ImageView imgsearchadmin;
+    private ImageView imgsearchadmin,img_MenuProductAdmin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +49,36 @@ public class QuanLySanPham extends AppCompatActivity {
         getdatasanpham("laptop");
         PopupMenuluachon();
        timkim();
+       onclick_Views();
+    }
+
+    private void onclick_Views() {
+        setSupportActionBar(toolbaradminquanlysp);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbaradminquanlysp.setNavigationIcon(R.drawable.back);
+        toolbaradminquanlysp.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        img_MenuProductAdmin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu=new PopupMenu(getApplicationContext(),img_MenuProductAdmin);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_quanlysanpham,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getItemId()==R.id.them){
+                            startActivity(new Intent(getApplicationContext(),ThemSanPham.class));
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
     }
 
     private void timkim() {
@@ -179,18 +209,10 @@ public class QuanLySanPham extends AppCompatActivity {
 
 
     private void anhxa() {
+        img_MenuProductAdmin=findViewById(R.id.img_MenuProductAdmin);
         edtseachsanphamadmin=findViewById(R.id.edtseachsanphamadmin);
         imgsearchadmin=findViewById(R.id.imgsearchadmin);
         toolbaradminquanlysp=findViewById(R.id.toolbaradminquanlysp);
-        setSupportActionBar(toolbaradminquanlysp);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        toolbaradminquanlysp.setNavigationIcon(R.drawable.back);
-        toolbaradminquanlysp.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         txtluachonadminsanpham=findViewById(R.id.txtluachonadminsanpham);
         txttendanhmucquanlyadmin=findViewById(R.id.txttendanhmucquanlyadmin);
     }

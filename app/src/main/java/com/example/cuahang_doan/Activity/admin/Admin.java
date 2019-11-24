@@ -11,11 +11,13 @@ import android.widget.LinearLayout;
 import com.example.cuahang_doan.Activity.DonHangCuaBan;
 import com.example.cuahang_doan.Activity.Gioi_Thieu;
 import com.example.cuahang_doan.Activity.Login;
+import com.example.cuahang_doan.Activity.MainActivity;
+import com.example.cuahang_doan.Activity.TinTuc;
 import com.example.cuahang_doan.R;
 
 public class Admin extends AppCompatActivity {
     private LinearLayout linnerThontin,linerThongKe,linnerdangxuat,linerdonhang;
-    private CardView carsanpham,cardtaikhoan;
+    private CardView carsanpham,cardtaikhoan,cardtintuc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class Admin extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplicationContext(), Login.class));
+                MainActivity.editor.remove("admin").commit();
             }
         });
         linerdonhang.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +65,16 @@ public class Admin extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(),QuanLytaikhoan.class));
             }
         });
+        cardtintuc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), TinTuc.class));
+            }
+        });
     }
 
     private void anhxa() {
+        cardtintuc=findViewById(R.id.cardtintuc);
         cardtaikhoan=findViewById(R.id.cardtaikhoan);
         carsanpham=findViewById(R.id.carsanpham);
         linerdonhang=findViewById(R.id.linerdonhang);

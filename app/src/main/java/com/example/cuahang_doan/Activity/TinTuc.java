@@ -5,14 +5,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.PopupMenu;
 
+import com.example.cuahang_doan.Activity.admin.Inssert_TinTuc;
 import com.example.cuahang_doan.Adapter.Adapter_Tintuc;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
@@ -41,6 +45,11 @@ public class TinTuc extends AppCompatActivity {
         getdatatintuc();
         setOnclick();
     }
+    public void reload(){
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(0,0);
+    }
 
     private void setOnclick() {
         imgback.setOnClickListener(new View.OnClickListener() {
@@ -49,9 +58,19 @@ public class TinTuc extends AppCompatActivity {
                 finish();
             }
         });
-        imgsearch.setOnClickListener(new View.OnClickListener() {
+        edttimkimtintuc.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
                 String timkim=edttimkimtintuc.getText().toString();
                 DataService dataService=APIServices.getService();
                 Call<List<com.example.cuahang_doan.model.TinTuc>>callback=dataService.
@@ -71,6 +90,23 @@ public class TinTuc extends AppCompatActivity {
 
                     }
                 });
+            }
+        });
+        imgsearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupMenu popupMenu=new PopupMenu(TinTuc.this,imgsearch);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_quanlysanpham,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        if(item.getItemId()==R.id.them){
+                            startActivity(new Intent(getApplicationContext(), Inssert_TinTuc.class));
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
             }
         });
     }

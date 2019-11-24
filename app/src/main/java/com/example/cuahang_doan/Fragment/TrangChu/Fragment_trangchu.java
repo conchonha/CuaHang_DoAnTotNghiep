@@ -1,6 +1,5 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.TrangChu;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -30,6 +29,7 @@ import com.example.cuahang_doan.Activity.SanPham;
 import com.example.cuahang_doan.Activity.TinTuc;
 import com.example.cuahang_doan.Activity.Vitrishop;
 import com.example.cuahang_doan.Adapter.DanhmucAdapter;
+import com.example.cuahang_doan.Fragment.TrangChu.DialogFragment_DanhMuc;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;

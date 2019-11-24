@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,8 +11,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cuahang_doan.Activity.DonHangCuaBan;
 import com.example.cuahang_doan.Activity.Login;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.Adapter.Adapter_Donhangcuaban;
@@ -28,39 +30,39 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_DaHuy extends Fragment {
+public class Fragment_Choxetduyet extends Fragment {
     private View view;
-    private RecyclerView recyclerviewdahuydon;
-
+    private RecyclerView recyclerviewchoxetduyet;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_dahuydondathang,container,false);
-        anhxxa();
+        view=inflater.inflate(R.layout.fragment_choxetduyet,container,false);
+        anhxa();
         if(MainActivity.sharedPreferences.getInt("iduser",0)>0){
-            getdatadahuynguoidung();
+            getdatachoxetduyetnguoidung();
         }else{
             if(MainActivity.sharedPreferences.getString("admin","").equals("")){
                 startActivity(new Intent(getContext(),Login.class));
             }else{
-                getdatadahuyadmin();
+                getdatachoxetduyetadmin();
             }
-
         }
 
         return view;
     }
-    private void getdatadahuynguoidung() {
+
+    private void getdatachoxetduyetnguoidung() {
         DataService dataService= APIServices.getService();
-        Call<List<DonDatHang>> callback=dataService.getdatadahuy(MainActivity.sharedPreferences.getInt("iduser",0)+"");
+        Call<List<DonDatHang>>callback=dataService.getdatachoxetduyet(MainActivity.sharedPreferences.getInt("iduser",0)+"");
         callback.enqueue(new Callback<List<DonDatHang>>() {
             @Override
             public void onResponse(Call<List<DonDatHang>> call, Response<List<DonDatHang>> response) {
-                Log.d("AAA","getdata Dahuy: "+response.toString());
+                Log.d("AAA","getdata choxetduyet: "+response.toString());
                 if(response.isSuccessful()){
                     ArrayList<DonDatHang> arrayList=(ArrayList)response.body();
                     Adapter_Donhangcuaban adapter=new Adapter_Donhangcuaban(arrayList,getActivity(),R.layout.layout_donhangcuaban);
-                    recyclerviewdahuydon.setAdapter(adapter);
+                    recyclerviewchoxetduyet.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -70,17 +72,18 @@ public class Fragment_DaHuy extends Fragment {
             }
         });
     }
-    private void getdatadahuyadmin() {
+    private void getdatachoxetduyetadmin() {
         DataService dataService= APIServices.getService();
-        Call<List<DonDatHang>> callback=dataService.getdatadahuyadmin();
+        Call<List<DonDatHang>>callback=dataService.getdatachoxetduyetadmin();
         callback.enqueue(new Callback<List<DonDatHang>>() {
             @Override
             public void onResponse(Call<List<DonDatHang>> call, Response<List<DonDatHang>> response) {
-                Log.d("AAA","getdata Dahuy: "+response.toString());
+                Log.d("AAA","getdata choxetduyet: "+response.toString());
                 if(response.isSuccessful()){
                     ArrayList<DonDatHang> arrayList=(ArrayList)response.body();
                     Adapter_Donhangcuaban adapter=new Adapter_Donhangcuaban(arrayList,getActivity(),R.layout.layout_donhangcuaban);
-                    recyclerviewdahuydon.setAdapter(adapter);
+                    recyclerviewchoxetduyet.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -91,10 +94,9 @@ public class Fragment_DaHuy extends Fragment {
         });
     }
 
-
-    private void anhxxa() {
-        recyclerviewdahuydon=view.findViewById(R.id.recyclerviewdahuydon);
-        recyclerviewdahuydon.setHasFixedSize(true);
-        recyclerviewdahuydon.setLayoutManager(new GridLayoutManager(getContext(),1));
+    private void anhxa() {
+        recyclerviewchoxetduyet =view.findViewById(R.id.recyclerviewchoxetduyet);
+        recyclerviewchoxetduyet.setHasFixedSize(true);
+        recyclerviewchoxetduyet.setLayoutManager(new GridLayoutManager(getActivity(),1));
     }
 }

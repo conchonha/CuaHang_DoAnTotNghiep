@@ -18,6 +18,13 @@
                 android:layout_width="match_parent"
                 android:id="@+id/imageBackground"
                 android:layout_height="match_parent"/>
+            <ImageView
+                android:layout_width="30dp"
+                android:src="@drawable/menuden"
+                android:id="@+id/imgMenuItemTin_tuc"
+                android:layout_alignParentRight="true"
+                android:layout_margin="10dp"
+                android:layout_height="30dp"/>
             <View
                 android:background="@drawable/custtom_background"
                 android:layout_width="match_parent"

@@ -8,5 +8,10 @@
     <color name="maucamgiohang">#FF5722</color>
     <color name="maugiasanpham">#F06A90B5</color>
     <color name="mautrangphantaikhoan"> #F7EDED</color>
+    <color name="colorPurpleT">#64983cff</color>
+    <color name="colorBlueT">#642fb4ff</color>
+    <color name="colorBlue">#2FB4FF</color>
+    <color name="colorPurple">#983CFF</color>
+    <color name="colorWhite">#ffffff</color>
 
 </resources>

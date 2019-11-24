@@ -8,8 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.cuahang_doan.Adapter.MainAdapter;
-import com.example.cuahang_doan.Fragment.Fragment_Chuanhanxet;
-import com.example.cuahang_doan.Fragment.Fragment_Danhanxet;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.NhanXet.Fragment_Chuanhanxet;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.NhanXet.Fragment_Danhanxet;
 import com.example.cuahang_doan.R;
 import com.google.android.material.tabs.TabLayout;
 

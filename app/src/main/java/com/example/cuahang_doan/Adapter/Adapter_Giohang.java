@@ -1,7 +1,6 @@
 package com.example.cuahang_doan.Adapter;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.util.Log;
 import android.view.View;
@@ -14,8 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cuahang_doan.Activity.MainActivity;
-import com.example.cuahang_doan.Adapter.Comment_Adapter;
-import com.example.cuahang_doan.Fragment.Fragment_giohang;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;

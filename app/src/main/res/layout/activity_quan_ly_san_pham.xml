@@ -10,15 +10,24 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="25dp"
+            android:src="@drawable/iconmenu"
+            android:id="@+id/img_MenuProductAdmin"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="25dp"/>
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:id="@+id/toolbaradminquanlysp"
-            app:title=""
+            app:title=" "
             android:layout_height="wrap_content"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_marginLeft="100dp"
-            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@+id/img_MenuProductAdmin"
+            android:layout_marginRight="10dp"
             android:hint="Tìm kiếm"
             android:gravity="center"
             android:id="@+id/edtseachsanphamadmin"

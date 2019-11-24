@@ -102,7 +102,7 @@ public class DangKyTaiKhoan extends AppCompatActivity {
 
     private void init() {
         Animation animation= AnimationUtils.loadAnimation(getApplicationContext(),R.anim.animalpha);
-        relativedangkytaikhoan.setAnimation(animation);
+        //relativedangkytaikhoan.setAnimation(animation);
         setSupportActionBar(toolbardangkytaikhoan);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         toolbardangkytaikhoan.setNavigationIcon(R.drawable.back);
@@ -122,6 +122,6 @@ public class DangKyTaiKhoan extends AppCompatActivity {
         edtemaill=findViewById(R.id.edtemaill);
         edtpassword=findViewById(R.id.edtpassword);
         edtusername=findViewById(R.id.edtusername);
-        relativedangkytaikhoan=findViewById(R.id.relativedangkytaikhoan);
+        //relativedangkytaikhoan=findViewById(R.id.relativedangkytaikhoan);
     }
 }

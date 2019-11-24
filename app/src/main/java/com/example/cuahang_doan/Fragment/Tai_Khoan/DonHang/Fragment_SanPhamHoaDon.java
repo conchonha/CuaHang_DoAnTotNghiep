@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -27,13 +27,13 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Dondathang extends Fragment {
+public class Fragment_SanPhamHoaDon extends Fragment {
     private RecyclerView recyclerView;
     private View view;
     private List<HoaDon> arrayList;
     private TextView txtgiasanphamhoadon;
 
-    public Fragment_Dondathang(List<HoaDon> arrayList) {
+    public Fragment_SanPhamHoaDon(List<HoaDon> arrayList) {
         this.arrayList = arrayList;
     }
 
@@ -46,31 +46,17 @@ public class Fragment_Dondathang extends Fragment {
         return view;
     }
     private void getdatahoadon() {
-        DataService dataService= APIServices.getService();
-        Call<List<HoaDon>> callback=dataService.getdatahoadon(MainActivity.sharedPreferences.getInt("iduser",0)+"");
-        callback.enqueue(new Callback<List<HoaDon>>() {
-            @Override
-            public void onResponse(Call<List<HoaDon>> call, Response<List<HoaDon>> response) {
-                Log.d("AAA","Hoa Don : "+response.toString());
-                if(response.isSuccessful()){
-                    DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
-                    arrayList=response.body();
-                    Adapter_HoaDon adapter=new Adapter_HoaDon(getActivity(),R.layout.layout_hoadon,arrayList);
-                    recyclerView.setAdapter(adapter);
-                    adapter.notifyDataSetChanged();
-                    int tong=0;
-                    for (int i=0;i<arrayList.size();i++){
-                        tong+=arrayList.get(i).getGiaSanPham();
-                    }
-                    txtgiasanphamhoadon.setText(decimalFormat.format(tong)+" Đồng");
-                }
+        if(arrayList!=null) {
+            DecimalFormat decimalFormat = new DecimalFormat("###,###,###");
+            Adapter_HoaDon adapter = new Adapter_HoaDon(getActivity(), R.layout.layout_hoadon, arrayList);
+            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
+            int tong = 0;
+            for (int i = 0; i < arrayList.size(); i++) {
+                tong += arrayList.get(i).getGiaSanPham();
             }
-
-            @Override
-            public void onFailure(Call<List<HoaDon>> call, Throwable t) {
-
-            }
-        });
+            txtgiasanphamhoadon.setText(decimalFormat.format(tong) + " Đồng");
+        }
     }
 
     private void anhxa() {

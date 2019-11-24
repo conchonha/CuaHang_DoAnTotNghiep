@@ -82,6 +82,13 @@
                     android:padding="5dp"
                     android:textSize="18sp"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="Trình Trạng:"
+                    android:textColor="#000"
+                    android:padding="5dp"
+                    android:textSize="18sp"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
             <LinearLayout
@@ -132,6 +139,14 @@
                     android:textSize="18sp"
                     android:textColor="#000"
                     android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="ma don hang"
+                    android:id="@+id/trinhtrang"
+                    android:padding="5dp"
+                    android:textSize="18sp"
+                    android:textColor="#000"
+                    android:layout_height="wrap_content"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -145,7 +160,7 @@
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="match_parent"
-                android:text="Đơn Hàng Gần Đây"
+                android:text="Sản Phẩm Đã Mua"
                 android:gravity="center"
                 android:textColor="#000"
                 android:padding="5dp"

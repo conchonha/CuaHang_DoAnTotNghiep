@@ -2,6 +2,7 @@ package com.example.cuahang_doan.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,13 @@ public class TimkiemTaikhoan_Adapter extends RecyclerView.Adapter<TimkiemTaikhoa
                                 Log.d("AAA", "post chitiet donhang: " + response.toString());
                                 if (response.isSuccessful()) {
                                     context.startActivity(new Intent(context.getApplicationContext(), Hoadon.class));
+
+                                    new Handler().postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            MainActivity.mainTablayout.getTabAt(0).select();
+                                        }
+                                    },100);
                                 }
                             }
 

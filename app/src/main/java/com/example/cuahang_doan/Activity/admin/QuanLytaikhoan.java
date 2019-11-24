@@ -45,7 +45,10 @@ public class QuanLytaikhoan extends AppCompatActivity {
         getDataQuanLyTaiKhoanAdmin();
         setActionBar();
     }
-
+    public void reload(){
+        finish();
+        startActivity(getIntent());
+    }
     private void setActionBar() {
         setSupportActionBar(toolbaradminquanlysp);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -137,7 +140,7 @@ public class QuanLytaikhoan extends AppCompatActivity {
         Recyclerview_Quan_ly_tai_khoan=findViewById(R.id.Recyclerview_Quan_ly_tai_khoan);
     }
     private void setRecyclerviewAdmin(ArrayList<User>arrayList){
-        Adapter_Quan_ly_tai_khoan adapter=new Adapter_Quan_ly_tai_khoan(getApplicationContext(),R.layout.layout_quan_ly_tai_khoan_admin,
+        Adapter_Quan_ly_tai_khoan adapter=new Adapter_Quan_ly_tai_khoan(QuanLytaikhoan.this,R.layout.layout_quan_ly_tai_khoan_admin,
                 arrayList);
         Recyclerview_Quan_ly_tai_khoan.setHasFixedSize(true);
         Recyclerview_Quan_ly_tai_khoan.setLayoutManager(new GridLayoutManager(this,1));

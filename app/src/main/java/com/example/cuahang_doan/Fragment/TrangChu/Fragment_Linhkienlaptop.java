@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.TrangChu;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,37 +28,38 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class Fragment_Thietbiluutruphukien extends Fragment {
+public class Fragment_Linhkienlaptop extends Fragment {
     private View view;
     private RecyclerView recyclerView;
-    private TextView txtxemthem1;
+    private TextView txtxemthem;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view=inflater.inflate(R.layout.fragment_thietbiluutruphukien,container,false);
-        anhxa();
-        getDataThietbiluutruphukien();
+       view=inflater.inflate(R.layout.fragment_linhkienlaptop,container,false);
+       anhxa();
+       getdataLinhkienlaptop();
         setonclickxemthem();
-        return view;
+       return view;
     }
+
     private void setonclickxemthem() {
-        txtxemthem1.setOnClickListener(new View.OnClickListener() {
+        txtxemthem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent=new Intent(getActivity(), SanPham.class);
-                intent.putExtra("id","tbluutru");
+                intent.putExtra("id","linhkienlaptop");
                 startActivity(intent);
             }
         });
     }
 
-    private void getDataThietbiluutruphukien() {
+    private void getdataLinhkienlaptop() {
         DataService dataService= APIServices.getService();
-        Call<List<GetdataSanphammoinhat>>callback=dataService.getdataThietbiluutruphukien();
+        Call<List<GetdataSanphammoinhat>>callback=dataService.getDataLinhkienlaptop();
         callback.enqueue(new Callback<List<GetdataSanphammoinhat>>() {
             @Override
             public void onResponse(Call<List<GetdataSanphammoinhat>> call, Response<List<GetdataSanphammoinhat>> response) {
-                Log.d("AAA","thietbiluutruphukien"+response.toString());
+                Log.d("AAA","linhkienlaptop"+response.toString());
                 if(response.isSuccessful()){
                     ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
                     Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(getActivity(),R.layout.layout_linhkienlaptop,arrayList);
@@ -75,10 +76,12 @@ public class Fragment_Thietbiluutruphukien extends Fragment {
     }
 
     private void anhxa() {
-        txtxemthem1=view.findViewById(R.id.txtxemthem1);
-        recyclerView=view.findViewById(R.id.recyclerviewthietbiluutruphukien);
+        txtxemthem=view.findViewById(R.id.txtxemthem);
+        recyclerView=view.findViewById(R.id.recyclerviewlinhkienlaptop);
         recyclerView.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemViewCacheSize(20);
     }
+
+
 }

@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahang_doan.Activity.DonHangCuaBan;
+import com.example.cuahang_doan.Activity.Hoadon;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.Adapter.Adapter_Chitietdondathang;
 import com.example.cuahang_doan.R;
@@ -37,7 +38,7 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
     private int id;
     private String trinhtrang;
     private View view;
-    private TextView txtiddonhang,txtdiachinhanhan,txtsodienthoa,txttrinhtrangdonhang;
+    private TextView txtiddonhang,txtdiachinhanhan,txtsodienthoa,txttrinhtrangdonhang,txtthongtin;
     private RecyclerView recyclerviewchitietdonhang;
     private RelativeLayout relativelupdatechitietdonhang;
 
@@ -51,7 +52,22 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.dialogfragment_chitietdonhang,container,false);
         anhxa();
+        if (MainActivity.sharedPreferences.getString("admin", "").equals("")) {
+            relativelupdatechitietdonhang.setVisibility(View.GONE);
+        }else{
+            relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
+        }
         getdatachitietdondathang(id);
+        txtthongtin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(id!=0){
+                    Intent intent=new Intent(view.getContext(), Hoadon.class);
+                    intent.putExtra("idhoadon",id+"");
+                    startActivity(intent);
+                }
+            }
+        });
         return view;
     }
 
@@ -138,6 +154,7 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
     }
 
     private void anhxa() {
+        txtthongtin=view.findViewById(R.id.txtthongtin);
         relativelupdatechitietdonhang=view.findViewById(R.id.relativelupdatechitietdonhang);
         txtiddonhang=view.findViewById(R.id.txtiddonhang);
         txtdiachinhanhan=view.findViewById(R.id.txtdiachinhanhan);

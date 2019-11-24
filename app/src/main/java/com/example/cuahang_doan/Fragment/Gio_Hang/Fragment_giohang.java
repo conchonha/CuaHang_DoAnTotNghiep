@@ -1,6 +1,5 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Gio_Hang;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -20,13 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.cuahang_doan.Activity.Thanhtoangiohang;
 import com.example.cuahang_doan.Adapter.Adapter_Giohang;
 import com.example.cuahang_doan.Activity.MainActivity;
+import com.example.cuahang_doan.Fragment.Gio_Hang.DialogFragment_Thanhtoangiohang;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;

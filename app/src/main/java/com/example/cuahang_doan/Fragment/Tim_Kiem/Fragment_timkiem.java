@@ -1,4 +1,4 @@
-package com.example.cuahang_doan.Fragment;
+package com.example.cuahang_doan.Fragment.Tim_Kiem;
 
 import android.os.Bundle;
 import android.text.Editable;

@@ -19,7 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.admin.QuanLytaikhoan"></activity>
+        <activity android:name=".Activity.admin.Inssert_TinTuc"></activity>
+        <activity android:name=".Activity.admin.UpdateTinTuc" />
+        <activity android:name=".Activity.admin.QuanLytaikhoan" />
         <activity android:name=".Activity.admin.ThemSanPham" />
         <activity android:name=".Activity.Splash_Activity">
             <intent-filter>

@@ -10,10 +10,10 @@ import android.view.View;
 
 import com.example.cuahang_doan.Activity.admin.Admin;
 import com.example.cuahang_doan.Adapter.MainAdapter;
-import com.example.cuahang_doan.Fragment.Fragment_Choxetduyet;
-import com.example.cuahang_doan.Fragment.Fragment_DaHuy;
-import com.example.cuahang_doan.Fragment.Fragment_Dagiaohang;
-import com.example.cuahang_doan.Fragment.Fragment_Dangvanchuyen;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang.Fragment_Choxetduyet;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang.Fragment_DaHuy;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang.Fragment_Dagiaohang;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang.Fragment_Dangvanchuyen;
 import com.example.cuahang_doan.R;
 import com.google.android.material.tabs.TabLayout;
 

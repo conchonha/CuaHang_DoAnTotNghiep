@@ -9,12 +9,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.cuahang_doan.Fragment.DialogFragment_Chinhsuadiachi;
-import com.example.cuahang_doan.Fragment.DialogFragment_chinhsuathongtintaikhoan;
-import com.example.cuahang_doan.Fragment.Fragment_Dondathang;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.TaiKhoan.DialogFragment_Chinhsuadiachi;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.TaiKhoan.DialogFragment_chinhsuathongtintaikhoan;
+import com.example.cuahang_doan.Fragment.Tai_Khoan.DonHang.Fragment_SanPhamHoaDon;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
@@ -22,7 +21,6 @@ import com.example.cuahang_doan.model.HoaDon;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -76,10 +74,10 @@ public class QuanLyTaiKhoan extends AppCompatActivity {
                 public void onResponse(Call<List<HoaDon>> call, Response<List<HoaDon>> response) {
                     Log.d("AAA","don hang gan day: "+response.toString());
                     List<HoaDon>arrayList=  response.body();
-                    Fragment_Dondathang fragment_dondathang=new Fragment_Dondathang(arrayList);
+                    Fragment_SanPhamHoaDon fragment_sanPhamHoaDon =new Fragment_SanPhamHoaDon(arrayList);
                     FragmentManager fragmentManager=getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
-                    fragmentTransaction.add(R.id.linnerlaoutdonhangganday,fragment_dondathang,"donhangganday");
+                    fragmentTransaction.add(R.id.linnerlaoutdonhangganday, fragment_sanPhamHoaDon,"donhangganday");
                     fragmentTransaction.commit();
                 }
 
