@@ -26,14 +26,9 @@ public class User {
     @SerializedName("Hinh")
     @Expose
     private String hinh;
-
-    public String getHinh() {
-        return hinh;
-    }
-
-    public void setId(String hinh) {
-        this.hinh = hinh;
-    }
+    @SerializedName("loai")
+    @Expose
+    private Integer loai;
 
     public Integer getId() {
         return id;
@@ -82,5 +77,22 @@ public class User {
     public void setAdress(String adress) {
         this.adress = adress;
     }
+
+    public String getHinh() {
+        return hinh;
+    }
+
+    public void setHinh(String hinh) {
+        this.hinh = hinh;
+    }
+
+    public Integer getLoai() {
+        return loai;
+    }
+
+    public void setLoai(Integer loai) {
+        this.loai = loai;
+    }
+
 
 }

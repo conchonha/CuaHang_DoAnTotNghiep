@@ -52,7 +52,13 @@ public class Adapter_Quan_ly_tai_khoan extends RecyclerView.Adapter <Adapter_Qua
         holder.textViewEmail.setText(taikhoan.getEmail());
         holder.textViewSDT.setText(taikhoan.getPhoneNumBer());
         holder.textViewTen_tai_khoan.setText(taikhoan.getUserName());
-
+        if(taikhoan.getLoai()==0){
+            holder.txtloaitaikhoan.setText("Khách Hàng");
+        }else if(taikhoan.getLoai()==1){
+            holder.txtloaitaikhoan.setText("Nhân Viên");
+        }else{
+            holder.txtloaitaikhoan.setText("Admin");
+        }
         Picasso.with(context).load(taikhoan.getHinh()).into(holder.roundImageViewQuan_ly_tai_khoan);
         holder.imageViewDeleteTai_khoan_admin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,11 +90,13 @@ public class Adapter_Quan_ly_tai_khoan extends RecyclerView.Adapter <Adapter_Qua
     }
 
     public class Viewhodler extends RecyclerView.ViewHolder{
-        private TextView textViewMat_khau,textViewSDT,textViewEmail,textViewDia_chi,textViewTen_tai_khoan;
+        private TextView textViewMat_khau,textViewSDT,textViewEmail,textViewDia_chi,textViewTen_tai_khoan,
+                txtloaitaikhoan;
         private RoundedImageView roundImageViewQuan_ly_tai_khoan;
         private ImageView imageViewDeleteTai_khoan_admin;
         public Viewhodler(@NonNull View itemView) {
             super(itemView);
+            txtloaitaikhoan=itemView.findViewById(R.id.txtloaitaikhoan);
             textViewMat_khau=itemView.findViewById(R.id.textViewMat_khau);
             textViewSDT=itemView.findViewById(R.id.textViewSDT);
             textViewEmail=itemView.findViewById(R.id.textViewEmail);

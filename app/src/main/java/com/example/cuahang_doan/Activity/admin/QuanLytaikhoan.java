@@ -115,13 +115,25 @@ public class QuanLytaikhoan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PopupMenu popupMenu=new PopupMenu(QuanLytaikhoan.this,imgmenutaikhoanadmin);
-                popupMenu.getMenuInflater().inflate(R.menu.menu_quanlysanpham,popupMenu.getMenu());
+                popupMenu.getMenuInflater().inflate(R.menu.menu_quan_ly_tai_khoan,popupMenu.getMenu());
                 popupMenu.show();
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getItemId()==R.id.them){
-                            startActivity(new Intent(getApplicationContext(), DangKyTaiKhoan.class));
+                        if(item.getItemId()==R.id.khachhang){
+                            Intent intent=new Intent(getApplicationContext(),DangKyTaiKhoan.class);
+                            intent.putExtra("khachhang","khachhang");
+                            startActivity(intent);
+                        }
+                        if(item.getItemId()==R.id.nhanvien){
+                            Intent intent=new Intent(getApplicationContext(),DangKyTaiKhoan.class);
+                            intent.putExtra("nhanvien","nhanvien");
+                            startActivity(intent);
+                        }
+                        if(item.getItemId()==R.id.admin){
+                            Intent intent=new Intent(getApplicationContext(),DangKyTaiKhoan.class);
+                            intent.putExtra("admin","admin");
+                            startActivity(intent);
                         }
                         return false;
                     }

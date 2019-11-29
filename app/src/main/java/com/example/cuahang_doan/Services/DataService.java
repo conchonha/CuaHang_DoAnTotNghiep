@@ -190,7 +190,8 @@ public interface DataService {
                                @Field("password") String password,
                                @Field("email") String email,
                                @Field("sodienthoai") String sodienthoai,
-                               @Field("diachi") String diachi
+                               @Field("diachi") String diachi,
+                               @Field("idloai") String idloai
                                );
     @GET("model/tintuc/getdatatintuc")
     Call<List<TinTuc>>getdatatintuc();

@@ -72,14 +72,21 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
     }
 
     private void updatedonhang(final int id, final String trinhtrang) {
-        if(!MainActivity.sharedPreferences.getString("admin","").equals("")) {
-            if(trinhtrang.equals("Đã Giao Hàng") || trinhtrang.equals("Đã Hủy")) {
-                relativelupdatechitietdonhang.setVisibility(View.GONE);
+        if(!MainActivity.sharedPreferences.getString("admin","").equals("Đang Vận Chuyển")) {
+            if(trinhtrang.equals("Đã Giao Hàng") || trinhtrang.equals("Đã Hủy") ) {
+                if(!MainActivity.sharedPreferences.getString("nhanvien","").equals("")){
+                    relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
+                }else{
+                    relativelupdatechitietdonhang.setVisibility(View.GONE);
+                }
+
             }else{
+
             relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
             relativelupdatechitietdonhang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Toast.makeText(getActivity(), "co clic", Toast.LENGTH_SHORT).show();
                     if (trinhtrang.equals("Chờ Xét Duyệt")) {
                         String trinhtrangmoi = "Đang Vận Chuyển";
                         updatechoxetduyetadmin(id + "", trinhtrangmoi);
@@ -105,12 +112,23 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
                 Log.d("AAA",trinhtrang+"");
                 if(response.isSuccessful()){
                     Toast.makeText(getContext(), "Update Thành Công", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getContext(), DonHangCuaBan.class));
-                    Fragment prev = getFragmentManager().findFragmentByTag("chitietdonhang");
-                    if (prev != null) {
-                        DialogFragment df = (DialogFragment) prev;
-                        df.dismiss();
+                    if(MainActivity.sharedPreferences.getString("nhanvien","").equals("")){
+                        startActivity(new Intent(getContext(), DonHangCuaBan.class));
+                        Fragment prev = getFragmentManager().findFragmentByTag("chitietdonhang");
+                        if (prev != null) {
+                            DialogFragment df = (DialogFragment) prev;
+                            df.dismiss();
+                        }
+                    }else{
+                        getActivity().finish();
+                        startActivity(getActivity().getIntent());
+                        Fragment prev = getFragmentManager().findFragmentByTag("chitietdonhang");
+                        if (prev != null) {
+                            DialogFragment df = (DialogFragment) prev;
+                            df.dismiss();
+                        }
                     }
+
                 }
             }
 
@@ -131,7 +149,7 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
                     Log.d("AAA","Getdata Chitietdonhang"+response.toString());
                     if(response.isSuccessful()){
                         ArrayList<Chitietdondathang>arrayList= (ArrayList<Chitietdondathang>) response.body();
-                        if(arrayList!=null) {
+                        if(arrayList.size()!=0) {
                             txtiddonhang.setText("Đơn Hàng: " + arrayList.get(0).getIdDonDatHang() + "");
                             txtdiachinhanhan.setText(arrayList.get(0).getDiaChi());
                             txtsodienthoa.setText(arrayList.get(0).getSoDienThoai() + "");

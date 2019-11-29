@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.cuahang_doan.Activity.admin.Admin;
+import com.example.cuahang_doan.Activity.nhanvien.NhanVien;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
@@ -100,50 +101,75 @@ public class Login extends AppCompatActivity {
                     if(response.isSuccessful()){
                         arrayList= (ArrayList<User>) response.body();
                         if(arrayList.size()>0) {
-                             Toast.makeText(Login.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
-                            MainActivity.editor.putString("username", edittextusername.getText().toString());
-                            MainActivity.editor.putString("password", edittextpassword.getText().toString());
-                            MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
-                            MainActivity.editor.putString("email", arrayList.get(0).getEmail());
-                            MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
-                            MainActivity.editor.putString("hinh", APIServices.urlhinh+arrayList.get(0).getId()+".jpg");
-                            MainActivity.editor.putString("diachi",arrayList.get(0).getAdress());
-                            MainActivity.editor.remove("admin");
-                            MainActivity.editor.commit();
-                            Log.d("AAA", "user sharedPreferences" + MainActivity.sharedPreferences.getString("username", ""));
-                            setintentt();
-                        }else{
-                            if(edittextusername.getText().toString().equals("admin") && edittextpassword.getText().toString().equals("123")){
+                            if(arrayList.get(0).getLoai()==1){
+                                MainActivity.editor.remove("admin");
+                                MainActivity.editor.putString("nhanvien","nhanvien");
+                                MainActivity.editor.commit();
+                                startActivity(new Intent(getApplicationContext(), NhanVien.class));
+                                Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                            }else if(arrayList.get(0).getLoai()==2){
                                 AlertDialog.Builder dialog=new AlertDialog.Builder(Login.this);
                                 dialog.setTitle("Bạn Đang Đăng Nhập Với Quyền Admin");
                                 dialog.setPositiveButton("Có", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
                                         startActivity(new Intent(getApplicationContext(), Admin.class));
-                                        MainActivity.editor.putString("admin","admin");
-                                        MainActivity.editor.remove("username");
-                                        MainActivity.editor.remove("password");
-                                        MainActivity.editor.remove("iduser");
-                                        MainActivity.editor.remove("email");
-                                        MainActivity.editor.remove("sodienthoai");
-                                        MainActivity.editor.remove("hinh");
-                                        MainActivity.editor.remove("diachi");
+                                        MainActivity.editor.remove("nhanvien");
+                                        MainActivity.editor.putString("admin",edittextusername.getText().toString());
+                                        MainActivity.editor.putString("username", edittextusername.getText().toString());
+                                        MainActivity.editor.putString("password", edittextpassword.getText().toString());
+                                        MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
+                                        MainActivity.editor.putString("email", arrayList.get(0).getEmail());
+                                        MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
+                                        MainActivity.editor.putString("hinh", APIServices.urlhinh+arrayList.get(0).getId()+".jpg");
+                                        MainActivity.editor.putString("diachi",arrayList.get(0).getAdress());
                                         MainActivity.editor.commit();
+                                        Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                                 dialog.setNegativeButton("Không", new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-
+                                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                        MainActivity.editor.remove("nhanvien");
+                                        MainActivity.editor.remove("admin");
+                                        MainActivity.editor.putString("username", edittextusername.getText().toString());
+                                        MainActivity.editor.putString("password", edittextpassword.getText().toString());
+                                        MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
+                                        MainActivity.editor.putString("email", arrayList.get(0).getEmail());
+                                        MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
+                                        MainActivity.editor.putString("hinh", APIServices.urlhinh+arrayList.get(0).getId()+".jpg");
+                                        MainActivity.editor.putString("diachi",arrayList.get(0).getAdress());
+                                        MainActivity.editor.commit();
+                                        Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
                                     }
                                 });
+
                                 dialog.show();
 
+
                             }else{
-                                Toast.makeText(getApplicationContext(), "tài khoản không chính sác", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
+                                MainActivity.editor.remove("admin");
+                                MainActivity.editor.remove("nhanvien");
+                                Toast.makeText(Login.this, "Đăng Nhập Thành Công", Toast.LENGTH_SHORT).show();
+                                MainActivity.editor.putString("username", edittextusername.getText().toString());
+                                MainActivity.editor.putString("password", edittextpassword.getText().toString());
+                                MainActivity.editor.putInt("iduser", arrayList.get(0).getId());
+                                MainActivity.editor.putString("email", arrayList.get(0).getEmail());
+                                MainActivity.editor.putString("sodienthoai", arrayList.get(0).getPhoneNumBer());
+                                MainActivity.editor.putString("hinh", APIServices.urlhinh+arrayList.get(0).getId()+".jpg");
+                                MainActivity.editor.putString("diachi",arrayList.get(0).getAdress());
+                                MainActivity.editor.remove("admin");
+                                MainActivity.editor.commit();
+                                Log.d("AAA", "user sharedPreferences" + MainActivity.sharedPreferences.getString("username", ""));
+                                setintentt();
                             }
 
+                        }else{
+                            Toast.makeText(getApplicationContext(), "tài khoản không chính sác", Toast.LENGTH_SHORT).show();
                         }
+
                     }
                 }
 

@@ -28,6 +28,7 @@ public class DangKyTaiKhoan extends AppCompatActivity {
     private EditText edtusername,edtpassword,edtemaill,edtsodienthoaii,edtdiachii;
     private Button btndangky;
     private Toolbar toolbardangkytaikhoan;
+    private int idloai=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,12 +36,36 @@ public class DangKyTaiKhoan extends AppCompatActivity {
         setContentView(R.layout.activity_dang_ky_tai_khoan);
         anhxa();
         init();
+        getintent();
+       dangky();
+
+    }
+
+    private void getintent() {
+        Intent intent=getIntent();
+        if(intent!=null){
+            if(intent.hasExtra("khachhang")){
+                idloai=0;
+                Log.d("AAA","idloai: "+idloai);
+            }
+            if(intent.hasExtra("nhanvien")){
+                idloai=1;
+                Log.d("AAA","idloai: "+idloai);
+            }
+            if(intent.hasExtra("admin")){
+                idloai=2;
+                Log.d("AAA","idloai: "+idloai);
+            }
+        }
+    }
+
+    private void dangky() {
         btndangky.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(edtusername.getText().toString().equals("") || edtpassword.getText().toString().equals("") ||
-                edtemaill.getText().toString().equals("") || edtsodienthoaii.getText().toString().equals("") ||
-                edtdiachii.getText().toString().equals("") ){
+                        edtemaill.getText().toString().equals("") || edtsodienthoaii.getText().toString().equals("") ||
+                        edtdiachii.getText().toString().equals("") ){
                     Toast.makeText(DangKyTaiKhoan.this, "Không Được Để Trống Dữ Liệu", Toast.LENGTH_SHORT).show();
                 }else if(!edtemaill.getText().toString().endsWith("@gmail.com")){
                     Toast.makeText(DangKyTaiKhoan.this, "Sai Email", Toast.LENGTH_SHORT).show();
@@ -66,11 +91,12 @@ public class DangKyTaiKhoan extends AppCompatActivity {
                         edtsodienthoaii.getText().toString().startsWith("077") ||
                         edtsodienthoaii.getText().toString().startsWith("076")||
                         edtsodienthoaii.getText().toString().startsWith("078") &&
-                         edtsodienthoaii.getText().toString().length()==10){
+                                edtsodienthoaii.getText().toString().length()==10){
+
                     DataService dataService= APIServices.getService();
                     Call<String>callback=dataService.dangkytaikhoan(edtusername.getText().toString(),
                             edtpassword.getText().toString(), edtemaill.getText().toString(),edtsodienthoaii.getText().toString(),
-                            edtdiachii.getText().toString());
+                            edtdiachii.getText().toString(),idloai+"");
                     callback.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
@@ -93,9 +119,9 @@ public class DangKyTaiKhoan extends AppCompatActivity {
 
                         }
                     });
-                    }else{
+                }else{
                     Toast.makeText(DangKyTaiKhoan.this, "sai so dien thoai", Toast.LENGTH_SHORT).show();
-                    }
+                }
             }
         });
     }

@@ -38,14 +38,11 @@ public class Fragment_Choxetduyet extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.fragment_choxetduyet,container,false);
         anhxa();
-        if(MainActivity.sharedPreferences.getInt("iduser",0)>0){
+        if(MainActivity.sharedPreferences.getString("admin","").equals("")){
             getdatachoxetduyetnguoidung();
+
         }else{
-            if(MainActivity.sharedPreferences.getString("admin","").equals("")){
-                startActivity(new Intent(getContext(),Login.class));
-            }else{
                 getdatachoxetduyetadmin();
-            }
         }
 
         return view;

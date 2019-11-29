@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.view.View;
 
 import com.example.cuahang_doan.Activity.admin.Admin;
+import com.example.cuahang_doan.Activity.nhanvien.NhanVien;
 import com.example.cuahang_doan.Adapter.MainAdapter;
 import com.example.cuahang_doan.Fragment.Gio_Hang.Fragment_giohang;
 import com.example.cuahang_doan.Fragment.Tim_Kiem.Fragment_timkiem;
@@ -33,6 +34,10 @@ public class MainActivity extends AppCompatActivity {
         anhxa();
         if(!sharedPreferences.getString("admin","").equals("")){
             startActivity(new Intent(getApplicationContext(), Admin.class));
+        }else if(!sharedPreferences.getString("nhanvien","").equals("")){
+            startActivity(new Intent(getApplicationContext(), NhanVien.class));
+        }else{
+
         }
         init();
 
