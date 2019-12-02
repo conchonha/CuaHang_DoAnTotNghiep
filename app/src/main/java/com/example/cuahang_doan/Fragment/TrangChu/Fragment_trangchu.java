@@ -29,7 +29,6 @@ import com.example.cuahang_doan.Activity.SanPham;
 import com.example.cuahang_doan.Activity.TinTuc;
 import com.example.cuahang_doan.Activity.Vitrishop;
 import com.example.cuahang_doan.Adapter.DanhmucAdapter;
-import com.example.cuahang_doan.Fragment.TrangChu.DialogFragment_DanhMuc;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
@@ -149,24 +148,12 @@ public class Fragment_trangchu extends Fragment {
                 //Toast.makeText(getActivity(), i+arrayList.get(i).getTen(), Toast.LENGTH_SHORT).show();
                 switch (i){
                     case 0:
-                        Intent intent=new Intent(getActivity(), SanPham.class);
-                        intent.putExtra("id","laptop");
-                        startActivity(intent);
-                        break;
                     case 1:
-                        FragmentManager fragmentManager=getFragmentManager();
-                        DialogFragment_DanhMuc dialogFragment_danhMuc=new DialogFragment_DanhMuc(arrayList.get(1).getId()+"");
-                        dialogFragment_danhMuc.show(fragmentManager,"dialogdanhmuc");
-                        break;
                     case 2:
-                        Intent intent1=new Intent(getActivity(),SanPham.class);
-                        intent1.putExtra("id","tbluutru");
-                        startActivity(intent1);
-                        break;
                     case 3:
-                        FragmentManager fragmentManager1=getFragmentManager();
-                        DialogFragment_DanhMuc dialogFragment_danhMuc1=new DialogFragment_DanhMuc(arrayList.get(3).getId()+"");
-                        dialogFragment_danhMuc1.show(fragmentManager1,"dialogdanhmuc");
+                        Intent intent=new Intent(getActivity(), SanPham.class);
+                        intent.putExtra("id",arrayList.get(i).getId()+"");
+                        startActivity(intent);
                         break;
                     case 4:
                         startActivity(new Intent(getActivity(), TinTuc.class));

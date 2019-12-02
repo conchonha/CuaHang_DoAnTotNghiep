@@ -2,7 +2,6 @@ package com.example.cuahang_doan.Services;
 
 import com.example.cuahang_doan.model.Chitietdondathang;
 import com.example.cuahang_doan.model.DanhMuc;
-import com.example.cuahang_doan.model.DanhMucCon;
 import com.example.cuahang_doan.model.Danhgia;
 import com.example.cuahang_doan.model.DonDatHang;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
@@ -116,9 +115,6 @@ public interface DataService {
     @POST("model/hoadon/getdatahoadondondathangadmin")
     Call<List<HoaDon>>getdatahoadondondathangadmin(@Field("iddondathang") String iddondathang);
 
-    @FormUrlEncoded
-    @POST("model/danhmuc/getdatadanhmuccon")
-    Call<List<DanhMucCon>>getdatadanhmuccon(@Field("iddanhmuc") String iddanhmuc);
 
     @FormUrlEncoded
     @POST("model/laptopmacbook/getdatalaptopmacbook")

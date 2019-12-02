@@ -38,19 +38,18 @@ public class Fragment_Thietbiluutruphukien extends Fragment {
         view=inflater.inflate(R.layout.fragment_thietbiluutruphukien,container,false);
         anhxa();
         getDataThietbiluutruphukien();
-        setonclickxemthem();
         return view;
     }
-    private void setonclickxemthem() {
-        txtxemthem1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), SanPham.class);
-                intent.putExtra("id","tbluutru");
-                startActivity(intent);
-            }
-        });
-    }
+//    private void setonclickxemthem() {
+//        txtxemthem1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent=new Intent(getActivity(), SanPham.class);
+//                intent.putExtra("id","tbluutru");
+//                startActivity(intent);
+//            }
+//        });
+//    }
 
     private void getDataThietbiluutruphukien() {
         DataService dataService= APIServices.getService();
@@ -60,10 +59,19 @@ public class Fragment_Thietbiluutruphukien extends Fragment {
             public void onResponse(Call<List<GetdataSanphammoinhat>> call, Response<List<GetdataSanphammoinhat>> response) {
                 Log.d("AAA","thietbiluutruphukien"+response.toString());
                 if(response.isSuccessful()){
-                    ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
+                    final ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
                     Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(getActivity(),R.layout.layout_linhkienlaptop,arrayList);
                     adapter.notifyDataSetChanged();
                     recyclerView.setAdapter(adapter);
+
+                    txtxemthem1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent=new Intent(getActivity(), SanPham.class);
+                        intent.putExtra("id",arrayList.get(0).getIdDanhmuc()+"");
+                        startActivity(intent);
+                    }
+                });
                 }
             }
 

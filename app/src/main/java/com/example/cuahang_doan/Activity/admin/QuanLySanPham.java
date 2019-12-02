@@ -46,7 +46,7 @@ public class QuanLySanPham extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quan_ly_san_pham);
         anhxa();
-        getdatasanpham("laptop");
+        getdatasanpham("1");
         PopupMenuluachon();
        timkim();
        onclick_Views();
@@ -120,41 +120,18 @@ public class QuanLySanPham extends AppCompatActivity {
                 popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        if(item.getItemId()==R.id.laptop){
-                            getdatasanpham("laptop");
+
+                        if(item.getItemId()==R.id.laptopmacbook){
+                            getdatasanpham("1");
                         }
-                        if(item.getItemId()==R.id.manhinh){
-                            getdatasanpham("manhinh");
+                        if(item.getItemId()==R.id.linhkien){
+                            getdatasanpham("2");
                         }
-                        if(item.getItemId()==R.id.banphim){
-                            getdatasanpham("banphim");
+                        if(item.getItemId()==R.id.tbluutrupk){
+                            getdatasanpham("3");
                         }
-                        if(item.getItemId()==R.id.pin){
-                            getdatasanpham("pin");
-                        }
-                        if(item.getItemId()==R.id.sac){
-                            getdatasanpham("sac");
-                        }
-                        if(item.getItemId()==R.id.loa){
-                            getdatasanpham("loa");
-                        }
-                        if(item.getItemId()==R.id.microphone){
-                            getdatasanpham("microphone");
-                        }
-                        if(item.getItemId()==R.id.tainghe){
-                            getdatasanpham("tainghe");
-                        }
-                        if(item.getItemId()==R.id.webcame){
-                            getdatasanpham("webcam");
-                        }
-                        if(item.getItemId()==R.id.amthanh){
-                            getdatasanpham("cardamthanh");
-                        }
-                        if(item.getItemId()==R.id.linhkienlaptop){
-                            getdatasanpham("linhkienlaptop");
-                        }
-                        if(item.getItemId()==R.id.thietbinghenhin){
-                            getdatasanpham("thietbinghenhin1");
+                        if(item.getItemId()==R.id.tbnghenhin){
+                            getdatasanpham("4");
                         }
                         return false;
                     }
@@ -164,47 +141,7 @@ public class QuanLySanPham extends AppCompatActivity {
         });
     }
 
-    public void thaytendanhmucluachon(String giatri){
-        if(giatri.equals("laptop")){
-            txttendanhmucquanlyadmin.setText("LapTop - Macbook");
-        }
-        if(giatri.equals("manhinh")){
-            txttendanhmucquanlyadmin.setText("Màn Hình - LapTop");
-        }
-        if(giatri.equals("banphim")){
-            txttendanhmucquanlyadmin.setText("Bàn Phím - LapTop");
-        }
-        if(giatri.equals("pin")){
-            txttendanhmucquanlyadmin.setText("Pin - LapTop");
-        }
-        if(giatri.equals("sac")){
-            txttendanhmucquanlyadmin.setText("Sạc - LapTop");
-        }
-        if(giatri.equals("tbluutru")){
-            txttendanhmucquanlyadmin.setText("TB Lưu Trữ - Phụ Kiện");
-        }
-        if(giatri.equals("loa")){
-            txttendanhmucquanlyadmin.setText("Loa - LapTop");
-        }
-        if(giatri.equals("microphone")){
-            txttendanhmucquanlyadmin.setText("Microphone");
-        }
-        if(giatri.equals("tainghe")){
-            txttendanhmucquanlyadmin.setText("Tai Nghe");
-        }
-        if(giatri.equals("webcam")){
-            txttendanhmucquanlyadmin.setText("Webcam");
-        }
-        if(giatri.equals("cardamthanh")){
-            txttendanhmucquanlyadmin.setText("Card Âm Thanh");
-        }
-        if(giatri.equals("linhkienlaptop")){
-            txttendanhmucquanlyadmin.setText("Linh Kiện - LapTop");
-        }
-        if(giatri.equals("thietbinghenhin1")){
-            txttendanhmucquanlyadmin.setText("TB Nghe - Nhìn");
-        }
-    }
+
 
 
 
@@ -241,7 +178,7 @@ public class QuanLySanPham extends AppCompatActivity {
                       //  Adapter_SanPham adapter=new Adapter_SanPham(QuanLySanPham.this,R.layout.layoutsanpham,arrayList);
                         addrecyclerview(arrayList);
                        // adapter.notifyDataSetChanged();
-                        thaytendanhmucluachon(id);
+
                     }
                 }
 

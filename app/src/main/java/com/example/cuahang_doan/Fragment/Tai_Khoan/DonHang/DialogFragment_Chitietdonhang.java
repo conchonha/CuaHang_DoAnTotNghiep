@@ -72,17 +72,19 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
     }
 
     private void updatedonhang(final int id, final String trinhtrang) {
-        if(!MainActivity.sharedPreferences.getString("admin","").equals("Đang Vận Chuyển")) {
-            if(trinhtrang.equals("Đã Giao Hàng") || trinhtrang.equals("Đã Hủy") ) {
-                if(!MainActivity.sharedPreferences.getString("nhanvien","").equals("")){
-                    relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
-                }else{
-                    relativelupdatechitietdonhang.setVisibility(View.GONE);
-                }
-
+        if(MainActivity.sharedPreferences.getString("admin","").equals("")) {
+            if(!MainActivity.sharedPreferences.getString("nhanvien","").equals("")){
+                relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
             }else{
-
-            relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
+                relativelupdatechitietdonhang.setVisibility(View.GONE);
+            }
+        }else{
+            if(trinhtrang.equals("Đã Giao Hàng") || trinhtrang.equals("Đã Hủy") || trinhtrang.equals("Đang Vận Chuyển")) {
+                relativelupdatechitietdonhang.setVisibility(View.GONE);
+            }else{
+                relativelupdatechitietdonhang.setVisibility(View.VISIBLE);
+            }
+        }
             relativelupdatechitietdonhang.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -97,8 +99,7 @@ public class DialogFragment_Chitietdonhang extends DialogFragment {
                     }
                 }
             });
-        }
-        }
+
     }
     private void updatechoxetduyetadmin(final String iddondathang, final String trinhtrang ){
         DataService dataService=APIServices.getService();

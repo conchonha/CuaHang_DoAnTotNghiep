@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahang_doan.Activity.Chitietsanpham;
+import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -81,15 +82,20 @@ public class Adapter_SanPham extends RecyclerView.Adapter<Adapter_SanPham.Viewho
         }
         holder.txttensanpham.setText(sanpham.getTenSanPham());
         Picasso.with(context).load(sanpham.getHinhAnhSanPham()).into(holder.roundedImageView);
-       // holder.txtloai.setText(sanpham.getLoai());
-        holder.txttensanpham.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(context, Chitietsanpham.class);
-                intent.putExtra("id",arrayList.get(position).getId());
-                context.startActivity(intent);
-            }
-        });
+        if(MainActivity.sharedPreferences.getString("admin","").equals("")){
+            holder.txttensanpham.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(context, Chitietsanpham.class);
+                    intent.putExtra("id",arrayList.get(position).getId());
+                    context.startActivity(intent);
+                }
+            });
+        }
+
+        if(!sanpham.getLoai().equals("")){
+            holder.txtloai.setText(sanpham.getLoai());
+        }
     }
 
     @Override

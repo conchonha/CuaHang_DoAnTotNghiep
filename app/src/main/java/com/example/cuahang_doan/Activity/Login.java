@@ -25,6 +25,7 @@ import com.example.cuahang_doan.R;
 import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.Services.DataService;
 import com.example.cuahang_doan.model.User;
+import com.google.android.material.textfield.TextInputEditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +35,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class Login extends AppCompatActivity {
-    private EditText edittextusername,edittextpassword;
+    private TextInputEditText edittextusername,edittextpassword;
     private Button btndangnhap;
     private CheckBox ckeckbox;
     private ArrayList<User>arrayList;

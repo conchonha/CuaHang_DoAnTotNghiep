@@ -86,7 +86,7 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:text="Loại"
+                    android:hint="Loại"
                     android:padding="10dp"
                     android:gravity="center"
                     android:textColor="#000"
@@ -116,6 +116,7 @@
                     android:padding="10dp"
                     android:gravity="center"
                     android:textColor="#000"
+                    android:inputType="number"
                     android:layout_marginRight="10dp"
                     android:id="@+id/txt_InsertPriceProduct"
                     android:layout_marginLeft="10dp"
@@ -220,13 +221,14 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:scaleType="fitXY"
-                    android:id="@+id/img_InsertPictureProduct"
-                    android:src="@drawable/delete"
+                    android:id="@+id/img_PictureProduct"
+                    android:src="@drawable/imageviewrong"
                     android:layout_height="100dp"/>
                 <ImageView
                     android:layout_width="70dp"
                     android:layout_gravity="center_vertical|center_horizontal"
-                    android:id="@+id/img_AddImageviewsProduct"
+                    android:id="@+id/img_AddImageviewsProductmot"
+                    android:src="@drawable/iconadddd"
                     android:layout_marginLeft="50dp"
                     android:layout_height="70dp"/>
             </LinearLayout>
@@ -243,26 +245,32 @@
                 android:orientation="horizontal"
                 android:paddingBottom="20dp"
                 android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="100dp"
-                    android:scaleType="fitXY"
-                    android:id="@+id/img_PictureDescriptionProduct1"
-                    android:src="@drawable/delete"
-                    android:layout_height="100dp"/>
-                <ImageView
-                    android:layout_width="100dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/img_PictureDescriptionProduct2"
-                    android:src="@drawable/delete"
-                    android:layout_height="100dp"/>
-                <ImageView
-                    android:layout_width="100dp"
-                    android:scaleType="fitXY"
-                    android:layout_marginLeft="10dp"
-                    android:id="@+id/img_PictureDescriptionProduct3"
-                    android:src="@drawable/delete"
-                    android:layout_height="100dp"/>
+                <HorizontalScrollView
+                    android:layout_width="0dp"
+                    android:layout_weight="8"
+                    android:layout_height="100dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:orientation="horizontal"
+                        android:id="@+id/linnerlayouthinhmota"
+                        android:layout_height="wrap_content">
+
+                    </LinearLayout>
+                </HorizontalScrollView>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:layout_height="match_parent">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_gravity="center_vertical|center_horizontal"
+                        android:id="@+id/img_AddImageviewsProducthai"
+                        android:src="@drawable/iconadddd"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_height="70dp"/>
+                </LinearLayout>
             </LinearLayout>
             <Button
                 android:layout_width="match_parent"

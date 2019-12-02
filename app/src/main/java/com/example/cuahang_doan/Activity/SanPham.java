@@ -38,51 +38,21 @@ public class SanPham extends AppCompatActivity {
         setContentView(R.layout.activity_san_pham);
         anhxa();
         getdatasp();
-        settitleToolbar();
     }
 
-    private void settitleToolbar() {
-        if(giatri.equals("laptop")){
+    private void settitleToolbar(String id) {
+        if(id.equals("1")){
             tollbarsanpham.setTitle("LapTop - Macbook");
         }
-        if(giatri.equals("manhinh")){
-            tollbarsanpham.setTitle("Màn Hình - LapTop");
+        if(id.equals("2")){
+            tollbarsanpham.setTitle("Linh Kiện LapTop");
         }
-        if(giatri.equals("banphim")){
-            tollbarsanpham.setTitle("Bàn Phím - LapTop");
-        }
-        if(giatri.equals("pin")){
-            tollbarsanpham.setTitle("Pin - LapTop");
-        }
-        if(giatri.equals("sac")){
-            tollbarsanpham.setTitle("Sạc - LapTop");
-        }
-        if(giatri.equals("tbluutru")){
+        if(id.equals("3")){
             tollbarsanpham.setTitle("TB Lưu Trữ - Phụ Kiện");
         }
-        if(giatri.equals("loa")){
-            tollbarsanpham.setTitle("Loa - LapTop");
+        if(id.equals("4")){
+            tollbarsanpham.setTitle("Thiết Bị Nghe - Nhìn");
         }
-        if(giatri.equals("microphone")){
-            tollbarsanpham.setTitle("Microphone");
-        }
-        if(giatri.equals("tainghe")){
-            tollbarsanpham.setTitle("Tai Nghe");
-        }
-        if(giatri.equals("webcam")){
-            tollbarsanpham.setTitle("Webcam");
-        }
-        if(giatri.equals("cardamthanh")){
-            tollbarsanpham.setTitle("Card Âm Thanh");
-        }
-        if(giatri.equals("linhkienlaptop")){
-            tollbarsanpham.setTitle("Linh Kiện - LapTop");
-        }
-        if(giatri.equals("thietbinghenhin1")){
-            tollbarsanpham.setTitle("TB Nghe - Nhìn");
-        }
-
-
 
     }
 
@@ -90,6 +60,7 @@ public class SanPham extends AppCompatActivity {
         Intent intent=getIntent();
         if(intent.hasExtra("id")){
             giatri= intent.getStringExtra("id");
+            settitleToolbar(giatri);
             Toast.makeText(this, giatri, Toast.LENGTH_SHORT).show();
             DataService dataService= APIServices.getService();
             Call<List<GetdataSanphammoinhat>>callback=dataService.getdatasanphamdanhmuc(giatri);

@@ -10,19 +10,14 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:layout_width="25dp"
-            android:src="@drawable/iconmenu"
-            android:id="@+id/img_MenuProductAdmin"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_alignParentRight="true"
-            android:layout_height="25dp"/>
+
+
         <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
             android:id="@+id/toolbaradminquanlysp"
-            app:title=" "
-            android:layout_height="wrap_content"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title=" " />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_marginLeft="100dp"
@@ -44,6 +39,14 @@
             android:src="@drawable/iconsearch"
             android:scaleType="fitXY"
             android:layout_height="30dp"/>
+        <ImageView
+            android:layout_width="25dp"
+            android:src="@drawable/iconmenu"
+            android:id="@+id/img_MenuProductAdmin"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_height="25dp"/>
     </RelativeLayout>
     <LinearLayout
         android:layout_width="match_parent"

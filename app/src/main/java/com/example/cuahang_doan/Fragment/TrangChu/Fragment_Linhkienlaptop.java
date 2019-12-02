@@ -38,20 +38,11 @@ public class Fragment_Linhkienlaptop extends Fragment {
        view=inflater.inflate(R.layout.fragment_linhkienlaptop,container,false);
        anhxa();
        getdataLinhkienlaptop();
-        setonclickxemthem();
+
        return view;
     }
 
-    private void setonclickxemthem() {
-        txtxemthem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(getActivity(), SanPham.class);
-                intent.putExtra("id","linhkienlaptop");
-                startActivity(intent);
-            }
-        });
-    }
+
 
     private void getdataLinhkienlaptop() {
         DataService dataService= APIServices.getService();
@@ -61,10 +52,19 @@ public class Fragment_Linhkienlaptop extends Fragment {
             public void onResponse(Call<List<GetdataSanphammoinhat>> call, Response<List<GetdataSanphammoinhat>> response) {
                 Log.d("AAA","linhkienlaptop"+response.toString());
                 if(response.isSuccessful()){
-                    ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
+                    final ArrayList<GetdataSanphammoinhat>arrayList= (ArrayList<GetdataSanphammoinhat>) response.body();
                     Adapter_Sanphammoinhat adapter=new Adapter_Sanphammoinhat(getActivity(),R.layout.layout_linhkienlaptop,arrayList);
                     adapter.notifyDataSetChanged();
                     recyclerView.setAdapter(adapter);
+
+                    txtxemthem.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent=new Intent(getActivity(), SanPham.class);
+                            intent.putExtra("id",arrayList.get(0).getIdDanhmuc()+"");
+                            startActivity(intent);
+                        }
+                    });
                 }
             }
 
