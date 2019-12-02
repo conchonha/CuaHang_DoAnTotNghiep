@@ -14,6 +14,9 @@ import com.example.cuahang_doan.model.SanPham;
 import com.example.cuahang_doan.model.TinTuc;
 import com.example.cuahang_doan.model.User;
 
+import org.json.JSONArray;
+
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -250,4 +253,23 @@ public interface DataService {
                                  @Field("edt_NameInsert") String edt_NameUpdate
 
     );
+
+    @FormUrlEncoded
+    @POST("model/quanlysanpham/insert_ProductAdmin")
+    Call<String>insert_ProductAdmin(@Field("text_DescriptionProduct") String text_DescriptionProduct,
+                                    @Field("text_SpecificationsProduct") String text_SpecificationsProduct,
+                                    @Field("text_NameProduct") String text_NameProduct,
+                                    @Field("text_PricaeProduct") String text_PricaeProduct,
+                                    @Field("text_NumberProduct") String text_NumberProduct,
+                                    @Field("text_PromotionDayProduct") String text_PromotionDayProduct,
+                                    @Field("txt_PromotionPriceProduct") String txt_PromotionPriceProduct,
+                                    @Field("id_TypeProduct") String id_TypeProduct,
+                                    @Field("text_Today") String text_Today,
+                                    @Field("text_TheFirm") String text_TheFirm,
+                                    @Field("text_PictureProduct") String text_PictureProduct,
+                                    @Field("text_PictureDescriptionProduct")JSONArray jsonArray
+
+
+
+                                    );
 }

@@ -11,7 +11,8 @@
         android:gravity="center"
         android:layout_height="wrap_content">
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:textSize="16sp"
             android:text="#"
             android:padding="5dp"
@@ -19,7 +20,8 @@
             android:id="@+id/stt"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:textSize="16sp"
             android:text="Sản Phẩm"
             android:maxLines="2"
@@ -32,7 +34,8 @@
             android:maxWidth="100dp"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:textColor="#000"
             android:textSize="16sp"
             android:text="SL"
@@ -41,7 +44,8 @@
             android:padding="5dp"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="2"
             android:textSize="16sp"
             android:text="Đơn Giá"
             android:padding="5dp"
@@ -51,7 +55,8 @@
             android:layout_marginRight="10dp"
             android:layout_height="wrap_content"/>
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="3"
             android:textSize="16sp"
             android:text="Thành Tiền"
             android:id="@+id/txtthanhtien"

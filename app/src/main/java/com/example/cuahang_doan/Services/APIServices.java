@@ -1,8 +1,9 @@
 package com.example.cuahang_doan.Services;
 
 public class APIServices {
-    private static String baseurl="http://192.168.1.32/cuahang/public/";
-    public static String urlhinh="http://192.168.1.32/cuahang/public/img/";
+    private static String baseurl="http://192.168.1.102/cuahang/public/";
+    public static String urlhinh="http://192.168.1.102/cuahang/public/img/";
+    public static String urlhinhsanpham="http://192.168.1.102/cuahang/public/img/sanpham/";
 
     public static DataService getService(){
 

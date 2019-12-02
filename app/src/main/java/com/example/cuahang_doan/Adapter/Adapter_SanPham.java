@@ -1,6 +1,9 @@
 package com.example.cuahang_doan.Adapter;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cuahang_doan.Activity.Chitietsanpham;
 import com.example.cuahang_doan.Activity.MainActivity;
 import com.example.cuahang_doan.R;
+import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.model.GetdataSanphammoinhat;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -81,7 +86,13 @@ public class Adapter_SanPham extends RecyclerView.Adapter<Adapter_SanPham.Viewho
             holder.txtgiasp.setTextColor(Color.RED);
         }
         holder.txttensanpham.setText(sanpham.getTenSanPham());
-        Picasso.with(context).load(sanpham.getHinhAnhSanPham()).into(holder.roundedImageView);
+        if(sanpham.getHinhAnhSanPham().endsWith("news.jpg")){
+            Log.d("AAA","hinh: "+APIServices.urlhinhsanpham+sanpham.getHinhAnhSanPham());
+            Picasso.with(context).load(APIServices.urlhinhsanpham+sanpham.getHinhAnhSanPham()).into(holder.roundedImageView);
+        }else{
+            Picasso.with(context).load(sanpham.getHinhAnhSanPham()).into(holder.roundedImageView);
+        }
+
         if(MainActivity.sharedPreferences.getString("admin","").equals("")){
             holder.txttensanpham.setOnClickListener(new View.OnClickListener() {
                 @Override

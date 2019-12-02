@@ -82,7 +82,11 @@ public class Adapter_Giohang extends BaseAdapter {
         final GioHang gioHang=arrayList.get(i);
         DecimalFormat decimalFormat=new DecimalFormat("###,###,###");
         try {
-            Picasso.with(context).load(gioHang.getHinh()).into(viewhodler.imggiohang11);
+            if(gioHang.getHinh().endsWith("news.jpg")){
+                Picasso.with(context).load(APIServices.urlhinhsanpham+gioHang.getHinh()).into(viewhodler.imggiohang11);
+            }else {
+                Picasso.with(context).load(gioHang.getHinh()).into(viewhodler.imggiohang11);
+            }
         }catch (Exception e1){
             Log.d("AAA","loi picaso: "+e1.toString());
         }

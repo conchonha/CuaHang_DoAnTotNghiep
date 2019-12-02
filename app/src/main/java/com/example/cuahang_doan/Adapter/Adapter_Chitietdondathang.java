@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cuahang_doan.R;
+import com.example.cuahang_doan.Services.APIServices;
 import com.example.cuahang_doan.model.Chitietdondathang;
 import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
@@ -42,7 +43,12 @@ public class Adapter_Chitietdondathang extends RecyclerView.Adapter <Adapter_Chi
         holder.txtgiachitietdondathang.setText(decimalFormat.format(chitietdondathang.getGiaSanPham())+"Đ");
         holder.txtsoluongchitietdondathang.setText(chitietdondathang.getSoLuongSanPham()+"");
         holder.txttensanphamchitietdondathang.setText(chitietdondathang.getTenSanPham());
-        Picasso.with(context).load(chitietdondathang.getHinhSanPham()).into(holder.roundimageviewchitietdondathang);
+        if(chitietdondathang.getHinhSanPham().endsWith("news.jpg")){
+            Picasso.with(context).load(APIServices.urlhinhsanpham+chitietdondathang.getHinhSanPham()).into(holder.roundimageviewchitietdondathang);
+        }else{
+            Picasso.with(context).load(chitietdondathang.getHinhSanPham()).into(holder.roundimageviewchitietdondathang);
+        }
+
     }
 
     @Override
