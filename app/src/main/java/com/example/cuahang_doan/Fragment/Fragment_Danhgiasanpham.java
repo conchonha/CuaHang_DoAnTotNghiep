@@ -69,6 +69,7 @@ public class Fragment_Danhgiasanpham extends Fragment {
      return view;
     }
     private void danhgiacuaban(final String msp){
+        Toast.makeText(view.getContext(), "co cloc", Toast.LENGTH_SHORT).show();
                 if(MainActivity.sharedPreferences.getString("username","").equals("") &&
                     MainActivity.sharedPreferences.getInt("iduser",0)==0){
                     Intent intent=new Intent(getActivity(),Login.class);

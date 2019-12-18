@@ -16,7 +16,7 @@ import com.example.cuahang_doan.Activity.TinTuc;
 import com.example.cuahang_doan.R;
 
 public class Admin extends AppCompatActivity {
-    private LinearLayout linnerThontin,linerThongKe,linnerdangxuat,linerdonhang;
+    private LinearLayout linnerThontin,linerThongKe,linnerdangxuat,linerdonhang,linerFanpage;
     private CardView carsanpham,cardtaikhoan,cardtintuc;
 
     @Override
@@ -71,9 +71,16 @@ public class Admin extends AppCompatActivity {
                 startActivity(new Intent(getApplicationContext(), TinTuc.class));
             }
         });
+        linerFanpage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(),fanpage.class));
+            }
+        });
     }
 
     private void anhxa() {
+        linerFanpage=findViewById(R.id.linerFanpage);
         cardtintuc=findViewById(R.id.cardtintuc);
         cardtaikhoan=findViewById(R.id.cardtaikhoan);
         carsanpham=findViewById(R.id.carsanpham);

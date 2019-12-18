@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activity.nhanvien.NhanVien"></activity>
+        <activity android:name=".Activity.admin.fanpage"></activity>
+        <activity android:name=".Activity.nhanvien.NhanVien" />
         <activity android:name=".Activity.admin.Inssert_TinTuc" />
         <activity android:name=".Activity.admin.UpdateTinTuc" />
         <activity android:name=".Activity.admin.QuanLytaikhoan" />
